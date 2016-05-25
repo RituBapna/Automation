@@ -1,0 +1,8 @@
+{width:"600",
+  height:"400",
+  outputFile:"rt/src/test/webdriver/src/oj/tests/sample/out/combochart.svg",    
+  options:{
+    "yAxis":{"axisLine":{"rendered":"on","lineWidth":2},"title":"Y Axis","tickLabel":{"rendered":"off"}},
+    "series":[{"name":"job 1","type":"bar","items":[{"y":74},{"y":42}]},{"name":"job 2","type":"line","items":[{"y":50},{"y":58}]},{"name":"job 3","type":"area","items":[{"y":34},{"y":22}]},{"name":"job 4","items":[{"y":18},{"y":6}]},{"name":"job 5","items":[{"y":15},{"y":8}]}],"legend":{"rendered":"on"},
+    "groups":["ename 1","ename 2"],"type":"combo","plotArea":{"backgroundColor":"#ffffff"}}
+}

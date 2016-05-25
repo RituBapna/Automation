@@ -1,0 +1,9 @@
+{ width:"600",
+  height:"400",
+  outputFile:"rt/src/test/webdriver/src/oj/tests/sample/out/bubblechart.svg",    
+  options:{
+  "yAxis":{"min":0,"max":70,"tickLabel":{"rendered":"off"}},
+  "xAxis":{"min":0,"max":70,"tickLabel":{"rendered":"off"}},
+  "series":[{"name":"Series 1","displayInLegend":"off","items":[{"markerSize":"30","color":"#267db3","x":15,"y":25,"z":5,"categories":"Series 1","markerShape":"circle"},{"markerSize":"30","color":"#267db3","x":25,"y":30,"z":12,"categories":"Series 1","markerShape":"circle"},{"markerSize":"30","color":"#267db3","x":25,"y":45,"z":12,"categories":"Series 1","markerShape":"circle"}]},{"name":"Series 2","displayInLegend":"off","items":[{"markerSize":"30","color":"#68c182","x":15,"y":15,"z":8,"categories":"Series 2","markerShape":"square"},{"markerSize":"30","color":"#68c182","x":20,"y":35,"z":14,"categories":"Series 2","markerShape":"square"},{"markerSize":"30","color":"#68c182","x":40,"y":55,"z":35,"categories":"Series 2","markerShape":"square"}]},{"name":"Series 3","displayInLegend":"off","items":[{"markerSize":"30","color":"#fad55c","x":10,"y":10,"z":8,"categories":"Series 3","markerShape":"plus"},{"markerSize":"30","color":"#fad55c","x":18,"y":55,"z":10,"categories":"Series 3","markerShape":"plus"},{"markerSize":"30","color":"#fad55c","x":40,"y":50,"z":18,"categories":"Series 3","markerShape":"plus"}]},{"name":"Series 4","displayInLegend":"off","items":[{"markerSize":"30","color":"#ed6647","x":8,"y":20,"z":6,"categories":"Series 4","markerShape":"diamond"},{"markerSize":"30","color":"#ed6647","x":11,"y":30,"z":8,"categories":"Series 4","markerShape":"diamond"},{"markerSize":"30","color":"#ed6647","x":30,"y":40,"z":15,"categories":"Series 4","markerShape":"diamond"}]}],"legend":{"rendered":"false"},
+  "groups":["Group A","Group B","Group C"],"type":"bubble","plotArea":{"backgroundColor":"#ffffff"}}
+}

@@ -1,0 +1,8 @@
+{ width:"600",
+  height:"400",
+  outputFile:"rt/src/test/webdriver/src/oj/tests/sample/out/barchart.svg",    
+  options:
+  {"yAxis":{"axisLine":{"rendered":"on","lineWidth":2},"title":"Y Axis","tickLabel":{"rendered":"off"}},
+  "series":[{"name":"Job 1","items":[{"y":74},{"y":42},{"y":70},{"y":46},{"y":70}]},{"name":"Job 2","items":[{"y":50},{"y":58},{"y":46},{"y":54},{"y":90}]},{"name":"Job 3","items":[{"y":34},{"y":22},{"y":30},{"y":32},{"y":52}]},{"name":"Job 4","items":[{"y":18},{"y":6},{"y":14},{"y":22},{"y":78}]},{"name":"Job 5","items":[{"y":15},{"y":8},{"y":7},{"y":14},{"y":66}]}],"legend":{"rendered":"on"},
+  "groups":["Ename 1","Ename 2","Ename 3","Ename 4","Ename 5"],"type":"bar","plotArea":{"backgroundColor":"#ffffff"}}
+}

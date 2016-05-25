@@ -1,0 +1,181 @@
+package oj.tests.collapsible;
+//@ Ritu Bapna
+//what package should I put in this file
+import java.util.NoSuchElementException;
+import java.util.List;
+import oracle.ojet.automation.test.OJetBase;
+import oracle.ojet.automation.test.TestConfigBuilder;
+import org.testng.annotations.Test;
+import org.testng.Assert;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
+import java.util.concurrent.TimeUnit;
+
+public class CookbookCollapsibleTest extends OJetBase {
+
+	private static final String ACCORDION_TITLE = "Accordion: Accordion";
+	private static final String BASIC_DEMO = "This demo showcases a basic accordion.";
+	
+    public CookbookCollapsibleTest() {
+
+        super(new TestConfigBuilder().setContextRoot("components").setAppRoot("public_html").build());
+
+        /*super(new TestConfigBuilder().setContextRoot("built/apps/components/public_html").setAppRoot("demo").build());*/
+
+    }
+	@Test(groups = { "cookbook" })
+	public void basicCollapsible() throws Exception {
+
+			//Start the test and bring up the browser
+			startupTest("demo-collapsible-basicCollapsible.html",null);
+			verifyTitle("Incorrect page title;", "Collapsible - Basic Collapsible");
+			waitForElementVisible("id=collapsiblePage");
+			WebElement collapsibleDiv = getElement("id=collapsiblePage");
+			//WebElement header11 = collapsibleDiv.findElement(By.tagName("h1"));
+			WebElement header1 = getElement("{\"element\":\"#collapsiblePage\",\"subId\":\"oj-collapsible-disclosure\"}");
+			header1.click();
+			try{
+				Thread.sleep(1000);
+			}catch(Exception e){}
+			WebElement content1 = getElement("{\"element\":\"#collapsiblePage\",\"subId\":\"oj-collapsible-content\"}");
+			Assert.assertEquals("I'm a Collapsible.",content1.getText());
+			Assert.assertTrue(content1.isDisplayed());
+			//Collapse first header-icon
+			header1.click();
+		} 
+		 @Test(groups = { "cookbook" })
+		public void nestedCollapsible() throws Exception {
+
+			//Start the test and bring up the browser
+			startupTest("demo-collapsible-nestedCollapsible.html",null);
+			verifyTitle("Incorrect page title;", "Collapsible - Nested Collapsible");
+			waitForElementVisible("id=collapsiblePage");
+			WebElement collapsibleDiv = getElement("id=collapsiblePage");
+			//WebElement header11 = collapsibleDiv.findElement(By.tagName("h1"));
+			WebElement parentCollapsibleDiv = getElement("{\"element\":\"#collapsiblePage\",\"subId\":\"oj-collapsible-disclosure\"}");
+			//Collapse the already opened outer parent collapsible 
+			parentCollapsibleDiv.click();
+			//Expand the closed outer parent collapsible 
+			parentCollapsibleDiv.click();
+			WebElement content1 = getElement("{\"element\":\"#collapsiblePage\",\"subId\":\"oj-collapsible-content\"}");
+			Assert.assertTrue(content1.isDisplayed());
+			try{
+				Thread.sleep(1000);
+			}catch(Exception e){}
+			waitForElementVisible("id=innerContent1");
+			WebElement nestedCollapsibleDiv_1= getElement("{\"element\":\"#innerContent1\",\"subId\":\"oj-collapsible-disclosure\"}");
+			//Collapse the already opened first nested inner collapsible 
+			nestedCollapsibleDiv_1.click();
+			try{
+				Thread.sleep(1000);
+			}catch(Exception e){}
+			//Expand the closed first nested inner collapsible 
+			nestedCollapsibleDiv_1.click();
+			WebElement nestedContentDiv_1 = getElement("{\"element\":\"#innerContent1\",\"subId\":\"oj-collapsible-content\"}");
+			Assert.assertTrue(nestedContentDiv_1.isDisplayed());
+			//Assert.assertEquals("Nested Content 1",nestedContentDiv_1.getText());
+			try{
+				Thread.sleep(1000);
+			}catch(Exception e){}
+			
+		} 
+		
+		@Test(groups = { "cookbook" })
+		public void eventCollaopsible() throws Exception {
+
+			//Start the test and bring up the browser
+			startupTest("demo-collapsible-events.html",null);
+			verifyTitle("Incorrect page title;", "Collapsible - Events");
+			waitForElementVisible("id=c1");
+			WebElement collapsibleDiv = getElement("id=c1");
+			//WebElement header11 = collapsibleDiv.findElement(By.tagName("h1"));
+			WebElement eventCollapsibleDiv = getElement("{\"element\":\"#c1\",\"subId\":\"oj-collapsible-disclosure\"}");
+			//Expand the  collapsible 
+			eventCollapsibleDiv.click(); 
+			
+			try{
+				Thread.sleep(1000);
+			}catch(Exception e){}
+			
+			waitForElementVisible("id=eventlog");
+			String eventLog = evalJavascript("return $('#eventlog').ojTextArea('option', 'value')");
+			//Get event log
+			// WebElement eventLog = getElement("id=eventlog");
+			System.out.println("####### eventLog: " + eventLog);
+			boolean beforeExpandLog = eventLog.indexOf("ojbeforeexpand: c1 data { header: h1 content: p1}") > -1;
+			boolean expandLog = eventLog.indexOf("ojexpand: c1 data { header: h1 content: p1}") > -1;
+			boolean optionChangelog = eventLog.indexOf("optionChange: c1 data { previousValue: false value: true}") > -1;
+			Assert.assertTrue(beforeExpandLog, "ojbeforedeselect event called with correct parameters");
+			Assert.assertTrue(expandLog, "ojbeforeselect event called with correct parameters");
+			Assert.assertTrue(optionChangelog, "ojoptionchange event called with correct parameters");
+			
+			//Collapse the  collapsible 
+			eventCollapsibleDiv.click(); 
+			
+			try{
+				Thread.sleep(1000);
+			}catch(Exception e){}
+			
+			boolean beforeCollapseLog = eventLog.indexOf("c1 data { header: h1 content: p1}") > -1;
+			boolean collapseLog = eventLog.indexOf("c1 data { header: h1 content: p1}") > -1;
+			boolean optionChangeCollapselog = eventLog.indexOf("c1 data { previousValue: true value: false}") > -1;
+			Assert.assertTrue(beforeCollapseLog, "ojbeforecollapse event called with correct parameters");
+			Assert.assertTrue(collapseLog, "ojcollapse event called with correct parameters");
+			//Assert.assertTrue(optionChangeCollapselog, "optionChangeCollapselog event called with correct parameters");
+			
+			//ClearLog
+			WebElement div = getElement("id=c1p");
+			WebElement clearLog = null;
+			List<WebElement> buttons = div.findElements(By.tagName("button"));
+
+			for (WebElement btn : buttons) {
+				WebElement span = btn.findElement(By.tagName("span"));
+				String btnLabel = span.getText();
+				System.out.println("#######***** BUTTON LABEL: " + btnLabel);
+				switch (btnLabel) {
+
+				case "Clear log":
+					clearLog = btn;
+					break;
+				default:
+					break;
+				}
+
+			}
+			clearLog.click();
+			try{
+					Thread.sleep(1000);
+				}catch(Exception e){}
+				
+			} 
+			@Test(groups = { "cookbook" })
+	public void vetoableCollapsible() throws Exception {
+
+			//Start the test and bring up the browser
+			startupTest("demo-collapsible-vetoableEvents.html",null);
+			verifyTitle("Incorrect page title;", "Collapsible - Vetoable Events");
+			waitForElementVisible("id=c1");
+			WebElement collapsibleDiv = getElement("id=c1");
+			WebElement vetoableHeader = getElement("{\"element\":\"#c1\",\"subId\":\"oj-collapsible-disclosure\"}");
+			vetoableHeader.click();
+			try{
+				Thread.sleep(1000);
+			}catch(Exception e){}
+			WebElement vetoableContent = getElement("{\"element\":\"#c1\",\"subId\":\"oj-collapsible-content\"}");
+			//Assert.assertEquals("I'm a Collapsible.",content1.getText());
+			Assert.assertFalse(vetoableContent.isDisplayed());
+		} 
+	
+	
+	private void log(String log)
+	    {
+	        System.out.println(log);
+			getLogger().fine("[collapsiblePage] " + log);
+    }
+
+    
+
+}

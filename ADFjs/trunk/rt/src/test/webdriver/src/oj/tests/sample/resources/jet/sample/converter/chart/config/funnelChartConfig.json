@@ -1,0 +1,8 @@
+{width:"600",
+  height:"400",
+  outputFile:"rt/src/test/webdriver/src/oj/tests/sample/out/funnelchart.svg",    
+  options:{
+    "orientation":"horizontal",
+    "series":[{"name":"address.city 1","items":[{"targetValue":100,"value":74}]},{"name":"address.city 2","items":[{"targetValue":100,"value":25}]},{"name":"address.city 3","items":[{"targetValue":100,"value":50}]},{"name":"address.city 4","items":[{"targetValue":100,"value":15}]},{"name":"address.city 5","items":[{"targetValue":100,"value":64}]}],"legend":{"rendered":"on"},
+    "groups":["Group A"],"type":"funnel"}  
+}

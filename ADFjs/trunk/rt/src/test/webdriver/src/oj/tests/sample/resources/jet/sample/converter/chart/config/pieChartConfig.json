@@ -1,0 +1,7 @@
+{ width:"600",
+  height:"400",
+  outputFile:"rt/src/test/webdriver/src/oj/tests/sample/out/piechart.svg",    
+  options:{
+    "series":[{"name":"address.city 1","items":[{"value":74}]},{"name":"address.city 2","items":[{"value":42}]},{"name":"address.city 3","items":[{"value":70}]},{"name":"address.city 4","items":[{"value":46}]},{"name":"address.city 5","items":[{"value":70}]}],"legend":{"rendered":"on"},
+    "groups":["Group A"],"type":"pie"}  
+}

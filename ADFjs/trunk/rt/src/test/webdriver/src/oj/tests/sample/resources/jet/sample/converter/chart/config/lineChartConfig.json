@@ -1,0 +1,19 @@
+{
+width:"600",
+height:"400",
+outputFile:"rt/src/test/webdriver/src/oj/tests/sample/out/linechart.svg",    
+options:{"component": "ojChart",
+"series":[
+   {"name": "DataSet1", "type": "line", "items": [{"y":"12656"},{"y":"3549"},{"y":"4773"},{"y":"9490"}], "color": "#7778E4", "markerDisplayed":"on", "markerShape":"diamond","markerSize":"9","markerColor":"#7778E4"},
+   {"name": "DataSet2", "type": "line", "items": [{"y":"2534"},{"y":"9727"},{"y":"6115"},{"y":"9578"}], "color": "#F7BE26"},
+   {"name": "DataSet3", "type": "line", "items": [{"y":"2627"},{"y":"10731"},{"y":"2350"},{"y":"10091"}], "color": "#06CCCD"},
+   {"name": "DataSet4", "type": "line", "items": [{"y":"2408"},{"y":"8087"},{"y":"4912"},{"y":"13419"}], "color": "#B55BA5"}],
+"xAxis":{"title":"", "titleStyle": "font-size:10px;color:#000000;font-family:Andale WT Plain;","tickLabel":{"scaling":"none","style": ";font-family:Andale WT Plain;color:#000000;font-size:10px;"},"majorTick":{"rendered":"off", "baselineColor":"#000000", "baselineStyle":"solid", "baselineWidth":"1"}},
+"yAxis":{"title":"", "titleStyle": "font-size:10px;color:#000000;font-family:Andale WT Plain;","tickLabel":{"scaling":"none","style": ";font-family:Andale WT Plain;color:#000000;font-size:10px;"},"majorTick":{"rendered":"on", "lineStyle":"solid", "lineWidth":"1","lineColor":"#B2B2B2", "baselineColor":"#000000", "baselineStyle":"solid", "baselineWidth":"1"}},
+"y2Axis":{"title":"", "titleStyle": "font-size: 10px;color:#000000;font-family:Andale WT Plain;","majorTick":{"rendered":"off", "baselineColor":"#000000", "baselineStyle":"solid", "baselineWidth":"1"}},
+"type":"line",
+"legend":{"title": "", "titleStyle": "font-size:10px;color:#000000;font-family:Andale WT Plain;", "backgroundColor":"#FFFFFF", "position":"right", "textStyle":  "font-size:10px;color:#000000;font-family:Andale WT Plain;"},
+"plotArea":{"backgroundColor":"#FFFFFF"},
+"stack":"off",
+"orientation":"vertical"}
+}
