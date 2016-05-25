@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Jet ojSelect Test</title>
+    
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css" id="ojcss"/>
+        <link rel="stylesheet" href="../../common/css/testStyles.css" type="text/css"/>
+        
+        <script>
+        var currentTestApp = '../../input/select/js/app';
+        </script>
+        <!-- RequireJS bootstrap file -->
+        <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>        
+</head>
+
+<body id="html_body">
+<div id="menu_container" data-bind="with: svm"></div>
+<h2>Line before all</h2>
+<form id="form1">
+          
+<div id="main-container" data-bind="with: model">
+<label id="mainlabelid" for="select">Select with options array</label>
+<select id="select" data-bind="ojComponent: {component: 'ojSelect', options: obsValueList, 
+                                             rootAttributes: {style:'max-width:20em'}}">
+</select>
+ 
+<br/><br/>
+
+<label for="grpdata">Select with group options array</label>
+ 
+<select id="grpdata" data-bind="ojComponent: {component: 'ojSelect',                                                    
+                                              options: groupData, value: ['CA'],
+                                              rootAttributes: {style:'max-width:20em'}}">
+</select>
+ 
+<br/><br/>
+<label for="optKeys">Select with optionsKeys</label>
+ 
+<select id="optKeys" data-bind="ojComponent: {component: 'ojSelect',
+                                              options: groupDataWithKeys, 
+                                              optionsKeys: {label: 'regions', children: 'states', childKeys: {value: 'state_abbr', label: 'state_name'}},
+                                              value: ['CA'], rootAttributes: {style:'max-width:20em'}}">
+</select>
+ 
+<br/><br/>
+<label for="tridata">Select with 3 level options data</label>
+ 
+<select id="tridata" data-bind="ojComponent: {component: 'ojSelect', 
+                                              options: triLevelGroupData, value: ['SF'],
+                                              optionsKeys: keys2,
+                                              rootAttributes: {style:'max-width:20em'}}">
+</select>
+
+ 
+</div>
+
+</form>
+
+<h2>Line after</h2>
+
+<div id="local-container" data-bind="with: model">
+    <button id="buttonId1" data-bind="ojComponent: {
+      component: 'ojButton',label: 'toggleMinResultsForSearch'}, click: toggleMinResultsForSearch"></button>
+    <button id="buttonId2" data-bind="ojComponent: {
+      component: 'ojButton',label: 'toggleDisabledItem'}, click: toggleDisabledItem"></button>
+    <button id="buttonId3" data-bind="ojComponent: {
+      component: 'ojButton',label: 'addOption'}, click: addOption"></button>
+        
+</div>
+<div id="inputControls-container" data-bind="with: model"></div>
+<div id="controls-container"></div>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+<div id="chapter" class="oj-flex oj-flex-items-pad">
+   <div class="oj-xl-2 oj-lg-2 oj-md-2 oj-sm-12 oj-flex-item">
+      <br>
+      <div id="menu" data-bind="ojComponent:{ component: 'ojNavigationList',
+                                              selection: router.stateId(),
+                                              beforeSelect: selectHandler,
+                                              drillMode: 'none' }">
+         <ul data-bind="foreach: router.states">
+            <li data-bind="attr: {id: id}">
+               <a data-bind="text: label"></a>
+            </li>
+         </ul>
+      </div>
+      <button id= "bkgnd" data-bind="click: changeColor,
+              ojComponent: { component: 'ojButton', label: 'Change background' }">
+      </button>
+   </div>
+   <div class="oj-xl-10 oj-lg-10 oj-md-10 oj-sm-12 oj-flex-item" data-bind="if: (router.stateId() && wizardRouter.stateId())">
+      <br>
+      <div id="bookContent" data-bind="ojModule: wizardRouter.moduleConfig"></div>
+   </div>
+</div>

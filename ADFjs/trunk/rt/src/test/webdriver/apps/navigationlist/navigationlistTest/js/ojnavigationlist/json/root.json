@@ -1,0 +1,45 @@
+[
+             { 
+               "title": "Home",
+               "attr": {"id": "home",
+                   "title": "Home",
+                   "myattr1": "somevalue"}
+             },
+             { 
+               "title": "News",
+               "attr": {"id": "news",
+                   "title": "News"}
+             },
+             { 
+               "title": "Blogs",
+               "attr": {"title": "Blogs","id": "blogs"},
+               "children": [
+                           ]
+             },
+             {
+               "title": "Links", 
+               "attr": {"title": "Links","id": "links"},
+               "children": [ 
+                           ]
+             },
+             { 
+               "title": "Sponsors",
+               "attr": {"title": "Sponsors","id": "sponsors"}
+             },
+             { 
+               "title": "Corporate",
+               "attr": {"title": "Corporate","id": "corporate"}
+             },
+             { 
+               "title": "References",
+               "attr": { "title": "References","id": "references"},
+               "children": [ 
+                           ]
+             },
+             { 
+               "title": "Suppliers",
+               "attr": {"title": "Suppliers","id": "sups"},
+               "children": [ 
+                           ]
+             }
+           ] 

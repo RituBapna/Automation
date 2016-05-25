@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>JET Messaging tests</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="../common/css/libs/oj/v@jetversion@/alta/oj-alta-min.css" type="text/css"/>
+         <script>
+          var currentTestApp = '../../helphintmessaging/js/required/deferredVM';
+        </script>
+        <script data-main="../common/js/main" src="../common/js/libs/require/require.js"></script>
+
+       
+
+    </head>
+    <body>
+        <div id="main-container">
+            <h2>required Validator: no initial value</h2>
+            <form class="oj-form">
+                <h4>invalidComponentTracker APIs</h4>
+                <!--span id="gspan1" data-bind="text: 'Number of Invalid Spinners : ' + invalidComponentCount()"></span><br/-->
+                <input id="btn2"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'Show deferred validation messages'}, click:showDeferredMessages" />
+                <input id="btn21"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'Show deferred validation messages and set focus on first'}, click:showDeferredMessagesAndSetFocus" />
+                <input type="submit" data-bind="ojComponent:{component:'ojButton', label: 'In tracker check for invalid'}, click: checkInvalid" />
+                <p>are there invalid components: <span data-bind="text:areThereInvalidCompoents"></span></p>
+                <input id="btn22"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'In tracker check for deferredInvalid'}, click: checkDeferredInvalid" />
+                <p>are there deferred invalid components: <span data-bind="text:areThereDeferredInvalidCompoents"></span></p>
+                <input id="btn211"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'call focusOnFirstInvalid'}, click: setFocusOnFirstInvalid" />
+                <h4>Custom Message on all components</h4>
+                <label for="customMsgType">Custom Message Type  </label>
+                <select id="customMsgType" data-bind="ojComponent: {component: 'ojSelect',
+                                                    value: customMsgTypeValue,
+                                                    rootAttributes: {style:'max-width:20em'}}"/>
+
+
+                <option value="FATAL">Fatal</option>
+                <option value="ERROR">Error</option>
+                <option value="WARNING">Warning</option>
+                <option value="INFO">Information</option>
+                <option value="CONFIRMATION">Confirmation</option>
+
+                </select>
+                <input id="btn21111"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'Add Custom Message of Selected Type to all '}, click: setCustomMessagesOnAllComponent" />
+                <input id="btn2111"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'Add Custom Error Messages to all '}, click: setMixedCustomMessagesOnAllComponent" />
+
+                <input  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'reset all messages'}, click: resetAllMessages" />
+                <h4>change placeholder, title, and help</h4>
+                <input id="btn5"  type="button" data-bind="ojComponent:{component:'ojButton', label: 'Change  placeholder value for all components'}, click: changePlaceHolderValue" /> 
+                <label for="t1">Change  title value for all components  </label>
+                <input id="t1" type="text" data-bind="ojComponent:{component: 'ojInputText', value: titleValue}" />
+
+                <input id="btn7"  type="button" data-bind="ojComponent:{component:'ojButton', label: 'Change help definition for all components'}, click: changeHelpDefinitionValue" />                
+                <input id="btn8"  type="button" data-bind="ojComponent:{component:'ojButton', label: 'Change  help source  for all components'}, click: changeHelpSourceValue" /> 
+                <input id="btn9"  type="button" data-bind="ojComponent:{component:'ojButton', label: 'Toggle Readonly  for all components'}, click: toggleReadOnly" />                
+                <input id="btn10"  type="button" data-bind="ojComponent:{component:'ojButton', label: 'Toggle Disabled  for all components'}, click: toggleDisabled" />                
+                <h4>Control displayOptions properties</h4>
+                <label for="converterhint">converterHint  </label>
+                <select id="converterhint" data-bind="ojComponent: {component: 'ojSelect',
+                                                    value: converterHintDisplayValue,
+                                                    rootAttributes: {style:'max-width:20em'}}"/>
+                <option value="placeholder">PlaceHolder</option>
+                <option value="none">None</option>
+                <option value="notewindow">NoteWindow</option>
+
+                </select>
+                <br/>
+                <label for="validatorhint">validatorHint  </label>
+                <select id="validatorhint" data-bind="ojComponent: {component: 'ojSelect',
+                                                    value: validatorHintDisplayValue,
+                                                    rootAttributes: {style:'max-width:20em'}}"/>
+
+                <option value="none">None</option>
+                <option value="notewindow">NoteWindow</option>
+
+                </select>
+                <br/>
+                <label for="messages">messages  </label>
+                <select id="messages" data-bind="ojComponent: {component: 'ojSelect',
+                                                    value: messagesDisplayValue,
+                                                    rootAttributes: {style:'max-width:20em'}}"/>
+
+
+                <option value="notewindow">NoteWindow</option>
+                <option value="none">None</option>
+                <option value="inline">Inline</option>
+
+                </select>
+                <br/>
+                <label for="title">title  </label>
+                <select id="title" data-bind="ojComponent: {component: 'ojSelect',
+                                                    value: titleDisplayValue,
+                                                    rootAttributes: {style:'max-width:20em'}}"/>
+
+                <option value="none">None</option>
+                <option value="notewindow">NoteWindow</option>
+
+                </select>
+                <hr/>
+                <h2>inputText</h2>
+                <h3>required as option + help(definition only), placeholder and title as html attrs:</h3>
+                <label id="text11" for="text1" class="oj-label-inline">Text 1:</label>
+                <input id="text1" placeholder="html5 placeholder" title="<html><b>html5 title</b></html>"  type="text" data-bind="ojComponent:{component:'ojInputText', 
+                                                            required: true, help:{definition: 'Some Help text'}, value: textValue,
+                                                            displayOptions: messagingDisplayOptionsValue,
+                                                             invalidComponentTracker: invalidcomponents, readOnly: readOnlyValue,
+                                                             disabled: disabledValue,
+                                                             optionChange: optionChangeListener,
+                                                            'translations.required.hint': 'This is translation hint'}" />
+                <input id="text1Reset"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'reset'}, click: function(){$('#text1').ojInputText('reset')}" />
+                <input id="text1show"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'showMessages'}, click: function(){$('#text1').ojInputText('showMessages')}" />
+                <input id="text1Validate"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'validate'}, click: function(){$('#text1').ojInputText('validate')}" />
+                <input id="text1Set"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'Set Invalid Value'}, click: function(){$('#text1').ojInputText('option', 'value', null)}" />
+                <input id="text1SetV"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'Set valid Value'}, click: function(){$('#text1').ojInputText('option', 'value', 'Hi')}" />
+                <input id="text1Custom"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'clear custom msg'}, click: function(){$('#text1').ojInputText('option', 'messagesCustom', [])}" />
+                <input id="text1Valid"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'isValid'}, click: function(){isText1Valid($('#text1').ojInputText('isValid'))}" />
+
+                <span data-bind="text: ' isValid: ' +  isText1Valid()"></span>
+
+                <h3>required as html5 attribute, regExp validator + help(source only), placeholder and title as attr binding:</h3>
+                <label id="text21" for="text2" class="oj-label-inline">Text 2:</label>
+                <input id="text2" required="true" type="text" data-bind="attr: {placeholder: placeHolderValue, title: titleValue}, 
+                                                              ojComponent:{component:'ojInputText', readOnly: readOnlyValue,
+                                                             disabled: disabledValue,
+                                                              value: textValue,  displayOptions: messagingDisplayOptionsValue,
+                                                              help:{ source: 'http://oracle.com'}, invalidComponentTracker: invalidcomponents,
+                                                          validators: [{type: 'regExp', options : {pattern: '(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,}',
+            hint: 'Enter Value 6 or more characters', messageSummary : '\'{label}\' too Weak',
+            messageDetail: 'You must enter a password that meets our minimum security requirements.'}}],
+                                                              optionChange: optionChangeListenerText2}" />
+                <span data-bind="text: 'Observable Value: ' +textValue()"></span>
+                <input id="text2Reset"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'reset'}, click: function(){$('#text2').ojInputText('reset')}" />
+                <input id="text2show"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'showMessages'}, click: function(){$('#text2').ojInputText('showMessages')}" />
+                <input id="text2Validate"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'validate'}, click: function(){$('#text2').ojInputText('validate')}" />
+                <input id="text2Set"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'Set Invalid Value'}, click: function(){$('#text2').ojInputText('option', 'value', 'aaa')}" />
+                <input id="text2SetV"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'Set Valid Value'}, click: function(){$('#text2').ojInputText('option', 'value', 'Hello123')}" />
+                <input id="text2Custom"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'clear custom msg'}, click: function(){$('#text2').ojInputText('option', 'messagesCustom', [])}" />
+                <input id="text2Valid"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'isValid'}, click: function(){isText2Valid($('#text2').ojInputText('isValid'))}" />
+                <span id="text2IsValidVal" data-bind="text: ' isValid: ' +  isText2Valid()"></span>
+                <button data-bind="ojComponent:{component:'ojButton', label:'check messaging APIs for Text2'},click: getMessagesUsingOptionText2"></button>
+                <button data-bind="ojComponent:{component:'ojButton', label:'set shown and hidden messaging APIs for Text2'},click: setMessagesUsingOptionText2"></button>
+                <br/>
+                 <button id="text2ClearLogBtn" data-bind="ojComponent: {component: 'ojButton', label: 'Clear OptionChange  log'},
+                       click: clearText2LogMsg"></button>
+                <label for="text2-area">optionChange Output</label>
+                <textarea id="text2-area"  style="width:400px;height:120px;"
+                          data-bind="ojComponent: {component: 'ojTextArea', 
+                                     value: text2OptionChangeValue}"></textarea>
+
+
+                <h3>setting Required validator explicitly  using "validators" attribute, custom avlidator (equalTo)+ help (both source and definition)+ placeholder and title as options</h3>
+                <label id="text31" for="text3" class="oj-label-inline">Text 3:</label>
+                <input   id="text3" type="text" data-bind="ojComponent:{component:'ojInputText', value: textValue2,
+                                                             placeholder: placeHolderValue, title: titleValue, help:{definition: 'Some Help text', source: 'http://oracle.com'},
+                                                             displayOptions: messagingDisplayOptionsValue,
+                                                             optionChange: optionChangeListener,readOnly: readOnlyValue,
+                                                             disabled: disabledValue,
+                                                            validators: [{type: 'required', options : {hint: 'enter a text value', messageSummary: '\'{label}\' Required', 
+                                                            messageDetail: 'A value is required for \'{label}\' field'}},equalToTextValue ], invalidComponentTracker: invalidcomponents}" />
+                <input id="text3Reset"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'reset'}, click: function(){$('#text3').ojInputText('reset')}" />
+                <input id="text3show"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'showMessages'}, click: function(){$('#text3').ojInputText('showMessages')}" />
+                <input id="text3Validate"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'validate'}, click: function(){$('#text3').ojInputText('validate')}" />
+                <input id="text3Set"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'Set Invalid Value'}, click: function(){$('#text3').ojInputText('option', 'value', 'bbb')}" />
+                <input id="text3SetV"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'Set Valid Value'}, click: function(){$('#text3').ojInputText('option', 'value', 'Hello123')}" />
+                <input id="text3Custom"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'clear custom msg'}, click: function(){$('#text3').ojInputText('option', 'messagesCustom', [])}" />
+                <input id="text3Valid"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'isValid'}, click: function(){isText3Valid($('#text3').ojInputText('isValid'))}" />
+                <span data-bind="text: ' isValid: ' + isText3Valid()"></span>
+                <button data-bind="ojComponent:{component:'ojButton', label:'check messaging APIs for Text3'},click: getMessagesUsingOptionText3"></button>
+                <button data-bind="ojComponent:{component:'ojButton', label:'set messaging APIs for Text3'},click: setMessagesUsingOptionText3"></button>
+
+                <hr/>
+                <h2>inputNumber</h2>
+                <h3>Change the spinners min, max and step values. default min=0, max=100, step=10</h3>
+                <label id="minl" for="min" class="oj-label-inline">Min Value</label>
+                <input id="min" type="text" data-bind="ojComponent:{component:'ojInputText', value: minvalue}" /><br/>
+                <label id="maxl" for="max" class="oj-label-inline">Max Value</label>
+                <input id="max" type="text" data-bind="ojComponent:{component:'ojInputText', value: maxvalue}" /><br/>
+                <label id="stepl" for="step" class="oj-label-inline">Step Value</label>
+                <input id="step" type="text" data-bind="ojComponent:{component:'ojInputText', value: spinnerstep}" /><br/>
+                <label id="vall" for="val" class="oj-label-inline">Spinner Value</label>
+                <input id="val" type="text" data-bind="ojComponent:{component:'ojInputText', value: spinnervalue}" /><br/>
+                <span id="gspan2" data-bind="text: 'Current Spinners Value: ' + spinnervalue()"></span><br/>
+                <input id="btn3"  type="button" data-bind="ojComponent:{component:'ojButton', label: 'set spinner value to undefined'}, click: setSpinnerValueToUndefined" /> 
+                <input id="btn4"  type="button" data-bind="ojComponent:{component:'ojButton', label: 'set spinner value to empty string'}, click: setSpinnerValueToNull" />                
+                <input id="btn4"  type="button" data-bind="ojComponent:{component:'ojButton', label: 'set spinner value to NaN'}, click: setSpinnerValueToNaN" />                
+                <input id="btn4"  type="button" data-bind="ojComponent:{component:'ojButton', label: 'set spinner value to infinity'}, click: setSpinnerValueToInfinity" />                
+                <input id="btn4"  type="button" data-bind="ojComponent:{component:'ojButton', label: 'set spinner value to -tive infinity'}, click: setSpinnerValueToNegativeInfinity" />                 
+                <input id="btn51"  type="button" data-bind="ojComponent:{component:'ojButton', label: 'Disable spinners'}, click: disableSpinners" />                 
+                <input id="btn51"  type="button" data-bind="ojComponent:{component:'ojButton', label: 'Enable spinners'}, click: enableSpinners" />                 
+
+                <h3>required as binding attribute</h3>
+
+                <label for="rv">Required Validator ON</label> 
+                <input type="checkbox" id="rv"
+                       data-bind="ojComponent: {component: 'ojButton'}, checked: spinnervalrequired"/>
+                <span id="rvspan1" data-bind="text: 'spinnervalrequired : ' + spinnervalrequired()"></span>
+                <br/> 
+                <label id="spinner1l" for="spinner1" class="oj-label-inline">Spinner 1:</label>
+                <input id="spinner1" placeholder="html5 placeholder" title="<html><b>html5 title</b></html>" type="text" data-bind="ojComponent:{component:'ojInputNumber', min: minvalue, max: maxvalue, value: 4,
+                                                            step: spinnerstep, required: spinnervalrequired?true:false, help:{definition: 'Sopme Help text'},
+                                                            displayOptions: messagingDisplayOptionsValue,readOnly: readOnlyValue,
+                                                             disabled: disabledValue,
+                                                            pattern:'[0-9]{3,}', invalidComponentTracker: invalidcomponents,
+                                                            optionChange: optionChangeListener}" />
+                <input id="spinner1Reset"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'reset messages'}, click: function(){$('#spinner1').ojInputNumber('reset')}" />
+                <input id="spinner1show"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'show messages'}, click: function(){$('#spinner1').ojInputNumber('showMessages')}" />
+                <input id="spinner1Validate"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'validate'}, click: function(){$('#spinner1').ojInputNumber('validate')}" />
+                <input id="spinner1Set"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'Set Invalid Value'}, click: function(){$('#spinner1').ojInputNumber('option', 'value', 'bbb')}" />
+                <input id="spinner1SetV"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'Set Valid Value'}, click: function(){$('#spinner1').ojInputNumber('option', 'value', 'Hello123')}" />
+                <input id="spinner1Custom"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'clear custom msg'}, click: function(){$('#spinner1').ojInputNumber('option', 'messagesCustom', [])}" />
+                <input id="spinner1Valid"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'isValid'}, click: function(){isSpinner1Valid($('#spinner1').ojInputNumber('isValid'))}" />
+                <span data-bind="text: ' isValid: ' + isSpinner1Valid()"></span>
+                <button data-bind="ojComponent:{component:'ojButton', label:'check messaging APIs '},click: getMessagesUsingOptionSpinner1"></button>
+                <button data-bind="ojComponent:{component:'ojButton', label:'set messages using  messaging APIs '},click: setMessagesUsingOptionSpinner1"></button>
+
+                <h3>setting Required validator explicitly  using "validators" attribute</h3>
+                <label id="spinner2l" for="spinner2" class="oj-label-inline">Spinner 2:</label>
+                <input required  id="spinner2" type="text" data-bind="ojComponent:{component:'ojInputNumber', min: minvalue, max: maxvalue, value: spinnervalue,
+                                                            step: spinnerstep,  title: titleValue, help:{definition: 'Some Help text', source: 'http://oracle.com'},
+                                                            displayOptions: messagingDisplayOptionsValue, optionChange: optionChangeListener, readOnly: readOnlyValue,
+                                                             disabled: disabledValue,
+                                                             converter: {type: 'number', options: {style: 'currency', currency: 'USD', currencyDisplay: 'code', pattern: '¤ ##,##0.00'}},
+                                                            validators: [{type: 'required', options : {hint: 'validator hint: enter a numeric value', messageSummary: '\'{label}\' Required', 
+                                                            messageDetail: 'A value is required for \'{label}\' field'}}], invalidComponentTracker: invalidcomponents}" />
+                <span data-bind="text: ' Current observable Value ' + spinnervalue()"></span>                                     
+                <input id="spinne21Reset"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'reset messages'}, click: function(){$('#spinner2').ojInputNumber('reset')}" />
+                <input id="spinner2show"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'show messages'}, click: function(){$('#spinner2').ojInputNumber('showMessages')}" />
+                <input id="spinner2Validate"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'validate'}, click: function(){$('#spinner2').ojInputNumber('validate')}" />
+                <input id="spinner2Set"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'Set Invalid Value'}, click: function(){$('#spinner2').ojInputNumber('option', 'value', '12')}" />
+                <input id="spinner2SetV"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'Set Valid Value'}, click: function(){$('#spinner2').ojInputNumber('option', 'value', 10)}" />
+                <input id="spinner2Custom"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'clear custom msg'}, click: function(){$('#spinner2').ojInputNumber('option', 'messagesCustom', [])}" />
+                <input id="spinner2Valid"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'isValid'}, click: function(){isSpinner2Valid($('#spinner2').ojInputNumber('isValid'))}" />
+                <span data-bind="text: ' isValid: ' + isSpinner2Valid()"></span>
+                <button data-bind="ojComponent:{component:'ojButton', label:'check messaging APIs '},click: getMessagesUsingOptionSpinner2"></button>
+                <button data-bind="ojComponent:{component:'ojButton', label:'set messaging APIs '},click: setMessagesUsingOptionSpinner2"></button>
+
+                <h3>required as html5 attribute</h3>
+                <label id="spinner3l" for="spinner3" class="oj-label-inline">Spinner 3:</label>
+                <input id="spinner3" required="true" pattern="[0-9]{3,}" type="text" data-bind="attr: {placeholder: placeHolderValue, title: titleValue}, 
+                                                                                    ojComponent:{component:'ojInputNumber', min: minvalue, max: maxvalue,
+                                                                                        value: spinnervalue, step: spinnerstep, readOnly: readOnlyValue,
+                                                             disabled: disabledValue,
+                                                                                        displayOptions: messagingDisplayOptionsValue,
+                                                                                        optionChange: optionChangeListener,
+                                                                                        help:{ source: 'http://oracle.com'}, invalidComponentTracker: invalidcomponents}" />
+
+                <input id="spinner3Reset"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'reset messages'}, click: function(){$('#spinner3').ojInputNumber('reset')}" />
+                <input id="spinner3show"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'show messages'}, click: function(){$('#spinner3').ojInputNumber('showMessages')}" />
+                <input id="spinner3Validate"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'validate'}, click: function(){$('#spinner3').ojInputNumber('validate')}" />
+                <input id="spinner3Set"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'Set Invalid Value'}, click: function(){$('#spinner3').ojInputNumber('option', 'value', 'bbb')}" />
+                <input id="spinner3SetV"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'Set Valid Value'}, click: function(){$('#spinner3').ojInputNumber('option', 'value', 10)}" />
+                <input id="spinner3Custom"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'clear custom msg'}, click: function(){$('#spinner3').ojInputNumber('option', 'messagesCustom', [])}" />
+                <input id="spinner3Valid"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'isValid'}, click: function(){isSpinner3Valid($('#spinner3').ojInputNumber('isValid'))}" />
+                <span data-bind="text: ' isValid: ' + isSpinner3Valid()"></span>
+                <button data-bind="ojComponent:{component:'ojButton', label:'check messaging APIs '},click: getMessagesUsingOptionSpinner3"></button>
+                <button data-bind="ojComponent:{component:'ojButton', label:'set messaging APIs '},click: setMessagesUsingOptionSpinner3"></button>
+
+                <hr/>
+                <h2>Select</h2>
+                <label for="select" class="oj-label-inline">Select with Data Array</label>
+                <select required id="select" data-bind="attr: { title: titleValue},ojComponent: {component: 'ojSelect', options: browsers, 
+                                             rootAttributes: {style:'max-width:20em'}, placeholder: placeHolderValue, readOnly: readOnlyValue,
+                                                             disabled: disabledValue, value: selectval,
+                                             help:{definition: 'Some Help text', source: 'http://oracle.com'},
+                                             optionChange: optionChangeListener,
+                                             displayOptions: messagingDisplayOptionsValue, invalidComponentTracker: invalidcomponents}">
+                </select>
+
+                <input id="selectReset"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'reset messages'}, click: function(){$('#select').ojSelect('reset')}" />
+                <input id="selectshow"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'show messages'}, click: function(){$('#select').ojSelect('showMessages')}" />
+                <input id="selectValidate"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'validate'}, click: function(){$('#select').ojSelect('validate')}" />
+                <input id="selectSet"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'Set Invalid Value'}, click: function(){$('#select').ojSelect('option', 'value', ['bbb'])}" />
+                <input id="selectSetV"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'Set Valid Value'}, click: function(){$('#select').ojSelect('option', 'value', ['Chrome'])}" />
+                <input id="selectCustom"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'clear custom msg'}, click: function(){$('#select').ojSelect('option', 'messagesCustom', [])}" />
+                <input id="selectValid"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'isValid'}, click: function(){isSelectValid($('#select').ojSelect('isValid'))}" />
+                <span data-bind="text: ' isValid: ' + isSelectValid()"></span>
+                <button data-bind="ojComponent:{component:'ojButton', label:'check messaging APIs '},click: getMessagesUsingOptionSelect"></button>
+                <button data-bind="ojComponent:{component:'ojButton', label:'set messaging APIs '},click: setMessagesUsingOptionSelect"></button>
+
+                <br/><br/>
+
+                <label for="grpdata" class="oj-label-inline">Select with Group Data Array</label>
+
+                <select required id="grpdata" data-bind="ojComponent: {component: 'ojSelect', title: titleValue, 
+                                              options: groupData,  help:{definition: 'Some Help text'}, placeholder: placeHolderValue, readOnly: readOnlyValue,
+                                                             disabled: disabledValue, value: grpselectval,
+                                              rootAttributes: {style:'max-width:20em'}, validators: [{type: 'required', options : {hint: 'select a value', messageSummary: '\'{label}\' Required', 
+                                                            messageDetail: 'A value is required for \'{label}\' field'}}], 
+                                                        optionChange: optionChangeListener,
+                                                        displayOptions: messagingDisplayOptionsValue, invalidComponentTracker: invalidcomponents}">
+                </select>
+                <input id="grpdataReset"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'reset messages'}, click: function(){$('#grpdata').ojSelect('reset')}" />
+                <input id="grpdatashow"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'show messages'}, click: function(){$('#grpdata').ojSelect('showMessages')}" />
+                <input id="grpdataValidate"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'validate'}, click: function(){$('#grpdata').ojSelect('validate')}" />
+                <input id="grpdataSet"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'Set Invalid Value'}, click: function(){$('#grpdata').ojSelect('option', 'value', ['bbb'])}" />
+                <input id="grpdataSetV"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'Set Valid Value'}, click: function(){$('#grpdata').ojSelect('option', 'value', ['CA'])}" />
+                <input id="grpdataCustom"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'clear custom msg'}, click: function(){$('#grpdata').ojSelect('option', 'messagesCustom', [])}" />
+                <input id="grpdataValid"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'isValid'}, click: function(){isGrpdataValid($('#grpdata').ojSelect('isValid'))}" />
+                <span data-bind="text: ' isValid: ' + isGrpdataValid()"></span>
+                <button data-bind="ojComponent:{component:'ojButton', label:'check messaging APIs '},click: getMessagesUsingOptionGrpdata"></button>
+                <button data-bind="ojComponent:{component:'ojButton', label:'set messaging APIs '},click: setMessagesUsingOptionGrpdata"></button>
+
+                <hr/>
+                <h2>Checkboxset</h2>
+                <label id="mainlabelid" class="oj-label-inline">Colors</label>
+                <!-- You need to set the aria-labelledby attribute to make this accessible.
+                     role="group" is set for you by ojCheckboxset. -->
+                <div id="checkboxSetId" aria-labelledby="mainlabelid" required
+                     data-bind="ojComponent: {component: 'ojCheckboxset', title: titleValue,  readOnly: readOnlyValue,
+                                                             disabled: disabledValue,
+                   value: currentColor, help:{definition: 'Some Help text', source: 'http://oracle.com'},
+                   optionChange: optionChangeListener,
+                   invalidComponentTracker: invalidcomponents, displayOptions: messagingDisplayOptionsValue}" >
+
+                    <span class="oj-choice-row">
+                        <input id="blueopt" type="checkbox" name="rbb" value="blue">
+                        <label for="blueopt">Blue</label>
+                    </span>
+                    <span class="oj-choice-row">
+                        <input id="greenopt" type="checkbox" name="rbb" value="green">
+                        <label for="greenopt">Green</label>
+                    </span>
+                    <span class="oj-choice-row">
+                        <input id="redopt" type="checkbox" name="rbb" value="red">
+                        <label for="redopt">Red</label>
+                    </span>
+                    <span class="oj-choice-row">
+                        <input id="limeopt" type="checkbox" name="rbb" value="lime">
+                        <label for="limeopt">Lime</label>
+                    </span>
+                    <span class="oj-choice-row">
+                        <input id="aquaopt" type="checkbox" name="rbb" value="aqua">
+                        <label for="aquaopt">Aqua</label>
+                    </span>
+                </div>
+                <input id="checkboxReset"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'reset messages'}, click: function(){$('#checkboxSetId').ojCheckboxset('reset')}" />
+                <input id="checkboxshow"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'show messages'}, click: function(){$('#checkboxSetId').ojCheckboxset('showMessages')}" />
+                <input id="checkboxValidate"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'validate'}, click: function(){$('#checkboxSetId').ojCheckboxset('validate')}" />
+                <input id="checkboxSet"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'Set Invalid Value'}, click: function(){$('#checkboxSetId').ojCheckboxset('option', 'value', ['bbb'])}" />
+                <input id="checkboxSetV"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'Set Valid Value'}, click: function(){$('#checkboxSetId').ojCheckboxset('option', 'value', ['green'])}" />
+                <input id="checkboxCustom"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'clear custom msg'}, click: function(){$('#checkboxSetId').ojCheckboxset('option', 'messagesCustom', [])}" />
+                <input id="checkboxValid"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'isValid'}, click: function(){isCheckboxValid($('#checkboxSetId').ojCheckboxset('isValid'))}" />
+                <span data-bind="text: ' isValid: ' + isCheckboxValid()"></span>
+                <button data-bind="ojComponent:{component:'ojButton', label:'check messaging APIs '},click: getMessagesUsingOptionCheckbox"></button>
+                <button data-bind="ojComponent:{component:'ojButton', label:'set messaging APIs '},click: setMessagesUsingOptionCheckbox"></button>
+
+                <br/>
+                <span>Current component value is: </span>
+                <span id="curr-value" data-bind="text: currentColor"></span>
+                <br/>
+                <hr/>
+                <h2>radioset</h2>
+                <label for="radiosetSetBasicDemoId" class="oj-label-inline">Colors (Radio)</label>
+                <div id="radiosetSetBasicDemoId" required
+                     data-bind="ojComponent: {component: 'ojRadioset', title: titleValue, invalidComponentTracker: invalidcomponents,readOnly: readOnlyValue,
+                                                             disabled: disabledValue,
+                   value: currentRadioColor, validators: [{type: 'required', options : {hint: 'Enter value in text area', messageSummary: '\'{label}\' Required', 
+                                                            messageDetail: 'A value is required for \'{label}\' field'}}],
+                                                        optionChange: optionChangeListener,
+                                                    help:{definition: 'Some Help text', source: 'http://oracle.com'}
+                                        ,displayOptions: messagingDisplayOptionsValue }" >
+                    <span class="oj-choice-row">
+                        <input id="blueopt" type="radio" name="rbb" value="blue">
+                        <label for="blueopt">Blue</label>
+                    </span>
+                    <span class="oj-choice-row">
+                        <input id="greenopt" type="radio" name="rbb" value="green">
+                        <label for="greenopt">Green</label>
+                    </span>
+                    <span class="oj-choice-row">
+                        <input id="redopt" type="radio" name="rbb" value="red">
+                        <label for="redopt">Red</label>
+                    </span>
+                    <span class="oj-choice-row">
+                        <input id="limeopt" type="radio" name="rbb" value="lime">
+                        <label for="limeopt">Lime</label>
+                    </span>
+                    <span class="oj-choice-row">
+                        <input id="aquaopt" type="radio" name="rbb" value="aqua">
+                        <label for="aquaopt">Aqua</label>
+                    </span>
+                </div>
+                <input id="radioReset"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'reset messages'}, click: function(){$('#radiosetSetBasicDemoId').ojRadioset('reset')}" />
+                <input id="radioShow"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'show messages'}, click: function(){$('#radiosetSetBasicDemoId').ojRadioset('showMessages')}" />
+                <input id="radioValidate"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'validate'}, click: function(){$('#radiosetSetBasicDemoId').ojRadioset('validate')}" />
+                <input id="radioSet"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'Set Invalid Value'}, click: function(){$('#radiosetSetBasicDemoId').ojRadioset('option', 'value', 'bbb')}" />
+                <input id="radioSetV"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'Set Valid Value'}, click: function(){$('#radiosetSetBasicDemoId').ojRadioset('option', 'value', 'lime');currentRadioColor('lime')}" />
+                <input id="radioCustom"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'clear custom msg'}, click: function(){$('#radiosetSetBasicDemoId').ojRadioset('option', 'messagesCustom', [])}" />
+                <input id="radioValid"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'isValid'}, click: function(){isRadioValid($('#radiosetSetBasicDemoId').ojRadioset('isValid'))}" />
+                <span data-bind="text: ' isValid: ' + isRadioValid()"></span>
+                <button data-bind="ojComponent:{component:'ojButton', label:'check messaging APIs '},click: getMessagesUsingOptionRadio"></button>
+                <button data-bind="ojComponent:{component:'ojButton', label:'set messaging APIs '},click: setMessagesUsingOptionRadio"></button>
+
+                <br/>
+                <span>Current component value is: </span>
+                <span id="curr-value" data-bind="text: currentRadioColor"></span>
+                <br/>
+                <button id="radiovaluechange" data-bind="ojComponent:{component: 'ojButton', label:'Clear value of radioset'}, click: clearRadioValue"></button>
+                <hr/>
+                <h2>Combobox</h2>
+                <label for="combobox">Multi-select Combobox: required option</label>
+
+
+                <label for="combobox1">Multi-select Combobox: validators option with custom message </label>
+                <input id="combobox1" list="browsers2" data-bind="ojComponent: {component: 'ojCombobox', multiple: true, value: comboboxval, required: true,
+                                                  help:{definition:helpDefinitionValue(), source: helpSourceValue()}, 
+                                                  optionChange: optionChangeListener, readOnly: readOnlyValue,
+                                                             disabled: disabledValue, displayOptions: messagingDisplayOptionsValue,
+                                                  title: titleValue, invalidComponentTracker: invalidcomponents,  
+                                                  validators: [{type: 'required', options : {hint: 'select combobox value.custom', messageSummary: '\'{label}\' Required', 
+                                                            messageDetail: 'A value is required for \'{label}\' field'}}],
+                                                  rootAttributes: {style:'max-width:20em'}}"/>
+                <datalist id="browsers2">
+                    <option value="Internet Explorer">Internet Explorer</option>
+                    <option value="Firefox">Firefox</option>
+                    <option value="Chrome">Chrome</option>
+                    <option value="Opera">Opera</option>
+                    <option value="Safari">Safari</option>
+                </datalist>
+                <div>
+                    <input id="radioReset"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'reset messages'}, click: function(){$('#combobox1').ojCombobox('reset')}" />
+                    <input id="radioShow"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'show messages'}, click: function(){$('#combobox1').ojCombobox('showMessages')}" />
+                    <input id="radioValidate"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'validate'}, click: function(){$('#combobox1').ojCombobox('validate')}" />
+                    <input id="radioSet"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'Set Invalid Value'}, click: function(){$('#combobox1').ojCombobox('option', 'value',['lime'])}" />
+                    <input id="radioSetV"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'Set Valid Value'}, click: function(){$('#combobox1').ojCombobox('option', 'value', ['Safari']); comboboxval(['Safari'])}" />
+                    <input id="radioCustom"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'clear custom msg'}, click: function(){$('#combobox1').ojCombobox('option', 'messagesCustom', [])}" />
+                    <input id="radioValid"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'isValid'}, click: function(){isRadioValid($('#combobox1').ojCombobox('isValid'))}" />
+                    <span data-bind="text: ' isValid: ' + isRadioValid()"></span>
+                    <button data-bind="ojComponent:{component:'ojButton', label:'check messaging APIs '},click: getMessagesUsingOptionCombobox"></button>
+                    <button data-bind="ojComponent:{component:'ojButton', label:'set Custom messages '},click: setCustomMessagesUsingOptionCombobox"></button>
+                    <button data-bind="ojComponent:{component:'ojButton', label:'set messaging APIs '},click: setMessagesUsingOptionCombobox"></button>
+
+
+                    <br/>
+                    <label for="c_curr-value" class="oj-label">Curr value is: </label>
+                    <span id="c_curr-value" data-bind="text: ko.toJSON(comboboxval)"></span>
+                </div>
+                <br/>
+
+                <hr/>
+                <h2>Text Area</h2>
+                <div id="divtextArea">
+
+                    <label for="text-area" class="oj-label-inline">ojTextArea component</label>
+                    <textarea  required id="text-area"
+                               data-bind="attr: {placeholder: placeHolderValue, title: titleValue}, ojComponent: {component: 'ojTextArea',
+                                     value: textAreaValue, help:{definition: 'Some Help text', source: 'http://oracle.com'}, 
+                                     displayOptions: messagingDisplayOptionsValue, invalidComponentTracker: invalidcomponents,
+                                     optionChange: optionChangeListener, readOnly: readOnlyValue,
+                                                             disabled: disabledValue,
+                                 validators: [{type: 'regExp', options : {pattern: '(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,}',
+            label: 'Password', messageSummary : '\'{label}\' too Weak',
+            messageDetail: 'You must enter a password that meets our minimum security requirements.'}}]}"></textarea>
+
+                    <input id="textAreaReset"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'reset messages'}, click: function(){$('#text-area').ojTextArea('reset')}" />
+                    <input id="textAreaShow"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'show messages'}, click: function(){$('#text-area').ojTextArea('showMessages')}" />
+                    <input id="textAreaValidate"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'validate'}, click: function(){$('#text-area').ojTextArea('validate')}" />
+                    <input id="textAreaSet"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'Set Invalid Value'}, click: function(){$('#text-area').ojTextArea('option', 'value', 'bbb')}" />
+                    <input id="textAreaSetV"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'Set Valid Value'}, click: function(){$('#text-area').ojTextArea('option', 'value', 'HEllo123')}" />
+                    <input id="textAreaCustom"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'clear custom msg'}, click: function(){$('#text-area').ojTextArea('option', 'messagesCustom', [])}" />
+                    <input id="textAreaValid"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'isValid'}, click: function(){isTextArea1Valid($('#text-area').ojTextArea('isValid'))}" />
+                    <span data-bind="text: ' isValid: ' + isTextArea1Valid()"></span>
+                    <button data-bind="ojComponent:{component:'ojButton', label:'check messaging APIs '},click: getMessagesUsingOptionTextArea1"></button>
+                    <button data-bind="ojComponent:{component:'ojButton', label:'set messaging APIs '},click: setMessagesUsingOptionTextArea1"></button>
+
+                    <br/><br/>
+
+                    <label for="resizeBoth" class="oj-label-inline">ojTextArea with CSS resize both</label>
+                    <textarea id="resizeBoth"
+                              style="resize: both;" required
+                              data-bind="ojComponent: {component: 'ojTextArea', placeholder: placeHolderValue, title: titleValue, readOnly: readOnlyValue,
+                                                             disabled: disabledValue,
+                                     value: textAreaValue1,  validators: [{type: 'required', options : {hint: 'Enter value in text area', messageSummary: '\'{label}\' Required', 
+                                                            messageDetail: 'A value is required for \'{label}\' field'}}, equalToTextAreaValue],
+                                                        help:{definition: 'Some Help text'}, displayOptions: messagingDisplayOptionsValue,
+                                                    invalidComponentTracker: invalidcomponents,
+                                                    optionChange: optionChangeListener}" >
+                    </textarea>
+                    <input id="resizeBothReset"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'reset messages'}, click: function(){$('#resizeBoth').ojTextArea('reset')}" />
+                    <input id="textArea2Show"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'show messages'}, click: function(){$('#resizeBoth').ojTextArea('showMessages')}" />
+                    <input id="textArea2Validate"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'validate'}, click: function(){$('#resizeBoth').ojTextArea('validate')}" />
+                    <input id="textArea2Set"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'Set Invalid Value'}, click: function(){$('#resizeBoth').ojTextArea('option', 'value', 'bbb')}" />
+                    <input id="textArea2SetV"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'Set Valid Value'}, click: function(){$('#resizeBoth').ojTextArea('option', 'value', 'HEllo123')}" />
+                    <input id="textArea2Custom"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'clear custom msg'}, click: function(){$('#resizeBoth').ojTextArea('option', 'messagesCustom', [])}" />
+                    <input id="textArea2Valid"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'isValid'}, click: function(){isTextArea2Valid($('#resizeBoth').ojTextArea('isValid'))}" />
+                    <span data-bind="text: ' isValid: ' + isTextArea2Valid()"></span>
+                    <button data-bind="ojComponent:{component:'ojButton', label:'check messaging APIs '},click: getMessagesUsingOptionTextArea2"></button>
+                    <button data-bind="ojComponent:{component:'ojButton', label:'set messaging APIs '},click: setMessagesUsingOptionTextArea2"></button>
+
+                    <br/><br/>
+
+                    <span class="oj-label">Current component value is:</span>
+                    <p>**<span data-bind="text: textAreaValue"></span>**</p>
+
+
+
+                </div>
+
+                <hr/>
+
+                <h2>inputPassword </h2>
+                <div id="pwddiv">
+
+                    <label for="password" class="oj-label-inline">ojInputPassword component</label>
+                    <input required type="password"
+                           id="password"
+                           data-bind="attr: {placeholder: placeHolderValue, title: titleValue}, ojComponent: {component: 'ojInputPassword',
+                                  value: pwdValue, readOnly: readOnlyValue,
+                                                             disabled: disabledValue,  help:{definition: 'Some Help text', source: 'http://oracle.com'},
+                                  displayOptions: messagingDisplayOptionsValue, invalidComponentTracker: invalidcomponents,
+                                  optionChange: optionChangeListener,
+                              validators: [{type: 'regExp', options : {pattern: '(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,}',
+            label: 'Password', messageSummary : '\'{label}\' too Weak',
+            messageDetail: 'You must enter a password that meets our minimum security requirements.'}}]}"/>
+                    <input id="passwordReset"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'reset messages'}, click: function(){$('#password').ojInputPassword('reset')}" />
+                    <input id="passwordShow"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'show messages'}, click: function(){$('#password').ojInputPassword('showMessages')}" />
+                    <input id="passwordValidate"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'validate'}, click: function(){$('#password').ojInputPassword('validate')}" />
+                    <input id="passwordSet"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'Set Invalid Value'}, click: function(){$('#password').ojInputPassword('option', 'value', 'bbb')}" />
+                    <input id="passwordSetV"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'Set Valid Value'}, click: function(){$('#password').ojInputPassword('option', 'value', 'HEllo123')}" />
+                    <input id="passwordCustom"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'clear custom msg'}, click: function(){$('#password').ojInputPassword('option', 'messagesCustom', [])}" />
+                    <input id="passwordValid"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'isValid'}, click: function(){isPasswordValid($('#password').ojInputPassword('isValid'))}" />
+                    <span data-bind="text: ' isValid: ' + isPasswordValid()"></span>
+                    <button data-bind="ojComponent:{component:'ojButton', label:'check messaging APIs '},click: getMessagesUsingOptionPassword"></button>
+                    <button data-bind="ojComponent:{component:'ojButton', label:'set messaging APIs '},click: setMessagesUsingOptionPassword"></button>
+
+                    <br/><br/>
+                    <label for="password1" class="oj-label-inline">ojInputPassword component 2 </label>
+                    <input required type="password"
+                           id="password1"
+                           data-bind="ojComponent: {component: 'ojInputPassword', placeholder: placeHolderValue, title: titleValue, 
+                                  value: pwdValue1, help:{definition: 'Some Help text'},
+                                  optionChange: optionChangeListener, readOnly: readOnlyValue,
+                                                             disabled: disabledValue,
+                                  validators: [{type: 'required', options : {hint: 'enter the password value', messageSummary: '\'{label}\' Required', 
+                                                            messageDetail: 'A value is required for \'{label}\' field'}}, equalToPasswordValue],
+                                                        displayOptions: messagingDisplayOptionsValue, invalidComponentTracker: invalidcomponents}"/>
+
+                    <input id="password1Reset"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'reset messages'}, click: function(){$('#password1').ojInputPassword('reset')}" />
+                    <input id="password1Show"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'show messages'}, click: function(){$('#password1').ojInputPassword('showMessages')}" />
+                    <input id="password1Validate"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'validate'}, click: function(){$('#password1').ojInputPassword('validate')}" />
+                    <input id="password1Set"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'Set Invalid Value'}, click: function(){$('#password1').ojInputPassword('option', 'value', 'bbb')}" />
+                    <input id="password1SetV"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'Set Valid Value'}, click: function(){$('#password1').ojInputPassword('option', 'value', 'HEllo123')}" />
+                    <input id="password1Custom"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'clear custom msg'}, click: function(){$('#password1').ojInputPassword('option', 'messagesCustom', [])}" />
+                    <input id="password1Valid"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'isValid'}, click: function(){isPassword1Valid($('#password1').ojInputPassword('isValid'))}" />
+                    <span data-bind="text: ' isValid: ' + isPassword1Valid()"></span>
+                    <button data-bind="ojComponent:{component:'ojButton', label:'check messaging APIs '},click: getMessagesUsingOptionPassword1"></button>
+                    <button data-bind="ojComponent:{component:'ojButton', label:'set messaging APIs '},click: setMessagesUsingOptionPassword1"></button>
+
+                    <br/><br/>
+
+                    <span class="oj-label">Current component value is [never do this, but an example]: </span>
+                    <span data-bind="text: pwdValue"></span>
+
+
+
+                </div>
+                <h2>date picker </h2>
+
+                <label for="dateTime">Default</label>
+                <input required id="dateTime" data-bind="attr: { title: titleValue}, ojComponent: {component: 'ojInputDate',
+                                                value: value, help:{definition: 'Some Help text', source: 'http://oracle.com'}, 
+                                                displayOptions: messagingDisplayOptionsValue, invalidComponentTracker: invalidcomponents,
+                                                optionChange: optionChangeListener, readOnly: readOnlyValue,
+                                                             disabled: disabledValue,
+                                                 converter: {type:'datetime', options: {year: 'numeric', month: 'long', day: 'numeric'}},
+                                            validators: [{type: 'dateTimeRange', options: {max: oj.IntlConverterUtils.dateToLocalIso(new Date()), min: oj.IntlConverterUtils.dateToLocalIso(new Date(2014, 00, 01)),
+                  hint: {'inRange': 'Enter a date that falls between Jan 1, 2014 till today'}}}]}"/>
+
+                <input id="dateTimeReset"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'reset messages'}, click: function(){$('#dateTime').ojInputDate('reset')}" />
+                <input id="dateTimeShow"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'show messages'}, click: function(){$('#dateTime').ojInputDate('showMessages')}" />
+                <input id="dateTimeValidate"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'validate'}, click: function(){$('#dateTime').ojInputDate('validate')}" />
+                <input id="dateTimeSet"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'Set Invalid Value'}, click: function(){$('#dateTime').ojInputDate('option', 'value', oj.IntlConverterUtils.dateToLocalIso(new Date(2014, 25, 27)))}" />
+                <input id="dateTimeSetV"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'Set Valid Value'}, click: function(){$('#dateTime').ojInputDate('option', 'value', oj.IntlConverterUtils.dateToLocalIso(new Date(2014, 5, 7)))}" />
+                <input id="dateTimeCustom"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'clear custom msg'}, click: function(){$('#dateTime').ojInputDate('option', 'messagesCustom', [])}" />
+                <input id="dateTimeValid"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'isValid'}, click: function(){isDateTimeValid($('#dateTime').ojInputDate('isValid'))}" />
+                <span data-bind="text: ' isValid: ' + isDateTimeValid()"></span>
+                <button data-bind="ojComponent:{component:'ojButton', label:'check messaging APIs '},click: getMessagesUsingOptionDateTime"></button>
+                <button data-bind="ojComponent:{component:'ojButton', label:'set messaging APIs '},click: setMessagesUsingOptionDateTime"></button>
+
+                <br/><br/>
+
+                <span class="oj-label">Current component value is:</span>
+                <span data-bind="text: value"></span>
+
+                <label for="dateTime2">Required as validator option</label>
+                <input required id="dateTime2" data-bind="ojComponent: {component: 'ojInputDateTime',  title: titleValue, invalidComponentTracker: invalidcomponents, 
+                                                value: value, help:{definition: 'Some Help text'}, displayOptions: messagingDisplayOptionsValue,
+                                                optionChange: optionChangeListener, readOnly: readOnlyValue,
+                                                             disabled: disabledValue,
+                                                 converter: {type:'datetime', options: {formatType: 'datetime', dateFormat: 'short',
+                          timeFormat: 'short'}},
+                                                validators: [{type: 'required', options : {hint: 'select a date value', messageSummary: '\'{label}\' Required', 
+                                                            messageDetail: 'A value is required for \'{label}\' field'}},{type: 'dateTimeRange', options: {max: oj.IntlConverterUtils.dateToLocalIso(new Date()), min: oj.IntlConverterUtils.dateToLocalIso(new Date(2014, 00, 01)),
+                  hint: {'inRange': 'Enter a date that falls between Jan 1, 2014 till today'}}}]}"/>
+
+                <input id="dateTime2Reset"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'reset messages'}, click: function(){$('#dateTime2').ojInputDateTime('reset')}" />
+                <input id="dateTime2Show"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'show messages'}, click: function(){$('#dateTime2').ojInputDateTime('showMessages')}" />
+                <input id="dateTime2Validate"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'validate'}, click: function(){$('#dateTime2').ojInputDateTime('validate')}" />
+                <input id="dateTime2Set"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'Set Invalid Value'}, click: function(){$('#dateTime2').ojInputDateTime('option', 'value', oj.IntlConverterUtils.dateToLocalIso(new Date(2014, 25, 27)))}" />
+                <input id="dateTime2SetV"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'Set Valid Value'}, click: function(){$('#dateTime2').ojInputDateTime('option', 'value', oj.IntlConverterUtils.dateToLocalIso(new Date(2014, 5, 7)))}" />
+                <input id="dateTime2Custom"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'clear custom msg'}, click: function(){$('#dateTime2').ojInputDateTime('option', 'messagesCustom', [])}" />
+                <input id="dateTime2Valid"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'isValid'}, click: function(){isDateTime2Valid($('#dateTime2').ojInputDateTime('isValid'))}" />
+                <span data-bind="text: ' isValid: ' + isDateTime2Valid()"></span>
+                <button data-bind="ojComponent:{component:'ojButton', label:'check messaging APIs '},click: getMessagesUsingOptionDateTime2"></button>
+                <button data-bind="ojComponent:{component:'ojButton', label:'set messaging APIs '},click: setMessagesUsingOptionDateTime2"></button>
+
+                <label for="dateTime3">default placeholder for datetime</label>
+                <input required id="dateTime3" data-bind="ojComponent: {component: 'ojInputTime',  title: titleValue, invalidComponentTracker: invalidcomponents, 
+                                                value: value, help:{definition: 'Some Help text'},
+                                                displayOptions: messagingDisplayOptionsValue, readOnly: readOnlyValue,
+                                                             disabled: disabledValue,
+                                                optionChange: optionChangeListener,
+                                                converter: {type:'datetime', options: {formatType: 'time', timeFormat: 'full'}},
+                                                validators: [{type: 'required', options : {hint: 'select a date value', messageSummary: '\'{label}\' Required', 
+                                                            messageDetail: 'A value is required for \'{label}\' field'}}, {type: 'dateTimeRange', options: {max: oj.IntlConverterUtils.dateToLocalIso(new Date()), min: oj.IntlConverterUtils.dateToLocalIso(new Date(2014, 00, 01)),
+                  hint: {'inRange': 'Enter a date that falls between Jan 1, 2014 till today'}}}]}"/>
+
+                <input id="dateTime3Reset"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'reset messages'}, click: function(){$('#dateTime3').ojInputTime('reset')}" />
+                <input id="dateTime3Show"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'show messages'}, click: function(){$('#dateTime3').ojInputTime('showMessages')}" />
+                <input id="dateTime3Validate"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'validate'}, click: function(){$('#dateTime3').ojInputTime('validate')}" />
+                <input id="dateTime3Set"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'Set Invalid Value'}, click: function(){$('#dateTime3').ojInputTime('option', 'value', '50:67:67')}" />
+                <input id="dateTime3SetV"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'Set Valid Value'}, click: function(){$('#dateTime3').ojInputTime('option', 'value', '12:34:34')}" />
+                <input id="dateTime3Custom"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'clear custom msg'}, click: function(){$('#dateTime3').ojInputTime('option', 'messagesCustom', [])}" />
+                <input id="dateTime3Valid"  type="submit" data-bind="ojComponent:{component:'ojButton', label: 'isValid'}, click: function(){isDateTime3Valid($('#dateTime3').ojInputTime('isValid'))}" />
+                <span data-bind="text: ' isValid: ' + isDateTime3Valid()"></span>
+                <button data-bind="ojComponent:{component:'ojButton', label:'check messaging APIs '},click: getMessagesUsingOptionDateTime3"></button>
+                <button data-bind="ojComponent:{component:'ojButton', label:'set messaging APIs '},click: setMessagesUsingOptionDateTime3"></button>
+
+                <hr/>
+                <h2>Slider</h2>
+                <label for="inputslider-id"> ojSlider component </label>
+
+                <input id="inputslider-id"
+                       data-bind="ojComponent: {
+		    component: 'ojSlider', 
+		    range: 'fromMin', 
+		    max:slidermax,
+		    min:slidermin, 
+		    step:sliderstep, 
+                  
+		    value:currentSliderValue,
+                     invalidComponentTracker: invalidcomponents
+		    
+		    }"/>
+
+                <span> Current Value: </span>
+                <span id="curr-value" data-bind="text: currentSliderValue"></span>
+
+
+            </form>
+        </div>
+    </body>
+</html>

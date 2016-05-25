@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Cube Aggregate Type</title>
+                 <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css"/>
+
+				<!-- following script tag is needed for automated test --> <!-- specify the name of the application specific java file
+						as the value of 'currentTestApp' -->
+				<script> var currentTestApp = '../../datagrid/cubicDataSource/js/ojCubeAggregateType'; </script>
+    	<script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>
+    </head>
+    <body>
+        <div id="wrapper">
+            <p> <b>Cubic DataGrid </b></p>
+            <span id="row" data-bind="text: countRows"></span><br/>
+            <span id="column" data-bind="text: countColumns"></span><br/> <br/>
+            <B> <label for="combobox">Choose the Aggregate Type</label></b>
+                <input id="aggregateType" data-bind="ojComponent: {component: 'ojCombobox',
+                           options: aggregateType, optionChange: changeAggregateType, rootAttributes: {style:'max-width:20em'}}"/>
+                <br/>
+
+            <div id="datagrid"
+                 style="width:100%;height:400px;max-width:851px;"
+                 aria-label="Cubic Data Source Grid Demo"
+                 data-bind="ojComponent: {component: 'ojDataGrid', data: dataSource}">
+            </div>
+            <div class="oj-row">
+
+                <button id="addProductToXAxis" type="button" data-bind="click: addProductToXAxis,
+                        ojComponent:{component:'ojButton', label:'Add Product To X-axis'}">
+                </button>
+                <button id="addProductToYAxis" type="button" data-bind="click: addProductToYAxis,
+                        ojComponent:{component:'ojButton', label:'Add Product To Y-axis'}">
+                </button>
+
+
+            </div>
+        </div>
+    </body>
+</html>

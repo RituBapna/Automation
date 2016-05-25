@@ -1,0 +1,23 @@
+/* 
+    Document   : override
+    Created on : <date>
+    Author     : <author>
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+thead {
+    text-align: left;
+}
+
+thead tr th {
+    padding-left: 5px;
+}
+
+tbody tr td {
+    padding-left: 5px;
+}

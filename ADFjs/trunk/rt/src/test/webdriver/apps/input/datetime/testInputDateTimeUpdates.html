@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Jet ojInputDateTime Test</title>
+    
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css" id="ojcss"/>
+        <link rel="stylesheet" href="../../common/css/testStyles.css" type="text/css"/>
+        
+        <script>
+        var currentTestApp = '../../input/datetime/js/app';
+        </script>
+        <!-- RequireJS bootstrap file -->
+        <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>        
+</head>
+<body id="html_body">
+<div id="menu_container" data-bind="with: svm"></div>
+<h2>Line before all</h2>
+
+<form action="demo_form">
+<h2>ojInputDateTime</h2>
+<div id="main-container" data-bind="with: model">
+ 
+  <label id="mainlabelid" for="text-input">ojInputDateTime component</label>
+  <input id="text-input"         
+         data-bind="ojComponent: {component: 'ojInputDateTime',
+                                  placeholder: 'Enter a value',
+                                  title: title,
+                                  rawValue: rawValue,
+                                  value: value}"/>
+    
+  <br/>
+  <span class="oj-label">Current component value is: </span>
+  <span id="valueHolder" data-bind="text: value"></span>   
+    <span class="oj-label">Raw component value is: </span>
+  <span id="rawValueHolder" data-bind="text: rawValue"></span>   
+
+</div>
+
+<h2>Inline ojInputDateTime</h2>
+<div id="inline-container" data-bind="with: model">
+ 
+  <label for="inline-input">Inline ojInputDateTime component</label>
+  <div id="inline-input"         
+         data-bind="ojComponent: {component: 'ojInputDateTime',
+                                  placeholder: 'Enter a value',
+                                  title: title,
+                                  value: value2}"></div>
+    
+  <br/>
+  <span class="oj-label">Current component value is: </span>
+  <span data-bind="text: value2"></span>   
+</div>
+
+
+          
+<div id="html-container">
+    <h2>Html for comparison</h2>
+    Datetime example
+    <input type="datetime" value="1990-12-31T23:59:60Z" />
+    <br>
+    Datetime-local example
+    <input type="datetime-local" value="1985-04-12T23:20:50.52" />
+    <br>
+</div>
+          
+          
+</div>
+</form>
+<h2>Line after</h2>
+
+<div id="local-container" data-bind="with: model">
+<button id="buttonId1" data-bind="ojComponent: {
+      component: 'ojButton',label: 'toggleTimeIncrement'}, click: toggleTimeIncrement"></button>
+<button id="buttonId2" data-bind="ojComponent: {
+      component: 'ojButton',label: 'toggleNumberOfMonths'}, click: toggleNumberOfMonths"></button>
+<button id="buttonId3" data-bind="ojComponent: {
+      component: 'ojButton',label: 'toggleDaysOutsideMonth'}, click: toggleDaysOutsideMonth"></button>
+<button id="buttonId4" data-bind="ojComponent: {
+      component: 'ojButton',label: 'toggleCurrentMonthPos'}, click: toggleCurrentMonthPos"></button>
+<button id="buttonId5" data-bind="ojComponent: {
+      component: 'ojButton',label: 'toggleFooterLayout'}, click: toggleFooterLayout"></button>
+<button id="buttonId6" data-bind="ojComponent: {
+      component: 'ojButton',label: 'toggleChangeMonth'}, click: toggleChangeMonth"></button>
+<button id="buttonId7" data-bind="ojComponent: {
+      component: 'ojButton',label: 'toggleChangeYear'}, click: toggleChangeYear"></button>
+<button id="buttonId8" data-bind="ojComponent: {
+      component: 'ojButton',label: 'toggleShowOn'}, click: toggleShowOn"></button>
+<button id="buttonId9" data-bind="ojComponent: {
+      component: 'ojButton',label: 'toggleStepBigMonths'}, click: toggleStepBigMonths"></button>
+<button id="buttonId10" data-bind="ojComponent: {
+      component: 'ojButton',label: 'toggleStepMonths'}, click: toggleStepMonths"></button>
+<button id="buttonId11" data-bind="ojComponent: {
+      component: 'ojButton',label: 'toggleWeekDisplay'}, click: toggleWeekDisplay"></button>
+<button id="buttonId12" data-bind="ojComponent: {
+      component: 'ojButton',label: 'toggleYearRange'}, click: toggleYearRange"></button>
+<button id="buttonId13" data-bind="ojComponent: {
+      component: 'ojButton',label: 'toggleDayFormatter'}, click: toggleDayFormatter"></button>
+<button id="buttonId14" data-bind="ojComponent: {
+      component: 'ojButton',label: 'toggleMin'}, click: toggleMin"></button>
+<button id="buttonId15" data-bind="ojComponent: {
+      component: 'ojButton',label: 'toggleMax'}, click: toggleMax"></button>
+<button id="buttonId16" data-bind="ojComponent: {
+      component: 'ojButton',label: 'toggleDayMetaData'}, click: toggleDayMetaData"></button>
+<button id="buttonId17" data-bind="ojComponent: {
+      component: 'ojButton',label: 'hide'}, click: hide"></button>
+<button id="buttonId18" data-bind="ojComponent: {
+      component: 'ojButton',label: 'show'}, click: show"></button>
+</div>
+<div id="inputControls-container" data-bind="with: model"></div>
+<div id="controls-container"></div>
+
+</body>
+</html>

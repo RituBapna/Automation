@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Jet ojCombobox Test</title>
+    
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css" id="ojcss"/>
+        <link rel="stylesheet" href="../../common/css/testStyles.css" type="text/css"/>
+        
+        <script>
+        var currentTestApp = '../../input/combobox/js/app';
+        var compExposed = false;        
+        </script>
+        <!-- RequireJS bootstrap file -->
+        <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>        
+</head>
+
+<body id="html_body">
+<div id="menu_container" data-bind="with: svm"></div>
+<h2>Line before all</h2>
+
+<form id="form1">
+<div id="dialogWrapper">
+  <div style="display:none" id="modalDialog1" title="Modal Dialog"
+       data-bind="ojComponent:{component: 'ojDialog', initialVisibility: 'hide', height: 180}">
+     <div class="oj-dialog-body">
+    
+<h2>Combobox</h2>
+<div id="main-container" data-bind="with: model">    
+    <label id="mainlabelid" for="combobox">Combobox</label>
+    <input id="combobox" list="browsers" data-bind="ojComponent: {component: 'ojCombobox', value: value,
+                                                    multiple : multiple,
+                                                    optionChange: valueChangeHandler,
+                                                    beforeExpand : beforeExpandHandler,
+                                                    rootAttributes: {style:'max-width:20em'}}"/>
+    <datalist id="browsers">
+        <option value="0">0</option>
+        <option value="30">30</option>
+        <option value="60" data-bind="attr: { disabled : disabledItem}">60</option>
+        <option value="90">$90.00</option>
+        <option value="120">$120.00</option>
+    </datalist>
+    <div>
+        <br/>
+        <label for="curr-value" class="oj-label">Curr value is: </label>
+        <span id="curr-value" data-bind="text: $parent.ko.toJSON(value)"></span>
+    </div>
+</div>
+
+  </div>     
+     <div id="okButton" class="oj-dialog-footer">        
+<div id="local-container" data-bind="with: model">
+    <button id="buttonId1" data-bind="ojComponent: {
+      component: 'ojButton',label: 'toggleMultiple'}, click: toggleMultiple"></button>
+    <button id="buttonId2" data-bind="ojComponent: {
+      component: 'ojButton',label: 'toggleDisabledItem'}, click: toggleDisabledItem"></button>
+        
+</div>
+<div id="inputControls-container" data-bind="with: model"></div>
+        <button id="btn_ok" data-bind="ojComponent: {component: 'ojButton', label: 'OK'},
+          click: function() {$('#modalDialog1').ojDialog('close');}"> </button>
+      </div>
+     </div>
+  </div>
+  <button id="btn_opendialog" data-bind="ojComponent: {component: 'ojButton', label: 'Open Modal Dialog'}, 
+          click: function(){$('#modalDialog1').ojDialog('open');}"></button>
+
+
+</form>
+
+<h2>Line after</h2>
+
+<div id="controls-container"></div>
+
+</body>
+</html>

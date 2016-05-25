@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Jet ojButtonset Test</title>
+    
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css" id="ojcss"/>
+        <link rel="stylesheet" href="../../common/css/iconStyles.css" id="iconcss" >
+        <link rel="stylesheet" href="../../common/css/testStyles.css" type="text/css"/>
+        
+        <script>
+        var currentTestApp = '../../button/buttonTest/js/appButtonset';
+        </script>
+        <!-- RequireJS bootstrap file -->
+        <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>        
+</head>
+
+<body>
+<div id="menu_container" data-bind="with: svm"></div>
+    
+<h2>Line before all</h2>
+<div id='buttons-container' data-bind="with: model">
+    <div id="bs1"
+         data-bind="ojComponent: {component: 'ojButtonset', checked: drink, 
+                                  optionChange: optionChangeHandler}"
+         aria-label="Choose only one beverage.  Use left and right arrow keys to navigate.">
+        <!-- ko foreach: drinkRadios -->
+            <label data-bind="attr: {for: id}"></label>                               
+            <input type="radio" name="beverage"
+                   data-bind="value: id, attr: {id: id}, 
+                              ojComponent: { component: 'ojButton', label: label }"/>
+        <!-- /ko -->
+    </div>
+ 
+    <br/><br/><!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+     
+    <p class="bold" id="selectedDrink" data-bind="text: drinkText"/>
+     
+    <p><button data-bind="click: toggleCoffee">Toggle Coffee</button>
+</div><h2>Line after</h2>
+
+<div id="local-container" data-bind="with: model"></div>
+<div id="button-controls-container" data-bind="with: model"></div>
+<div id="controls-container"></div>
+
+</body>
+</html>

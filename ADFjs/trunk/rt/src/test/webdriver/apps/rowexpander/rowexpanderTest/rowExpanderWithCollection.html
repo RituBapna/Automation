@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>RowExpander with Collection</title>
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css"/>
+
+		<!-- following script tag is needed for automated test --> <!-- specify the name of the application specific java file
+				as the value of 'currentTestApp' -->
+		<script> var currentTestApp = '../../rowexpander/rowexpanderTest/js/rowExCollection'; </script>
+
+		 <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>
+
+		 <script type="text/html" id="header_template">
+		 	<!-- ko if: $key=='LastName' -->
+		 		<span class="oj-datagrid-header-cell-text" data-bind="text: 'Last Name'"></span>
+		 	<!-- /ko -->
+		 	<!-- ko if: $key=='FirstName' -->
+		 		<span class="oj-datagrid-header-cell-text" data-bind="text: 'First Name'"></span>
+		 	<!-- /ko -->
+		 	<!-- ko if: $key=='Salary' -->
+		 		<span class="oj-datagrid-header-cell-text" data-bind="text: 'Salary'"></span>
+		 	<!-- /ko -->
+		 </script>
+
+		 <script type="text/html" id="cell_template">
+		 	<!-- ko if: $keys.column=='LastName' -->
+		 		<div data-bind="ojComponent: {component: 'ojRowExpander', context: $cellContext,rootAttributes:{'id': $cellContext.key}}"></div>
+		 	<!-- /ko -->
+		 	<span class="oj-rowexpander-cell-text" data-bind="text: $data"></span>
+</script>
+
+        <style>
+html:not([dir="rtl"]) .demo-text-align
+ {      text-align:left;
+ }
+ html[dir="rtl"] .demo-text-align
+ {
+     text-align:right;
+ }
+         </style>
+    <body>
+ <div id="datagrid" style="width:100%;max-width:302px;height:400px"
+	 data-bind="ojComponent:
+	 {
+		component:'ojDataGrid',
+		data:dataSource,
+		selectionMode:{cell:'single'},
+		header:
+		{
+			column:
+			{
+				template: 'header_template',
+				style: function(headerContext)
+				{
+					if (headerContext['key'] === 'LastName')
+					{
+						return 'width:150px';
+					}
+					else
+					{
+						return 'width:75px';
+					}
+				},
+				resizable: { width: 'enable' }
+			}
+		},
+		cell:
+		{
+                        className: 'demo-text-align',
+			template: 'cell_template'
+		}
+	}">
+</div>
+
+    </body>
+</html>

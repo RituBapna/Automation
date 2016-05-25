@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head> 
+        <title>Collapsible With Tabs Page</title>
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css"/>
+        <!--<script> var currentTestApp = '../../layout/masonaryLayout/js/ojMasonaryLayoutBasic'; </script>-->
+        <script> var currentTestApp = '../../layoutNavigation/collapsibleTest/js/collapsibleVM'; </script>
+    	<script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>
+    </head>
+    <body>
+        <div id="wrapperDiv">
+              <div id="tabs" data-bind="ojComponent:{component: 'ojTabs', disabledTabs: [3]}">
+                <!-- tab bar -->
+                <ul>
+                  <li><span>Tab 1</span></li>
+                  <li><span>Tab 2</span></li>
+                  <li><span>Tab 3</span></li>
+                  <li><span>Disabled Tab</span></li>
+                </ul>
+
+                <!-- tab contents -->
+                <div id="tabs-1">
+                    <div id="collapsiblePage" data-bind="ojComponent: {component: 'ojCollapsible'}">
+                        <h3 id="header3">Header 3</h3>
+                        <p id="c">I'm a  Collapsible.</p>
+                    </div>
+                </div>
+                <div id="tabs-2">
+                  <p>Tab 2 Content</p>
+                </div>
+                <div id="tabs-3">
+                  <p>Tab 3 Content</p>
+                </div>
+                <div id="tabs-4">
+                  <p>Disabled Tab Content</p>
+                </div>
+              </div>
+         </div>
+    </body>
+</html>

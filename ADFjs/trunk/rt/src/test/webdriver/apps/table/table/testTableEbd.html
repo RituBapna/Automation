@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Jet ojTable with External Binding Definition Test</title>
+    
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css" id="ojcss"/>
+        <link rel="stylesheet" href="../../common/css/iconStyles.css" id="iconcss" >
+        <link rel="stylesheet" href="../../common/css/testStyles.css" type="text/css"/>
+        
+        <script>
+        var currentTestApp = '../../table/table/js/app';
+        </script>
+        <!-- RequireJS bootstrap file -->
+        <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>        
+</head>
+
+<body>
+    <div id="menu_container" data-bind="with: svm"></div>
+    
+<h2>Line before all</h2>
+
+<div id="main-container" data-bind="with: model" style="width: 700px;">
+    <table id="table" data-bind="ojComponent: myTable">
+    </table>
+    <div class="oj-table-panel-bottom">
+        <div id="descr" data-bind="text: datasourceDescr"></div>
+    </div>
+</div>
+
+<h2>Line after</h2>
+
+<div id="local-container" data-bind="with: model">
+        <button id="buttonId1" data-bind="ojComponent: {
+      component: 'ojButton',label: 'toggleDatasource'}, click: toggleDatasource"></button>
+</div>
+<div id="tableControls-container" data-bind="with: model"></div>
+<div id="controls-container"></div>
+
+</body>
+</html>

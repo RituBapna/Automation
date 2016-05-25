@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head> 
+        <title>Collapsible With Header Level Page</title>
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css"/>
+        <!--<script> var currentTestApp = '../../layout/masonaryLayout/js/ojMasonaryLayoutBasic'; </script>-->
+        <script> var currentTestApp = '../../layoutNavigation/collapsibleTest/js/collapsibleVM'; </script>
+    	<script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>
+    </head>
+    <body>
+        <div id="wrapperDiv">
+            <div id="collapsiblePage">
+                text before
+                <div id="c1" data-bind="ojComponent: {component: 'ojCollapsible'}">
+                    <h1 id="h1">Header 1</h1>
+                    <p id="p1">I'm a Collapsible with h1 header</p>
+                </div>
+                <div id="c2" data-bind="ojComponent: {component: 'ojCollapsible'}">
+                    <h2 id="h2">Header 2</h2>
+                    <p id="p2">I'm a Collapsible with h2 header</p>
+                </div>
+                <div id="c3" data-bind="ojComponent: {component: 'ojCollapsible'}">
+                    <h3 id="h3">Header 3</h3>
+                    <p id="p3">I'm a Collapsible with h3 header Style</p>
+                </div>
+                <div id="c4" data-bind="ojComponent: {component: 'ojCollapsible'}">
+                    <h4 id="h4">Header 4</h4>
+                    <p id="p4">I'm a Collapsible with h4 header Style</p>
+                </div>
+                text below
+            </div>
+                <div id="selectAllDivs" style="width:30%;float:right;margin-right:5px;">
+            </div>
+        </div>
+        
+    </body>
+</html>

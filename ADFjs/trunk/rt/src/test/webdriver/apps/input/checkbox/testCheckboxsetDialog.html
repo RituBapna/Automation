@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Jet ojCheckboxset Test</title>
+    
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css" id="ojcss"/>
+        <link rel="stylesheet" href="../../common/css/testStyles.css" type="text/css"/>
+        
+        <script>
+        var currentTestApp = '../../input/checkbox/js/app';
+        var compExposed = false;        
+        </script>
+        <!-- RequireJS bootstrap file -->
+        <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>        
+</head>
+
+<body id="html_body">
+<div id="menu_container" data-bind="with: svm"></div>
+<h2>Line before all</h2>
+
+<div id="dialogWrapper">
+  <div style="display:none" id="modalDialog1" title="Modal Dialog"
+       data-bind="ojComponent:{component: 'ojDialog', initialVisibility: 'hide', height: 180}">
+     <div class="oj-dialog-body">
+<h2>Checkboxset</h2>
+<div id="main-container" data-bind="with: model">
+<label for="checkboxset" id="mainlabelid">Values</label>
+<div id="checkboxset" aria-labelledby="mainlabelid" tabindex=0
+         data-bind="ojComponent: {component: 'ojCheckboxset',
+                   invalidComponentTracker: tracker,
+                   value: value}" >
+    <span class="oj-choice-row">
+        <input id="low" type="checkbox" name="rbb" value="30">
+        <label for="low">30</label>
+    </span>
+    <span class="oj-choice-row">
+        <input id="medium" type="checkbox" name="rbb" value="90">
+        <label for="medium">90</label>
+    </span>
+    <span class="oj-choice-row">
+        <input id="high" type="checkbox" name="rbb" value="120">
+        <label for="high">120</label>
+    </span>
+</div>
+<br/>
+<span>Current component value is: </span>
+<span id="curr-value" data-bind="text: value"></span>
+<br/>
+<span>invalidComponentTracker is: </span>
+<span id="tracker-value" data-bind="text: tracker"></span>
+<br/>
+</div>
+<div id="local-container" data-bind="with: model"></div>
+<div id="inputControls-container" data-bind="with: model"></div>
+<br/>
+  </div>     
+     <div id="okButton" class="oj-dialog-footer">        
+        <button id="btn_ok" data-bind="ojComponent: {component: 'ojButton', label: 'OK'},
+          click: function() {$('#modalDialog1').ojDialog('close');}"> </button>
+      </div>     
+  </div>
+</div>
+  <button id="btn_opendialog" data-bind="ojComponent: {component: 'ojButton', label: 'Open Modal Dialog'}, 
+          click: function(){$('#modalDialog1').ojDialog('open');}"></button>
+
+<h2>Line after</h2>
+
+<div id="controls-container"></div>
+
+</body>
+</html>

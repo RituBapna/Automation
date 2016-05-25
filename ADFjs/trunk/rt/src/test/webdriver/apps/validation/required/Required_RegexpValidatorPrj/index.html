@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Oracle JET Quick Start</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <!-- Foundation is being used to provide the Grid Layout and responsive design flow -->
+        <link rel="stylesheet" href="css/libs/foundation/foundation-custom.css"/>
+        <!-- This is the main css file for the default Alta theme -->
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css"/>
+        <!-- This is the current styling for the Global Branding area, Global Navigation, 
+        and Application Navigation sections -->
+        <link rel="stylesheet" href="css/brand_bar.css"/>
+        <!-- This is where you would add any app specific styling -->
+        <link rel="stylesheet" href="css/override.css" type="text/css"/>
+        <!-- RequireJS bootstrap file -->
+        <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>
+    </head>
+    <body>
+        <div id="globalBody">
+            <!-- This div helps make sure the footer stays at the bottom of the page -->
+            <!--This is the header section which contains the Global Branding, Global Navigation, and Application Navigation code-->
+            <header>
+                <div id="divBrandBar" class="oj-brand-bar short">
+                    <div class="row">
+                        <div id="divHeaderContainer"
+                             class="twelve columns oj-container oj-brand-container page-padding">
+                            <!-- global nav -->
+                            <!-- The display style is set to none to start with so that we only display 
+                            this section of the page after it has been processed by the jQuery calls and 
+                            Knockout bindings that defines it's theming. 
+                            -->
+                            <ul id="ulGlobalNav"
+                                class="oj-helper-fr ui-helper-clearfix oj-hlist oj-pipelist oj-toolbar-list"
+                                style="display: none;">
+                                <li class="oj-subtoolbar">
+                                    <ul class="oj-hlist">
+                                        <li>
+                                            <button id="buttonNotifications" class="oj-toolbar-button">Notifications</button>
+                                        </li>
+                                        <li>
+                                            <button id="buttonSearch" class="oj-toolbar-button">Search</button>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="oj-subtoolbar">
+                                    <div class="oj-dropdown-container">
+                                        <input id="buttonSignIn" type="checkbox"/>
+                                         
+                                        <label id="labelSignIn" class="oj-toolbar-button" for="buttonSignIn">henry.lightning@oracle.com</label>
+                                        <ul id="ulSignInMenu" class="oj-dropdown-menu">
+                                            <li>
+                                                <a href="#">Preferences</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Help</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">About</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Sign Out</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                            <!-- branding -->
+                            <a id="aBranding" class="oj-branding" href="#">
+                                <img class="oj-logo" alt="Oracle" src="css/images/t.gif"/><span id="spanProductName">JET
+                                                                                                                     --
+                                                                                                                     Quick
+                                                                                                                     Start</span></a><!-- This is where the Application Navigation will go -->
+                        </div>
+                    </div>
+                </div>
+            </header><!-- This is where your main page content will be loaded -->
+            <div class="row">
+                <div id="mainContent" class="twelve columns page-padding">
+                    <div class="oj-page-content-area page-padding">
+                        <h1>Gym Membership Form:</h1>
+                         
+                        <form name="membershipForm">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <label class="oj-label" for="username">Username</label>
+                                    </td>
+                                    <td>
+                                        <input id="username" type="text" autocomplete="off" class="oj-text-input"
+                                               name="username" placeholder="atleast 3 alphanumeric characters"
+                                               title="Enter at least 3 letters or numbers"
+                                               data-bind="ojValue: {instance: userName, validators: [requiredValidator, userNameRegExp]}"/>
+                                    </td>
+                                </tr><tr>
+                                    <td>
+                                        <label class="oj-label" for="password">Password</label>
+                                    </td>
+                                    <td>
+                                        <input id="password" type="password" name="password" class="oj-text-input"
+                                               title="Minimum 6 characters including a number, one uppercase and lowercase letter"
+                                               data-bind="ojValue: {instance: password, validators: [requiredValidator, passwordRegExp]}"/>
+                                    </td>
+                                </tr><tr>
+                                    <td>
+                                        <label class="oj-label" for="birthdate">Birth Date</label>
+                                    </td>
+                                    <td>
+                                        <input id="birthdate" type="text" size="30" class="oj-date-input"
+                                               name="birthdate"
+                                               data-bind="jqueryUI: {role: 'datepicker',   showOtherMonths: false, selectOtherMonths: true, changeMonth: true,   changeYear: true, showOn: 'button', buttonImage: 'images/timedate_ena.png',   buttonImageOnly: true},   ojValue: {instance: birthDate, converter: longDateConverter}"/>
+                                    </td>
+                                </tr><tr>
+                                    <td>
+                                        <label class="oj-label" for="goal">Goal</label>
+                                    </td>
+                                    <td>
+                                        <select id="goal" name="goal" class="oj-select"
+                                                data-bind="options: goals, optionsText: 'name', optionsValue: 'code',   optionsCaption: 'Choose a Goal...',   ojValue: {instance: selectedGoal, validator: requiredValidator}"></select>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- This footer code is an example of defining a list of items using a Knockout foreach binding
+                This method is good for defining a menu that may need to be localized, or have it's items defined dynamically
+            -->
+            <footer class="ui-helper-clearfix">
+                <div class="row">
+                    <div id="footerContent" class="page-margin">
+                        <ul class="footerLinks" data-bind="foreach : footerLinks">
+                            <li>
+                                <a data-bind="text : name, attr : {id: linkId, href : linkTarget}"></a>
+                            </li>
+                        </ul>
+                        <div class="ui-helper-clearfix"></div>
+                        <span class="footerText">Copyright &copy; 2013 Oracle and/or its affiliates. All rights reserved.</span>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </body>
+</html>

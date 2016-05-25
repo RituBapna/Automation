@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Jet ojMenu Test</title>
+    
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css" id="ojcss"/>
+        <link rel="stylesheet" href="../../common/css/iconStyles.css" id="iconcss" >
+        <link rel="stylesheet" href="../../common/css/testStyles.css" type="text/css"/>
+        
+        <script>
+        var currentTestApp = '../../menu/menuTest/js/app';
+        </script>
+        <!-- RequireJS bootstrap file -->
+        <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>
+   
+</head>
+
+<body>
+    <div id="menu_container" data-bind="with: model"></div>
+    
+<h2>Line before all</h2>
+
+<div id='menuBar-container' data-bind="with: model">
+ <button id="menuButton"
+          data-bind="ojComponent: {component: 'ojButton', label: 'Places', 
+                                   menu: '#myMenu0'}">
+  </button>
+    <ul id="myMenu0" class="colafont" data-bind="ojComponent: {component: 'ojMenu', select: menuItemSelect}">
+        <li class="oj-state-disabled"><a href="#">Aberdeen</a></li>
+        <li><a href="#">Ada</a></li>
+        <li><a href="#">Adamsville</a></li>
+        <li><a href="#">Addyston</a></li>
+        <li>
+            <a href="#">Delphi</a>
+            <ul>
+                <li class="oj-state-disabled"><a href="#">Ada</a></li>
+                <li><a href="#">Saarland</a></li>
+                <li><a href="#">Salzburg</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Saarland</a></li>
+        <li>
+            <a href="#">Salzburg</a>
+            <ul>
+                <li>
+                    <a href="#">Delphi</a>
+                    <ul>
+                        <li><a href="#">Ada</a></li>
+                        <li><a href="#">Saarland</a></li>
+                        <li><a href="#">Salzburg</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Delphi</a>
+                    <ul>
+                        <li><a href="#">Ada</a></li>
+                        <li><a href="#">Saarland</a></li>
+                        <li><a href="#">Salzburg</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Perch</a></li>
+            </ul>
+        </li>
+        <li class="oj-state-disabled"><a href="#">Amesville</a></li>
+    </ul>
+</div>
+  
+  <h3>Results:</h3>
+  <p class="bold">Last selected menu item:
+    <span id="results" data-bind='text: model.selectedMenuItem'></span>
+  </p>
+
+
+<h2>Line after</h2>
+
+<div id="local-container" data-bind="with: model"></div>
+<div id="menu-controls-container" data-bind="with: model"></div>
+<div id="controls-container"></div>
+
+
+</body>
+</html>

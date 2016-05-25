@@ -1,0 +1,35 @@
+<div class="demo-appheader">
+   <div class="oj-flex demo-appheader-lite">
+
+      <!-- logo -->
+      <div class="demo-appheader-logo" tabindex="0">
+         <div class="demo-appheader-logo-block">
+            <span role="img" class="oj-icon demo-appheader-lite-logo-oracle" title="Oracle Logo" alt="Oracle Logo"></span>
+         </div>
+
+         <div class="demo-appheader-appname-block">
+            <span style="" class="demo-appheader-appname" data-bind="text: appName"></span>
+         </div>
+      </div>
+
+      <!-- Toolbar -->
+      <div id='demo-appheader-menu-and-toolbar-container' tabindex="0">
+
+         <div class="demo-appheader-toolbar-container">
+            <div id='buttons-container' data-bind="ojComponent: {component:'ojToolbar'}">
+               <div data-bind="ojComponent: { component: 'ojButtonset',
+                                              checked: $root.router.stateId(),
+                                              focusManagement:'none' }">
+                  <!-- ko foreach: $root.router.states -->
+                     <label data-bind="attr: {for: id}"></label>
+                     <input type="radio" name="content"
+                            data-bind="value: id, click: go, attr: {id: id},
+                                       ojComponent: { component: 'ojButton',
+                                                      label: label}"/>
+                  <!-- /ko -->
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

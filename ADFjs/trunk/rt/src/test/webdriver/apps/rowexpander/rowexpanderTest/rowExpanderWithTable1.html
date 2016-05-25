@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>RowExpander with Table</title>
+        <meta charset="UTF-8">
+         <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css"/>
+
+				<!-- following script tag is needed for automated test --> <!-- specify the name of the application specific java file
+						as the value of 'currentTestApp' -->
+				<script> var currentTestApp = '../../rowexpander/rowexpanderTest/js/rowExpanderTable'; </script>
+
+				 <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>
+
+
+
+        <script type="text/html" id="row_template">
+        <tr>
+
+            <td>
+                <div data-bind="ojComponent: {component: 'ojRowExpander', context: $rowContext,rootAttributes:{'id': $rowContext.key}, expand: expandFunc,collapse:collapseFunc, create:createFunc, destroy:destroyFunc}"></div>
+
+
+                <span data-bind="text: name"></span>
+            </td>
+            <td>
+                <span data-bind="text: resource"></span>
+            </td>
+            <td>
+                <span data-bind="text: start"></span>
+            </td>
+            <td>
+                <span data-bind="text: end"></span>
+            </td>
+        </tr>
+    </script>
+
+ <style>
+html:not([dir="rtl"]) .demo-text-align
+ {      text-align:left;
+ }
+ html[dir="rtl"] .demo-text-align
+ {
+     text-align:right;
+ }
+         </style>
+</head>
+<body>
+    <div id="rowExpanderTableContainer">
+        <div class="oj-row">
+            <div class="oj-xl-3 oj-lg-6 oj-md-12 oj-col">
+                 <button id="destroyRowEx" type="button"
+                        data-bind="click: destroyRowEx,ojComponent:{component:'ojButton', label:'destroyRowEx'}"></button>
+                <div id="resultsFunction"
+                     style="float:left;width:650px; height: 100px; border:1px solid black;color:blue;font-size:14px;text-align:center;vertical-align:middle;line-height:40px;"
+                     tabindex="1"></div>
+                     <div id="resultsFunction1"
+					                      style="float:left;width:650px; height: 100px; border:1px solid black;color:blue;font-size:14px;text-align:center;vertical-align:middle;line-height:40px;"
+                     tabindex="1"></div>
+            </div>
+        </div>
+        <div class="oj-row">
+            <div class="oj-xl-3 oj-lg-6 oj-md-12 oj-col">
+
+                <p><b>Row Expander with Table</b><br/>
+                    1. Click to the left of the TaskName to expand or Collapse<br/>
+                    2. Test the expand / collapse of parent - all children.<br/>
+                </p>
+                <table id="table1" data-bind="ojComponent: {component: 'ojTable', data: tableDatasource,
+                            rowTemplate: 'row_template',
+                            columns:
+                                [{headerText: 'Task Name',sortProperty: 'name'},
+                                {headerText: 'Resource', sortProperty: 'resource'},
+                                {headerText: 'Start Date', sortProperty: 'start'},
+                                {headerText: 'End Date', sortProperty: 'end'}]}"
+                       >
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

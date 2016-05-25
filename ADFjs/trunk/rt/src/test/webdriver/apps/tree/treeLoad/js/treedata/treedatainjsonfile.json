@@ -1,0 +1,124 @@
+     [
+                        {
+                          "title": "Home",
+                          "attr": {"id": "home", "special_node": true, "special_data": "hello1", "title":"Home node with special data", "type":"myroot"},
+                          "data":{"title" : "Home", "attr":{"data-bind":"click: nodeClicked, text: homeClickedCount, css:{showNodeRed: homeClickedCount() > 2 }"}},
+                          "metadata": {"owner" : "versha2"}
+                        },
+                        {
+                          "title": "News",
+                          "attr": {"id": "news", "title": "New node with NO special data",  "type":"myleaf"}
+                        },
+                        {
+                          "title": "Blogs",
+                          "attr": {"id": "blogs",  "type":"myfolder"},
+                          "children": [ { "title": "Today",
+                                          "data": {"title": "Today"},
+                                          "attr": {"id": "today", "special_node": true, "special_data": "hello2",  "type":"myleaf"},
+                                          "metadata": {"owner" : "versha2"}
+                                        },
+                                        { "title": "Yesterday",
+                                           "data": {"title": "Yesterday"},
+                                          "attr": {"id": "yesterday", "title": " yesterday node"}
+                                        },
+                                        { "title": "2 Days Back",
+                                          "data": {"title": "2 Days Back"},
+                                          "attr": {"id": "2daysback"}
+                                        },
+                                        { "title": "Archive",
+                                           "data": {"title": "Archive"},
+                                          "attr": {"id": "archive"}
+                                        }
+                                      ]
+                        },
+                        {
+                          "title": "Links",
+                          "attr": {"id": "links", "type":"myfolder"},
+                          "children": [ { "title": "Oracle",
+                                          "attr": {"id": "oracle", "type":"myleaf"}
+                                        },
+                                        { "title": "IBM",
+                                          "attr": {"id": "ibm"}
+                                        },
+                                        { "title": "Microsoft",
+                                          "attr": {"id": "ms", "type":"myfolder"},
+                                          "children": [ { "title": "USA",
+                                                          "attr": {"id": "msusa", "special_node": true, "special_data": "hello3", "type":"myfolder"},
+                                                          "metadata": {"owner" : "versha3"},
+                                                          "children": [ { "title": "North",
+                                                                          "attr": {"id": "msusanorth", "title": "First Node under USA"}
+                                                                        },
+                                                                        { "title": "South",
+                                                                          "attr": {"id": "msusasouth"}
+                                                                        },
+                                                                        { "title": "East",
+                                                                          "attr": {"id": "musaeast"}
+                                                                        },
+                                                                        { "title": "West",
+                                                                          "attr": {"id": "musawest"}
+                                                                        }
+                                                                      ]
+                                                        },
+                                                        { "title": "Europe",
+                                                          "attr": {"id": "msuerope"}
+                                                        },
+                                                        { "title": "Asia",
+                                                          "attr": {"id": "msasia"},
+                                                          "children": [ { "title": "Japan",
+                                                                          "attr": {"id": "asiajap"}
+                                                                        },
+                                                                        { "title": "China",
+                                                                          "attr": {"id": "asiachine"}
+                                                                        },
+                                                                        { "title": "India",
+                                                                          "attr": {"id": "asiaindia"}
+                                                                        }
+                                                                      ]
+                                                        }
+                                                      ]
+                                        }
+                                      ]
+                        },
+                        {
+                          "title": "Sponsors",
+                          "attr": {"id": "sponsors","type":"noexpand"}
+                        },
+                        {
+                          "title": "Corporate",
+                          "attr": {"id": "corporate"}
+                        },
+                        {
+                          "title": "References",
+                          "attr": {"id": "references"},
+                          "children": [ { "title": "All",
+                                          "attr": {"id": "refsall"}
+                                        },
+                                        { "title": "USA",
+                                          "attr": {"id": "refsusa"}
+                                        },
+                                        { "title": "Europe",
+                                          "attr": {"id": "refseurope"}
+                                        },
+                                        { "title": "Asia",
+                                          "attr": {"id": "refasia"}
+                                        }
+                                      ]
+                        },
+                        {
+                          "title": "Suppliers",
+                          "attr": {"id": "sups"},
+                          "children": [ { "title": "Gold Tier",
+                                          "attr": {"id": "supgold"}
+                                        },
+                                        { "title": "Silver Tier",
+                                          "attr": {"id": "supsilver"}
+                                        },
+                                        { "title": "Non-contract",
+                                          "attr": {"id": "supcon"}
+                                        },
+                                        { "title": "Independent",
+                                          "attr": {"id": "supind"}
+                                        }
+                                      ]
+                        }
+            ]

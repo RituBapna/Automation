@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Listview - Drap and Drop with Table</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css" id="ojcss"/>
+        <link rel="stylesheet" href="../../common/css/listview.css" type="text/css" id="ojlistviewcss"/>
+        <!--<link rel="stylesheet" href="../../common/css/libs/oj/v1.3.0/alta/oj-alta.css" type="text/css" id="ojcss"/>-->
+        <script>
+            var currentTestApp = '../../datacollection/listviewTest/js/listviewWhenReadyApp';
+        
+        </script>                                    
+        <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>
+        <!--<link rel="stylesheet" href="../css/listview.css" type="text/css"/>-->
+        <!--        <script data-main="../js/ojlistviewVM/ojlistviewMain" src="../js/libs/require/require.js"></script>-->
+
+    </head>
+    <body>
+        
+<div id="wrapper">
+<ul id="listview" aria-label="list using collection" style="height:100%" 
+       data-bind="ojComponent: {component: 'ojListView', data: dataSource, item: {template: 'tweet_template'}, selectionMode: 'single', rootAttributes: {style: 'width:100%;height:300px;overflow-x:hidden'}, scrollPolicy: 'loadMoreOnScroll', scrollPolicyOptions: {fetchSize: 15}}">
+</ul>
+ <!-- <button id= "button"
+            data-bind="click: buttonClick, 
+                       ojComponent: { component: 'ojButton', label: 'A button element' }">
+    </button>-->
+    
+</div>
+<div id="buttonBar">
+    <button id= "promiseButton"
+    data-bind="click: buttonClick, 
+               ojComponent: { component: 'ojButton', label: 'getPromise' }">
+    </button>
+    <span id="promiseReturnedText">
+    </span>
+</div>
+<script type="text/html" id="tweet_template">
+    <li data-bind="attr: {id: name + created_at}">
+        <div class="oj-flex" style="flex-wrap: nowrap">
+            <span class="demo-thumbnail oj-flex-item" data-bind="style: { backgroundImage: 'url(\'' + profile_background_image_url + '\')' }"></span>
+            <div class="demo-content oj-flex-item">
+                <div>
+                    <strong data-bind="text: name"></strong>
+                    <span class="demo-username" data-bind="text: '@' + screen_name"></span>
+                </div>
+                <div class="demo-tweet">
+                    <span style="word-wrap: break-word" data-bind="text: text"></span> <a data-bind="attr: { href: source }, text: source"></a>
+                </div>        
+                <span class="demo-metadata" data-bind="text: created_at"></span>
+            </div>
+        </div>
+    </li>
+</script>
+                
+        
+    </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <title>Oracle JET Translation Test</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <!-- Foundation is being used to provide the Grid Layout and responsive design flow >
+        <link rel="stylesheet" href="css/libs/foundation/foundation-custom.css"/-->
+        <!-- This is the main css file for the default Alta theme -->
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css"/>
+        <!-- This is the current styling for the Global Branding area, Global Navigation, 
+        and Application Navigation sections -->
+        
+      
+         <!-- following script tag is needed for automated test -->
+        <!-- specify the name of the application specific java file as the value of 'currentTestApp' -->
+         <script>
+          var currentTestApp = '../../translation/translationTest/js/app';
+        </script>
+        <!-- RequireJS bootstrap file -->
+        <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>
+    </head>
+    <body>
+        <div id="globalBody">
+            <!-- This div helps make sure the footer stays at the bottom of the page -->
+            <!--This is the header section which contains the Global Branding, Global Navigation, and Application Navigation code-->
+            <!-- This is where your main page content will be loaded -->
+            <div class="row">
+                <div id="mainContent" class="twelve columns page-padding">
+                    <p id="testred" data-bind="text:redcolor"></p>
+                    <p id="testblue" data-bind="text:bluecolor"></p>
+                    <p id="testgreen" data-bind="text:greencolor"></p>
+                    <label id="inputLabel" for="sometext" data-bind="text:inputTextLabel"></label>
+                     
+                    <input id="inputText" type="text"  name="sometext" 
+                      data-bind="ojComponent:{component:'ojInputText', value:inputTextValue, required:true},
+                        attr:{placeholder: inputTextPlaceholderValue, title:titleValue}"/>
+                     
+                    <input id="toggle" type="submit" name="x" data-bind="ojComponent:{component:'ojButton',label:buttonLabel}, click: switchLocale"/>
+                </div>
+            </div>
+           
+        </div>
+    </body>
+</html>

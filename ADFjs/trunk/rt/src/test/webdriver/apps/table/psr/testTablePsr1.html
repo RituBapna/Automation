@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Jet Table Psr1 Test</title>
+    
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css" id="ojcss"/>
+        <link rel="stylesheet" href="../../common/css/iconStyles.css" id="iconcss" >
+        <link rel="stylesheet" href="../../common/css/testStyles.css" type="text/css"/>
+        
+        <script>
+        var currentTestApp = '../../table/psr/js/appPsr1';
+        </script>
+        <!-- RequireJS bootstrap file -->
+        <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>        
+</head>
+<body id="html_body">
+
+<h2>ojTable for PSR Testing</h2>        
+<div id="main-container" >    
+<table id="table" data-bind="ojComponent: {component: 'ojTable', data: model.datasource, columns:
+       [{displayIndex: 0, headerText: 'Remove', id: 'column1', sortable: 'disabled'},
+        {displayIndex: 1, headerText: 'Department Id', field: 'DepartmentId', id: 'column2', sortable: model.sortable()},
+        {displayIndex: 2, headerText: 'Department Name', field: 'DepartmentName', id: 'column3', sortable: model.sortable()},
+        {displayIndex: 3, headerText: 'Location Id', field: 'LocationId', id: 'column4', sortable: model.sortable()},
+        {displayIndex: 4, headerText: 'Manager Id', field: 'ManagerId', id: 'column5', sortable: model.sortable()},
+        {displayIndex: 5, headerText: 'Mentor', field: 'ManagerId', id: 'column6', sortable: model.sortable()},
+        {displayIndex: 6, headerText: 'Supervisor', field: 'ManagerId', id: 'column7', sortable: model.sortable()},
+        {displayIndex: 7, headerText: 'HR', field: 'ManagerId', id: 'column8', sortable: model.sortable()},
+        {displayIndex: 8, headerText: 'Logo', id: 'column9', sortable: 'disabled'},
+        {displayIndex: 9, headerText: 'Rating', id: 'column10', sortable: 'disabled'}],
+    rowTemplate: 'row_tmpl'}">        
+</table>
+<div class="oj-table-panel-bottom">
+<div id="paging" data-bind="ojComponent: {component: 'ojPagingControl', data: model.datasource, pageSize: 10, mode: model.mode}"
+     class="oj-pagingcontrol-table-border" style="width: 500px"></div>
+</div>
+</div>
+<div id="descr" data-bind="text: model.datasourceDescr"></div>
+
+        <script type="text/html" id="row_tmpl">    
+            <tr>
+                <td><input type="checkbox" data-bind="attr: {id: DepartmentId}, click: $root.model.enableDeleteModify"/></td>
+                <td><div id='deptId' data-bind="text: DepartmentId"></div></td>
+                <td><div id="deptName" data-bind="text: DepartmentName"></div></td>
+                <td><div id='LocId' data-bind="text: LocationId"></div></td>
+                <td><div id="MgrId" data-bind="text: ManagerId"></div></td>
+                <td><div id="MentorId" data-bind="text: ManagerId"></div></td>
+                <td><div id="SupId" data-bind="text: ManagerId"></div></td>
+                <td><div id="HRId" data-bind="text: ManagerId"></div></td>
+                <td><img src="../../common/css/fonts/favicon.png" alt="favicon" width="16" height="16"></td>
+                <td>
+            <div data-bind="ojComponent: {component: 'ojRatingGauge', value:3}" style="width:120px;height:25px;"></div>
+                </td>
+            </tr>
+        </script>        
+
+
+<div id="local-container" data-bind="with: model">
+        <button id="buttonId0" data-bind="ojComponent: {
+      component: 'ojButton',label: 'toggleSortable'}, click: toggleSortable"></button>
+        <button id="buttonId1" data-bind="ojComponent: {
+      component: 'ojButton',label: 'refresh'}, click: refresh(true)"></button>
+        <button id="buttonId2" data-bind="ojComponent: {
+      component: 'ojButton',label: 'Array'}, click: goBasePaging"></button>
+        <button id="buttonId3" data-bind="ojComponent: {
+      component: 'ojButton',label: 'Collection'}, click: goPagingMockCollection"></button>
+        <button id="buttonId4" data-bind="ojComponent: {
+      component: 'ojButton',label: 'ObsArray'}, click: goObsPaging"></button>
+        <button id="buttonId5" data-bind="ojComponent: {
+      component: 'ojButton',label: 'addRow'}, click: addRow"></button>
+        <button id="buttonId6" data-bind="ojComponent: {
+      component: 'ojButton',label: 'deleteRows', disabled: nothingChecked}, click: deleteRows"></button>
+        <button id="buttonId7" data-bind="ojComponent: {
+      component: 'ojButton',label: 'modifyRows', disabled: nothingChecked}, click: modifyRows"></button>
+        <button id="buttonId8" data-bind="ojComponent: {
+      component: 'ojButton',label: 'add200Rows'}, click: add200Rows"></button>
+        <button id="buttonId9" data-bind="ojComponent: {
+      component: 'ojButton',label: 'delete200Rows'}, click: delete200Rows"></button>
+        <button id="buttonId10" data-bind="ojComponent: {
+      component: 'ojButton',label: 'modify200Rows'}, click: modify200Rows"></button>
+        <button id="buttonId11" data-bind="ojComponent: {
+      component: 'ojButton',label: 'refreshCollection'}, click: refreshCollection"></button>
+        <button id="buttonId12" data-bind="ojComponent: {
+      component: 'ojButton',label: 'resetCollection'}, click: resetCollection"></button>
+
+</div>
+        <br/><br/>
+        <span>Status: </span>
+         <span id="exposed" data-bind="text: model.exposed"></span>
+        <Span> Ready: </span>
+         <span id="ready" data-bind="text: model.ready"></span>
+        <br/><br/>
+        <textarea id="msg-log" style="height: 50px; width: 600px;"></textarea>
+
+</body>
+</html>

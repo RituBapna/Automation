@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ojPopup Miscellaneous Test</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="../../../../common/css/libs/oj/v@jetversion@/alta/oj-alta-min.css" type="text/css"/>
+        <script>
+            var currentTestApp = '../../popup/popupTest/js/ojpopup/ojPopupMiscMain';
+        </script>
+        <script data-main="../../../../common/js/main" src="../../../../common/js/libs/require/require.js"></script> 
+    </head>
+    <body>
+        <div id="main-container">
+            <div id="popupWrapper" style="width: 50%; margin: 200px auto">
+                <div style="display:none" id="myPopup"  data-bind="ojComponent:{component: 'ojPopup'}">
+                    <form id="form1">
+                        <label for="inputnumber-id">ojInputNumber component</label> 
+                        <input id="inputnumber-id"
+                               data-bind="ojComponent: {
+                            component: 'ojInputNumber', 
+                            max:100,
+                            min:0, 
+                            step:1, 
+                            value:currentValue
+                        }"/>     
+                    </form>
+                </div>
+                <button id="btnGo"   data-bind="ojComponent: {component: 'ojButton', label: 'Go'},
+               click: function() {
+                 $('#myPopup').ojPopup('option', 'tail', 'simple');
+                 $('#myPopup').ojPopup('option', 'beforeClose', function(event) {if (!$('#inputnumber-id').ojInputNumber('isValid')) event.preventDefault();});
+                 $('#myPopup').ojPopup('open', '#btnGo',
+                    {
+                        at: 'right center',
+                        my: 'left center'
+                    });
+               }">
+                </button>
+                <span>Current component value is: </span>
+                <span id="curr-value" data-bind="text: currentValue"></span>
+                <div id="focusArea" style="margin-top:10px;background-color: lightpink;height:100px" tabindex="1" >
+                    <h4>Open this page in Fire Fox and Click here to reproduce.</h4>
+                </div>  
+            </div>
+        </div>
+    </body>
+</html>

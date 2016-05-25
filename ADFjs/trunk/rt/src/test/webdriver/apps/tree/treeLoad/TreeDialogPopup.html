@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>Tree DialogPopup</title>
+          <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css"/>
+
+		         <!-- following script tag is needed for automated test -->
+		 		        <!-- specify the name of the application specific java file as the value of 'currentTestApp' -->
+		 		         <script>
+		 		          var currentTestApp = '../../tree/treeLoad/js/treeDialogPopup';
+		         </script>
+
+		           <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>
+
+
+    </head>
+    <body>
+        <div id="vmPopupContainer">
+
+            <div class="oj-row">
+                <div class="oj-xl-6 oj-lg-6 oj-md-12 oj-col">
+                    <div id="dialogWrapper0">
+                        <div style="display:none" id="modalDialog0" title="Tree in Modeless Dialog"
+                             data-bind="ojComponent:{component: 'ojDialog', initialVisibility: 'hide',
+                              modality: 'modeless',resizeBehavior: 'resizable', height: 'auto'}">
+                            <div class="oj-dialog-body">
+                                <p>Tree in a Modeless Dialog<p>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="stillCanClickMe" type="button"
+                            data-bind="click: stillCanClickMe, ojComponent:{component:'ojButton', label:'Still can click me to Open Dialog'}"></button>
+
+                    <div id="dialogWrapper">
+                        <div style="display:none" id="modalDialog" title=""
+                             data-bind="ojComponent:{component: 'ojDialog', initialVisibility: 'hide',
+                              modality: 'modal',resizeBehavior: 'resizable', height: 'auto', width: 200}">
+                            <div class="oj-dialog-header oj-helper-clearfix" aria-labelledby="dialogTitleId">
+                                <span id="dialogTitleId" class="oj-dialog-title"> Tree in a Model Dialog (user-defined Header) </span>
+                            </div>
+                            <div class="oj-dialog-body">
+                                <div id="treeModelDialog" data-bind="ojComponent:{component: 'ojTree',
+                                data:layoutData, icons: true, initExpanded: expnodes,
+                                dnd: dndoptsFunc, types: typesoptsFunc}"></div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <p><b>Steps</b><br/>
+                        1. Click on the button to open the dialog in Model mode.<br/>
+                        2. The tree should have sup and ref expanded initially.<br/>
+                        3. The tree should be re-sizable.<br/>
+                        4. Click on the button 'stillCanClickMe' and make sure you are NOT able to<br/>
+                        5. Expand the dialog and make sure the header appears correct.<br/>
+                    <div id="okButton" class="oj-dialog-footer">
+                        <button id="openModalDialog" data-bind="ojComponent: {component: 'ojButton', label: 'Open Modal Dialog'},
+                            click: function(){$('#modalDialog').ojDialog('open');}"></button>
+                    </div>
+                </div>
+                <div class="oj-xl-6 oj-lg-6 oj-md-12 oj-col">
+                    <div id="dialogWrapper1">
+
+                        <div style="display:none" id="modalDialog11" title="Title: Nested Modal Dialog"
+                             data-bind="ojComponent:{component: 'ojDialog', initialVisibility: 'hide',
+                              modality: 'modal',resizeBehavior: 'resizable', cancelBehavior: 'escape'}">
+                            <div class="oj-dialog-body">
+                                <p>Content of Modal Dialog</p>
+                            </div>
+                        </div>
+
+                        <div style="display:none" id="modalDialog1" title="Title: Tree in Modeless Dialog"
+                             data-bind="ojComponent:{component: 'ojDialog', initialVisibility: 'hide',
+                              modality: 'modeless',resizeBehavior: 'resizable', cancelBehavior: 'escape'}">
+                            <div class="oj-dialog-body">
+
+                                <div id="stdMenuContainer">
+                                    <ul id="moveNodeMenu"
+                                        data-bind="ojComponent: {component: 'ojMenu',  select: moveMenuItemSelect}"
+                                        style="display:none">
+                                        <li id="before">
+                                            <a href="#">Before</a>
+                                        </li>
+                                        <li id="after">
+                                            <a href="#">After</a>
+                                        </li>
+                                        <li id="inside">
+                                            <a href="#">Inside</a>
+                                        </li>
+                                        <li id="first">
+                                            <a href="#">First</a>
+                                        </li>
+                                        <li id="last">
+                                            <a href="#">Last</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <p>Tree in a Modeless Dialog<p>
+                                <div id="treeModelDialog1" data-bind="ojComponent:{component: 'ojTree',
+                                data:layoutData11, icons: true, expandParents: true, expandAll: true,
+                                dnd: {reorder: 'enable'}, types: typesoptsFunc}"></div>
+                                <button id="right1" type="button" contextMenu="moveNodeMenu"
+                                        data-bind="ojComponent:{component:'ojButton',
+                                label:'Right click'}"></button>
+                                <button id="closeMD1" type="button"
+                                        data-bind="click: closeMD1, ojComponent:{component:'ojButton', label:'Close'}"></button>
+                                <button id="openAnotherModalDialog" data-bind="ojComponent: {component: 'ojButton', label: 'Open Another Modal Dialog'},
+                                        click: function(){$('#modalDialog11').ojDialog('open');}"></button>
+
+                            </div>
+                        </div>
+                    </div>
+                    <p><b>Steps</b><br/>
+                        1. Click on the button to open the dialog in Modeless mode.<br/>
+                        2. The tree should be re-sizable.<br/>
+                        3. Click on the button 'stillCanClickMe' and make sure you are able to<br/>
+                        4. Select any node say 'news' and  Right Click on 'Right click to Move Selected node relative to Links' button
+                        and choose menu option <br/>
+                        5. Make sure the tree gets updated accordingly.<br/>
+
+                    <div id="okButton1" class="oj-dialog-footer">
+                        <button id="openModelessDialog" data-bind="ojComponent: {component: 'ojButton', label: 'Open Modeless Dialog'},
+                            click: function(){$('#modalDialog1').ojDialog('open');}"></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="oj-row">
+                <div class="oj-xl-6 oj-lg-6 oj-md-12 oj-col">
+                    <div id="popupWrapper">
+                        <div style="display:none" id="popup1" data-bind="ojComponent:{component: 'ojPopup'}">
+                            <label>Click to open nested popup.</label>
+                            <button id="openPopup2" data-bind="ojComponent: {component: 'ojButton', label: 'Open Tree'},
+                                        click: function(){$('#popup2').ojPopup('open');}"></button>
+                            <button id="closePopup1" data-bind="ojComponent: {component: 'ojButton', label: 'Close'},
+                                        click: function(){$('#popup1').ojPopup('close');}"></button>
+                        </div>
+                        <div style="display:none" id="popup2" data-bind="ojComponent:{component: 'ojPopup'}">
+                            <div id="treeModelPopup1" data-bind="ojComponent:{component: 'ojTree',
+                                        data:layoutData, icons: true, initExpanded: expnodes,
+                                        dnd: dndoptsFunc, types: typesoptsFunc}"></div>
+                            <button id="closePopup2" data-bind="ojComponent: {component: 'ojButton', label: 'Close'},
+                                            click: function(){$('#popup2').ojPopup('close');}"></button>
+                        </div>
+                        <br/><p><b>Steps</b><br/>
+                            1) Click on button 'Nested Popup' and it will open a popup.<br/>
+                            2) Click on Open tree and this will open another popup.<br/>
+                            3) Click close on parent popup and it closes. But the child popup is still there.<br/>
+                            4) Close the child popup.<br/><br/>
+                            <button id="nestedPopup" data-bind="ojComponent: {component: 'ojButton', label: 'Nested Popup'},
+                                click: function(){$('#popup1').ojPopup('open');}"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

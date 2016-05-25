@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Jet ojTable ojRowExpander Test</title>
+    
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta-min.css" type="text/css" id="ojcss"/>
+        <link rel="stylesheet" href="../../common/css/iconStyles.css" id="iconcss" >
+        <link rel="stylesheet" href="../../common/css/testStyles.css" type="text/css"/>
+        
+        <script>
+        var currentTestApp = '../../table/table/js/appExp';
+        </script>
+        <!-- RequireJS bootstrap file -->
+        <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>        
+</head>
+
+<body id="html_body">
+<div id="menu_container" data-bind="with: svm"></div>
+<h2>Line before</h2>
+
+<div id="main-container" data-bind="with: model" style="width: 700px;">
+    <table id="table" data-bind="ojComponent: {component: 'ojTable', data: $parent.datasource,
+        rowTemplate: 'exp_row_template',
+        accessibility: {rowHeader: accRowHeaderCol()},
+        selectionMode: {row: selectionModeRow(), column: selectionModeColumn()},       
+        verticalGridVisible: verticalGridVisible(),
+        horizontalGridVisible: horizontalGridVisible(),
+        display: display(),
+        dnd: {reorder : {columns: dndColReorder()}},        
+        columnsDefault: { sortable: sortable(),
+            headerClassName: headerClassName(),
+            headerStyle: headerStyle(),
+            className: className(),style: style(),
+            footerClassName: footerClassName(),
+            footerStyle: footerStyle()},
+    columns:
+           [{headerText: 'Task Name',field: 'TaskName', id: 'column1',footerTemplate: 'rowcount_label'},
+           {headerText: 'Resource', field: 'Resource', id: 'column2'},
+           {headerText: 'Start Date', field: 'StartDate', id: 'column3', sortProperty: sortProperty()},
+           {headerText: 'End Date', field: 'EndDate',
+            headerClassName: 'blackStyle',headerStyle : 'color: grey;',
+            className : 'blackStyle',style : 'color: grey;',
+            footerClassname: 'blackStyle', footerStyle: 'color: grey;',
+            id: 'column4',sortable: 'disabled', footerTemplate: 'rowcount'}], 
+             rootAttributes: {'style':'width: 100%;'}}">
+    </table>
+    <div class="oj-table-panel-bottom">
+        <br/>
+        <div id="descr" data-bind="text: datasourceDescr"></div>
+    </div>
+</div>
+<h2>Line after</h2>
+
+<div id="local-container" data-bind="with: model"></div>
+<div id="tableControls-container" data-bind="with: model"></div>
+<div id="controls-container"></div>
+
+</body>
+</html>
+ 
+<script type="text/html" id="exp_row_template">
+    <tr>
+      <td>
+        <div data-bind="ojComponent: {component: 'ojRowExpander', rootAttributes:{'id': $rowContext.key},context: $rowContext}"></div>
+        <span data-bind="text: name"></span>
+      </td>
+      <td>
+        <span data-bind="text: resource"></span>
+      </td>
+      <td>
+        <span data-bind="text: start"></span>
+      </td>
+      <td>
+        <span data-bind="text: end"></span>
+      </td>
+    </tr>
+</script>
+<h2>Line after</h2>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<!--
+ Copyright (c) 2004, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+
+<html>
+    <head>
+        <title>Oracle JET Common Model - Fetch</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css"/>
+        <link rel="stylesheet" href="css/brand_bar.css">
+        <link rel="stylesheet" href="css/override.css" type="text/css"/>
+ <!-- following script tag is needed for automated test -->
+        <!-- specify the name of the application specific java file as the value of 'currentTestApp' -->
+         <script>
+          var currentTestApp = '../../datamodel/CommonModelAPIFetchApp/js/app';
+        </script>
+        <!-- RequireJS bootstrap file -->
+        <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>
+
+    </head>
+    <body>
+        <!-- Global Header area for Alta themed applications -->
+        <header>
+            <div id="divBrandBar" class="oj-brand-bar short">
+                <div class="row">
+                    <div id="divHeaderContainer" class="twelve columns oj-container oj-page-container oj-brand-container">                       
+
+                                                            
+
+                        <!-- branding -->
+                        <a id="aBranding" class="oj-branding" href="#">
+                            <img class="oj-logo" alt="Oracle" src="css/images/t.gif"/>
+                            <span id="spanProductName">JET Common Model (Fetch)</span>
+                        </a>                           
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="row">
+            <!-- This main content area is displayed via the RequireJS main.js file after all data has been loaded  -->
+            <div id="mainContent" class="oj-page-container" style="display: none;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Department Id</th>
+                            <th>Department Name</th>
+                        </tr>
+                    </thead>
+                    <!--Doing a knockout foreach: loop to generate the table contents-->
+                    <tbody id="DepartmentsDetails" data-bind="foreach: Departments">
+                        <tr>
+                            <!--Each row has its id and text set from a knockout binding-->
+                            <td><span data-bind="attr: {id: DepartmentId}, text: DepartmentId"></span></td>
+                            <td><div data-bind="attr: {id: DepartmentName}, text: DepartmentName"></div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

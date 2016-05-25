@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head> 
+        <title>Collapsible With Other JET Components Page</title>
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css"/>
+        <!--<script> var currentTestApp = '../../layout/masonaryLayout/js/ojMasonaryLayoutBasic'; </script>-->
+        <script> var currentTestApp = '../../layoutNavigation/collapsibleTest/js/collapsibleVM'; </script>
+    	<script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>
+    </head>
+    <body>
+    <div id="wrapperDiv">
+        <div id="collapsiblePage">
+            text before
+            <div id="dvtElement" data-bind="ojComponent: {component: 'ojCollapsible'}">
+                <h1 id="h1">Header 1</h1>
+                    <div id='chart-container'>
+                        <div data-bind="ojComponent: {
+                                component: 'ojChart', 
+                                type: 'bubble',
+                                series: bubbleSeriesValue, 
+                                groups: bubbleGroupsValue, 
+                                animationOnDisplay: 'auto',
+                                animationOnDataChange: 'auto',
+                                hoverBehavior: 'dim'
+                            }"
+                             style="max-width:500px;width:100%;height:350px;">
+                        </div>
+                    </div>
+            </div>
+            <div id="formElement" data-bind="ojComponent: {component: 'ojCollapsible'}">
+                <h2 id="h2">Header 2</h2>
+                <div id="div1">
+                    <label for="text-input">ojInputText component</label>
+                        <input id="text-input" type="text" data-bind="ojComponent: {component: 'ojInputText', value: value}"/>
+                        <br/><br/>
+                        <span class="oj-label">Current component value is: </span>
+                        <span data-bind="text: value"></span>
+                </div>
+            </div>
+            <div id="dataCollection" data-bind="ojComponent: {component: 'ojCollapsible'}">
+                <h3 id="h3">Header 3</h3>
+                <p id="p3">I'm a Collapsible with h3 header Style</p>
+            </div>
+            <div id="validatorElement" data-bind="ojComponent: {component: 'ojCollapsible'}">
+                <h4 id="h4">Header 4</h4>
+                    <div class="oj-flex"> 
+                        <div class="oj-flex-item">
+                          <label for="length1">'length' type in 'validators' option</label>
+                        </div>
+                        <div class="oj-flex-item">
+                          <input id="length1" type="text" autocomplete="off" name="length1" placeholder="between 5-10 characters" 
+                            data-bind="ojComponent: { component: 'ojInputText', value: lengthValue1, 
+                              validators: [{
+                                type: 'length', 
+                                options: {min: 5, max: 10}}]}"/>
+                        </div>
+                    </div>
+            </div>
+            
+            <div id="tabs-container">
+              <div id="tabs" data-bind="ojComponent:{component: 'ojTabs', disabledTabs: [3]}">
+                <!-- tab bar -->
+                        <ul>
+                          <li><span>Tab 1</span></li>
+                          <li><span>Tab 2</span></li>
+                          <li><span>Tab 3</span></li>
+                          <li><span>Disabled Tab</span></li>
+                        </ul>
+
+                <!-- tab contents -->
+                        <div id="tabs-1">
+                          <p>Tab 1 Content</p>  
+                        </div>
+                        <div id="tabs-2">
+                          <div id="tabCollapsible" data-bind="ojComponent: {component: 'ojCollapsible'}">
+                              <h3 id="tabh">Header 3</h3>
+                              <p id="tabc">I'm a  Collapsible.</p>
+                            </div>
+                        </div>
+                        <div id="tabs-3">
+                          <p>Tab 3 Content</p>
+                        </div>
+                        <div id="tabs-4">
+                          <p>Disabled Tab Content</p>
+                        </div>
+              </div>
+            </div>
+            text below
+            </div>
+                <div id="selectAllDivs" style="width:30%;float:right;margin-right:5px;">
+            </div>
+        </div>
+        
+    </body>
+</html>

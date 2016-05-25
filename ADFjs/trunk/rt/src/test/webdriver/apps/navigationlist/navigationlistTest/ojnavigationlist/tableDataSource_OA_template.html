@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Navigation List: TableDataSource</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../../common/css/libs/oj/v@jetversion@/alta/oj-alta-min.css" type="text/css"/>
+        <link rel="stylesheet" media="screen" href="../css/demo-icon-font.css" type="text/css"/>
+        <!-- following script tag is needed for automated test -->
+        <!-- specify the name of the application specific java file as the value of 'currentTestApp' -->
+        <script>
+          var currentTestApp = '../../navigationlist/navigationlistTest/js/ojnavigationlist/navlistVM';
+        </script>
+        <script data-main="../../../common/js/main" src="../../../common/js/libs/require/require.js"></script>
+        <!--script data-main="../js/ojnavigationlist/navlistMain" src="../js/libs/require/require.js"></script-->
+        <script type="text/html" id="server_template">
+            <li data-bind = "attr:{ id : $data['id']}, css:{'oj-disabled' : $data['disabled']=='true'}">  
+                <div>  
+                    <a href="#">  
+                        <span class  = "oj-navigationlist-item-icon  demo-icon-font demo-library-icon"> </span>
+                        <!--ko text: $data['name']--> <!--/ko-->
+                    </a>    
+                    <div data-bind="ojComponent: {component: 'ojRatingGauge', value: $data['rating'], readOnly: true}"
+                         style="width:120px;height:25px;"></div>
+                    <label data-bind="attr:{for: 'input'+$data['id']}"></label>
+                    <input data-bind="attr:{id: 'input'+$data['id']}, ojComponent: {component: 'ojInputText', value: $data['details'], optionChange: $root.detailValueChanged}"/>
+                </div>
+             </li>
+        </script>
+    </head>
+    <body>
+        <div>
+            <div id="navlistdemo">
+                <div id="menu_container">
+                    <ul id="myMenu" style="display:none"
+                        data-bind="ojComponent: {component: 'ojMenu', select: menuItemSelect, beforeOpen: menuOpen}">
+                        <li id="zoomin">
+                            <a href="#">
+                                <span class="oj-menu-item-icon demo-icon-font demo-home-icon"></span>Zoom In</a>
+                        </li>
+                        <li id="zoomout">
+                            <a href="#">
+                                <span class="oj-menu-item-icon oj-icon demo-icon-font demo-library-icon-icon"></span>Zoom
+                                                                                                                     Out</a>
+                        </li>
+                        <li id="divider"></li>
+                        <li id="save">
+                            <a href="#">
+                                <span class="oj-menu-item-icon demo-icon-font demo-palette-icon"></span>Save</a>
+                        </li>
+                        <li id="print" class="oj-disabled">
+                            <a href="#">
+                                <span class="oj-menu-item-icon demo-icon-font demo-bookmark-icon"></span>Print...</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="oj-flex">
+                    <div class="oj-flex-item oj-sm-12 oj-md-4 oj-lg-5 oj-xl-5">
+                        <a href="#">
+                            <span class="oj-navigationlist-item-icon  demo-icon-font demo-library-icon"></span>Test that
+                                                                                                               demo
+                                                                                                               icons are
+                                                                                                               available</a>
+                        <hr/>
+                        <p>Navigation List:</p>
+                        <div id="navList"
+                             data-bind="ojComponent:{                         component:'ojNavigationList',                          display: displayValue,                                 drillMode:drillModeValue,                          data: dataSource,                          edge: edgeValue,                         currentItem: currItemValue,                         expanded: expandedValue,                         selection: selectedValue,                         rootLabel: rootLabelValue,                         item:{template: 'server_template'},                          contextMenu: '#myMenu',                         optionChange : onSelect,                         beforeCollapse: onNavListEvent,                         beforeCurrentItem: onNavListEvent,                         beforeExpand: onNavListEvent,                         beforeSelect: onNavListEvent,                         collapse: onNavListEvent,                         destroy: onNavListEvent,                         expand: onNavListEvent,                         create: onNavListEvent                         }"></div>
+                    </div>
+                    <div class="oj-flex-item oj-sm-12 oj-md-8 oj-lg-7 oj-xl-7">
+                        <div>
+                            <p class="bold">
+                                Last selected list item: 
+                                <span id="results" data-bind='text: selectedListItem'></span>
+                            </p>
+                            <br/><br/>
+                             
+                            <button id="init"
+                                    data-bind="ojComponent:{component:'ojButton', label: 'initialize NavList'}, click: initializeNavList"></button>
+                             
+                            <button id="remove"
+                                    data-bind="ojComponent:{component:'ojButton', label: 'Remove Last NavList Item'}, click: removeLastNavListItem"></button>
+                             
+                            <button id="add"
+                                    data-bind="ojComponent:{component:'ojButton', label: 'Add  NavList Item'}, click: addNavListItem"></button>
+                             
+                            <br/>
+                            <hr/>
+                            <h3>Menu selection Results:</h3>
+                            <p>
+                                Last selected menu item: 
+                                <span id="results_menu" class="italic" data-bind='text: selectedMenuItem'></span>
+                            </p>
+                            <p>
+                                Last menu launcher: 
+                                <span id="launcher" class="italic" data-bind='text: menuLauncher'></span>
+                            </p>
+                            <hr/>
+                            <p>Events:</p>
+                            <button id="vtrue"
+                                    data-bind="ojComponent:{component:'ojButton', label: 'Veto events'}, click: function(){testVetoable(true);}"></button>
+                             
+                            <button id="vfalse"
+                                    data-bind="ojComponent:{component:'ojButton', label: 'Do Not Veto events'}, click: function(){testVetoable(false);}"></button>
+                             
+                            <button id="clearEventLogBtn" data-bind="ojComponent: {component: 'ojButton', label: 'Clear log'},                        click: clearLogMsg"></button>
+                             
+                            <label for="eventlog">Event Data:</label>
+                             
+                            <textarea id="eventlog" style="width:400px;height:120px;"
+                                      data-bind="ojComponent: {component: 'ojTextArea',                                         readOnly: true,                                        value: logMsg}">
+                        </textarea>
+                             
+                            <br/>
+                            <hr/>
+                            <p>Methods:</p>
+                            <button id="getCurr"
+                                    data-bind="ojComponent:{component:'ojButton', label: 'Get Current Item Value'}, click: getCurrentFocusedNavListItem"></button>
+                             
+                            <span class="bold">Current focused item: 
+                                <span id="results_c"
+                                      data-bind="text: 'Option Value: ' + currentFocusedItem() + ' Observable Value: ' + currItemValue()"></span>
+                                 </span><br/>
+                             
+                            <button id="getsel"
+                                    data-bind="ojComponent:{component:'ojButton', label: 'Get Selection Value'}, click: getCurrentSelectedNavListItem"></button>
+                             
+                            <span class="bold">Current selected item: 
+                                <span id="results_s"
+                                      data-bind="text: 'Option Value: ' + currentSelectionOptionValue() + '  Observable Value: ' + selectedValue()"></span>
+                                 </span><br/>
+                             
+                              <button id="getexpanded"
+                                    data-bind="ojComponent:{component:'ojButton', label: 'Get Expended Value'}, click: getCurrentExpandedValue"></button>
+                             
+                            <span class="bold">Current selected item: 
+                                <span id="results_e" data-bind="text:  currentExpandedValue"></span>
+                                 </span><br/>
+                                 
+                            <button id="getAll"
+                                    data-bind="ojComponent:{component:'ojButton', label: 'Get All Options Value'}, click: getAllOptions"></button>
+                             
+                            <button data-bind="ojComponent: {component: 'ojButton', label: 'Clear Options'},                        click: clearOptionData"></button>
+                             
+                            <label for="optionsLog">Options Value Data:</label>
+                             
+                            <textarea id="optionsLog" style="width:400px;height:120px;"
+                                      data-bind="ojComponent: {component: 'ojTextArea',                                         readOnly: true,                                        value: optionValues}">
+                        </textarea>
+                             
+                            <br/>
+                             
+                            <button id="setCurr"
+                                    data-bind="ojComponent:{component:'ojButton', label: 'Set Current Item to Security'}, click: setCurrentNavListItem"></button>
+                             
+                            <button id="setsel"
+                                    data-bind="ojComponent:{component:'ojButton', label: 'Set selected Value to Base-Option Method'}, click:  function(){$('#navList').ojNavigationList('option','selection','base');}"></button>
+                            <button id="setsel1"
+                                    data-bind="ojComponent:{component:'ojButton', label: 'Set selected Value to Settings-Option method'}, click:  function(){$('#navList').ojNavigationList('option','selection','settings');}"></button>
+                            
+                             <button id="setselob"
+                                    data-bind="ojComponent:{component:'ojButton', label: 'Set selected Value to Base using Observable'}, click: function(data, event){data.selectedValue('base'); oj.ComponentBinding.deliverChanges();}"></button>
+                             
+                                  
+                            <button id="refresh1"
+                                    data-bind="ojComponent:{component:'ojButton', label: 'Refresh'}, click: function(){$('#navList').ojNavigationList('refresh');}"></button>
+                             
+                            <button id="cvf"
+                                    data-bind="ojComponent:{component:'ojButton', label: 'Collapse -Vetoable False'}, click: function(){$('#navList').ojNavigationList('collapse','tools',false);}"></button>
+                             
+                            <button id="cvt"
+                                    data-bind="ojComponent:{component:'ojButton', label: 'Collapse -Vetoable True'}, click: function(){$('#navList').ojNavigationList('collapse','tools',true);}"></button>
+                             
+                            <button id="evf"
+                                    data-bind="ojComponent:{component:'ojButton', label: 'Expand -Vetoable False'}, click: function(){$('#navList').ojNavigationList('expand','tools',false);}"></button>
+                             
+                            <button id="evt"
+                                    data-bind="ojComponent:{component:'ojButton', label: 'Expand -Vetoable True'}, click: function(){$('#navList').ojNavigationList('expand','tools',true);}"></button>
+                             
+                            <button id="subid1"
+                                    data-bind="ojComponent:{component:'ojButton', label: 'Click on Settings: get nodeBySubId'}, click: function(){var node = $('#navList').ojNavigationList('getNodeBySubId', {subId:'oj-navigationlist-item', key:'settings'}); $(node).click();}"></button>
+                             
+                            <br/>
+                            <hr/>
+                            <p>Options:</p>
+                            <label id="lid">edge</label>
+                            <div id="edgeId" aria-labelledby="lid"
+                                 data-bind="ojComponent: {component: 'ojRadioset',                                                                        value: edgeValue}">
+                                <input id="topopt" type="radio" name="edge" value="top"/>
+                                 
+                                <label for="topopt">top</label>
+                                 
+                                <input id="startopt" type="radio" name="edge" value="start"/>
+                                 
+                                <label for="startopt">start</label>
+                            </div>
+                            <br/><br/>
+                             
+                            <label id="lid1">drillMode</label>
+                            <div id="drillMode" aria-labelledby="lid1"
+                                 data-bind="ojComponent: {component: 'ojRadioset',                                                                        value: drillModeValue}">
+                                <input id="expandOpt" type="radio" name="drillMode" value="none"/>
+                                 
+                                <label for="expandOpt">none</label>
+                                 
+                                <input id="collapsibleOpt" type="radio" name="drillMode" value="collapsible"/>
+                                 
+                                <label for="collapsibleOpt">collapsible</label>
+                                 
+                                <input id="slidingOpt" type="radio" name="drillMode" value="sliding"/>
+                                 
+                                <label for="slidingOpt">sliding</label>
+                            </div>
+                            <br/><br/>
+                             
+                            <label id="lid2">display</label>
+                            <div id="displayVal" aria-labelledby="lid2"
+                                 data-bind="ojComponent: {component: 'ojRadioset',                                                                        value: displayValue}">
+                                <input id="iconopt" type="radio" name="display" value="icons"/>
+                                 
+                                <label for="iconopt">icons</label>
+                                 
+                                <input id="allopt" type="radio" name="display" value="all"/>
+                                 
+                                <label for="allopt">all</label>
+                            </div>
+                            <br/><br/>
+                             
+                            <label for="currItemVal">Selection Value</label>
+                             
+                            <input id="currItemVal" type="text"
+                                   data-bind="ojComponent:{component: 'ojInputText', value: selectedValue}"/>
+                             
+                            <br/><br/>
+                             
+                            <label for="rootlabel">RootLabel Value</label>
+                             
+                            <input id="rootlabel" type="text"
+                                   data-bind="ojComponent:{component: 'ojInputText', value: rootLabelValue}"/>
+                             
+                            <br/><br/>
+                             
+                            <label for="combobox">expanded</label>
+                             
+                            <input id="combobox" list="items"
+                                   data-bind="ojComponent: {component: 'ojCombobox',                                      multiple: true, value: expandedValue,                                     rootAttributes: {style:'max-width:20em'}}"/>
+                             
+                            <datalist id="items">
+                                <option value="base">Base</option>
+                                <option value="tools">Tools</option>
+                                <option value="settings">Settings</option>
+                                <option value="environment">Environment</option>
+                                <option value="security">Security</option>
+                            </datalist>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

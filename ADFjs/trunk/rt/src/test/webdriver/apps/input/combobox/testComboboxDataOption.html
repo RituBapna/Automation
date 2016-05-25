@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Jet ojCombobox Test</title>
+    
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css" id="ojcss"/>
+        <link rel="stylesheet" href="../../common/css/testStyles.css" type="text/css"/>
+        
+        <script>
+        var currentTestApp = '../../input/combobox/js/app';
+        </script>
+        <!-- RequireJS bootstrap file -->
+        <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>        
+</head>
+
+<body id="html_body">
+<div id="menu_container" data-bind="with: svm"></div>
+<h2>Line before all</h2>
+<form id="form1">
+          
+<div id="main-container" data-bind="with: model">
+<label id="mainlabelid" for="combobox">Combobox with options array</label>
+<input id="combobox" data-bind="ojComponent: {component: 'ojCombobox', options: obsValueList, 
+                                             rootAttributes: {style:'max-width:20em'}}">
+</input>
+ 
+<br/><br/>
+
+<label for="grpdata">Combobox with group options array</label>
+ 
+<input id="grpdata" data-bind="ojComponent: {component: 'ojCombobox',                                                    
+                                              options: groupData, value: ['CA'],
+                                              rootAttributes: {style:'max-width:20em'}}">
+</input>
+ 
+<br/><br/>
+<label for="optKeys">Combobox with optionsKeys</label>
+ 
+<input id="optKeys" data-bind="ojComponent: {component: 'ojCombobox',
+                                              options: groupDataWithKeys, 
+                                              optionsKeys: {label: 'regions', children: 'states', childKeys: {value: 'state_abbr', label: 'state_name'}},
+                                              value: ['CA'], rootAttributes: {style:'max-width:20em'}}">
+</input>
+
+
+<br/><br/>
+<label for="optKeys2">Test Combobox with optionsKeys and deep copy</label>
+ 
+<input id="optKeys2" data-bind="ojComponent: {component: 'ojCombobox',
+                                              options: test1, 
+                                              optionsKeys : {value : '_value', label : '_label'},
+                                              rootAttributes: {style:'max-width:20em'}}">
+</input>
+
+ 
+<br/><br/>
+<label for="tridata">Combobox with 3 level options data</label>
+ 
+<input id="tridata" data-bind="ojComponent: {component: 'ojCombobox', 
+                                              options: triLevelGroupData, value: ['SF'],
+                                              optionsKeys: keys2,
+                                              rootAttributes: {style:'max-width:20em'}}">
+</input>
+
+ 
+</div>
+
+</form>
+
+<h2>Line after</h2>
+
+<div id="local-container" data-bind="with: model">
+    <button id="buttonId1" data-bind="ojComponent: {
+      component: 'ojButton',label: 'toggleMultiple'}, click: toggleMultiple"></button>
+    <button id="buttonId2" data-bind="ojComponent: {
+      component: 'ojButton',label: 'toggleOptions'}, click: toggleOptions"></button>
+    <button id="buttonId3" data-bind="ojComponent: {
+      component: 'ojButton',label: 'addOption'}, click: addOption"></button>
+    <button id="buttonId4" data-bind="ojComponent: {
+      component: 'ojButton',label: 'showOptions'}, click: showOptions"></button>
+        
+</div>
+<div id="inputControls-container" data-bind="with: model"></div>
+<div id="controls-container"></div>
+
+</body>
+</html>

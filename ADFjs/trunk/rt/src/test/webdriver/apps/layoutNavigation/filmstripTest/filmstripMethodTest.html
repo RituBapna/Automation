@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Jet ojFilmstrip Test</title>
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css" id="ojcss"/>
+        <script>
+       var currentTestApp = '../../layoutNavigation/filmstripTest/js/filmstripApp';
+        </script>                                    
+        <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>
+        
+        <style>
+             .demo-filmstrip-item {
+      box-sizing: border-box;
+      width: 170px;
+      height: 170px;
+      margin: 8px;
+      text-align: center;
+      font-weight: bold;
+      color: #333;
+    }
+    
+    .demo-arrow-controls {
+      display: inline-block;
+      vertical-align: top;
+      margin-right: 20px;
+    }
+  
+        </style>
+        
+    </head>
+   <body>
+        
+       <div id="wrapperDiv">
+            <div id="contentDiv">
+                <div id="filmstrip-navarrows-example" style="display:block">
+                    <!--data-bind="attr: { id: 'status_' + $index }" -->
+                    <div id="filmStripWrapperDivDiv" class="oj-panel" style="margin: 20px;position: relative;padding-left: 35px; padding-right: 35px;">
+
+                        
+
+                        <div id="filmStripDiv" class="oj-panel" style="margin: 20px;">
+                            <div id="filmStripArrow" aria-label="Set of chemicals" data-bind="ojComponent: {component: 'ojFilmStrip', 
+                                            arrowPlacement: currentNavArrowPlacement, 
+                                            arrowVisibility: currentNavArrowVisibility,
+                                            pageChange:handleFilmStripPageChange,maxItemsPerPage:maxItemsPerPageValue,
+                                            orientation:orientationValue}">
+                                <!-- ko foreach: chemicals -->
+                                <div class="oj-panel oj-panel-alt2 demo-filmstrip-item">
+                                    <span data-bind="text: name"></span>
+                                </div>
+                                <!-- /ko -->
+                            </div>
+
+                        </div> 
+                        
+                    </div>
+                </div>
+            </div>
+<div id=optionSelectedValDiv>
+           <span id="optionSelectedVal" style="display: inline-block;margin-left: 10px;font-weight: 200;font-style: italic;font-weight:    bold;border-color: black;border: #335454;">
+               <span id="getItemsPerPageId"style="color: blue;"></span>
+               <span id="getPageIndexId"style="color: blue;"></span>
+               <span id="goToPageId"style="color: blue;"></span>
+               <span id="getPageCountId"style="color: blue;"></span>
+        <!--MaxItemsPerPage :: <span id="maxPage"style="color: blue;" data-bind="text: ko.toJSON(maxItemsPerPageValue)"></span>
+        Orientation :: <span id="orientation"style="color: blue;" data-bind="text: ko.toJSON(orientationValue)">horizontal</span>-->
+
+            </span>
+</div>
+            <div id="selectionDiv" style="width:50%;margin-top:10%;display:inline;"> 
+                
+<!--<button data-bind="ojComponent: {component:'ojButton', label:'Set Page'}, click: setPageInFlimStrip"></button>-->
+                <input id="inputButton-1" type="button"
+                       data-bind="click: toggleFSWithArraow, 
+             ojComponent: {component: 'ojButton', label: 'Show/Hide FSWithArrow'}"/>  
+                <!--<input id="inputButton-2" type="button"
+                        data-bind="click: setRootAttributes , 
+             ojComponent: {component: 'ojButton', label: 'Set RootAttributes'}"/> -->
+                <input id="inputButton-3" type="button"
+                       data-bind="click: destroyFS , 
+             ojComponent: {component: 'ojButton', label: 'DestroyFS'}"/> 
+                <input id="inputButton-4" type="button"
+                       data-bind="click: getItemsPerPage , 
+             ojComponent: {component: 'ojButton', label: 'GetItemsPerPage'}"/>
+
+                <input id="inputButton-5" type="button"
+                       data-bind="click: getPageCount , 
+             ojComponent: {component: 'ojButton', label: 'GetPageCount'}"/>
+
+                <input id="inputButton-6" type="button"
+                       data-bind="click: getPageIndex , 
+             ojComponent: {component: 'ojButton', label: 'GetPageIndex'}"/>
+
+                <input id="inputButton-7" type="button"
+                       data-bind="click: goToSelectedPage , 
+             ojComponent: {component: 'ojButton', label: 'GoToPage'}"/>
+                
+                <!--<div style="margin: 20px;">
+                            <div style="display: inline-block; vertical-align: top; margin-right: 20px;">
+                                <label id="navArrowPlacementLabel">Arrow placement</label>
+                                
+                                <div id="navArrowPlacementRadioset" 
+                                     aria-labelledby="navArrowPlacementLabel"
+                                     data-bind="ojComponent: {component: 'ojRadioset',value: masterVM.fsMod.currentNavArrowPlacement}" >
+                                    <span class="oj-choice-row">
+                                        <input id="adjacentopt" type="radio" name="placements" value="adjacent">
+                                        <label for="adjacentopt">Adjacent</label>
+                                    </span>
+                                    <span class="oj-choice-row">
+                                        <input id="overlayopt" type="radio" name="placements" value="overlay">
+                                        <label for="overlayopt">Overlay</label>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div style="display: inline-block; vertical-align: top;">
+                                <label id="navArrowVisibilityLabel">Arrow visibility</label>
+                                <div id="navArrowVisibilityRadioset" 
+                                     aria-labelledby="navArrowVisibilityLabel"
+                                     data-bind="ojComponent: {component: 'ojRadioset',value: masterVM.fsMod.currentNavArrowVisibility}" >
+                                    <span class="oj-choice-row">
+                                        <input id="autoopt" type="radio" name="visibilities" value="auto">
+                                        <label for="autoopt">Auto</label>
+                                    </span>
+                                    <span class="oj-choice-row">
+                                        <input id="visibleopt" type="radio" name="visibilities" value="visible">
+                                        <label for="visibleopt">Visible</label>
+                                    </span>
+                                    <span class="oj-choice-row">
+                                        <input id="hoveropt" type="radio" name="visibilities" value="hover">
+                                        <label for="hoveropt">Hover</label>
+                                    </span>
+                                    <span class="oj-choice-row">
+                                        <input id="hiddenopt" type="radio" name="visibilities" value="hidden">
+                                        <label for="hiddenopt">Hidden</label>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                -->
+               <!-- <div id="dropDownGroupDiv" >
+                    
+                    <label for="currentItemComboId" class="oj-label">Select CurrenItem:</label>
+                    <input id="currentItemComboId" style="width:250px;" data-bind="ojComponent: {component: 'ojCombobox',optionChange:fsArrowCurrentItemUpdate, options: fsArrowCurrentItemOptions ,value:fsArrowCurrentItemValue}"/>
+                    
+                    <label for="maxItemsPerPageComboId" class="oj-label">Select MaxItemsPerPage</label>
+                    <input id="maxItemsPerPageComboId" style="width:250px;" data-bind="ojComponent: 
+                    {component: 'ojCombobox',optionChange:maxItemsPerPageUpdate, options: maxItemsPerPageOptions ,value:maxItemsPerPageValue}"/>
+                    
+                    <label for="orientationComboId" class="oj-label">Select OrientationValue</label>
+                    <input id="orientationComboId" style="width:250px;" data-bind="ojComponent: 
+                    {component: 'ojCombobox',optionChange:orientationUpdate, options: orientationOptions ,value:orientationValue}"/>
+                    
+                </div>
+                <p id="eventText"></p>-->
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,14 @@
+        <button data-bind="click: gvm.toggleHtmlDir" id="btn_ltr">Toggle LTR</button>
+        <button data-bind="click: gvm.toggleLang" id="btn_lang">Toggle Lang</button>
+        <button data-bind="click: gvm.clearLog" id="btn_clear">Clear Log</button>
+        <button data-bind="click: gvm.toggleCss" id="btn_css">Toggle Css</button>
+        <button data-bind="click: gvm.toggleCssNative" id="btn_cssnative">Toggle Css Native</button>
+        <button data-bind="click: gvm.toggleNoTagCss" id="btn_notag">Toggle NoTag Css</button>
+        <button data-bind="click: gvm.toggleMinCss" id="btn_min">Toggle Min Css</button>
+        <br/><br/>
+         <span>Status: </span>
+         <span id="exposed" data-bind="text: model.exposed"></span>
+         <Span> Ready: </span>
+         <span id="ready" data-bind="text: model.ready"></span>
+        <br/><br/>
+        <textarea id="msg-log" style="height: 80px; width: 800px;"></textarea>

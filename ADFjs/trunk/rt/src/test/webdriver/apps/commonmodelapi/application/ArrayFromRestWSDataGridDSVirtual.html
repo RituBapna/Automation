@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=windows-1252"/>
+        <title>DataGrid using Rest WS Collection</title>
+
+         <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css"/>
+
+								<!-- following script tag is needed for automated test --> <!-- specify the name of the application specific java file
+										as the value of 'currentTestApp' -->
+								<script> var currentTestApp = '../../commonmodelapi/application/js/appVirtualPagingVirtual'; </script>
+
+								 <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>
+
+					    </script>
+
+
+
+					     <script type="text/html" id="header_template">
+							<!-- ko if: $key=='Deptno' -->
+							<span  class="oj-datagrid-header-cell-text" data-bind="text: 'Department No'"></span>
+							<!-- /ko -->
+							<!-- ko if: $key=='Dname' -->
+							<span  class="oj-datagrid-header-cell-text" data-bind="text: 'Department Name'"></span>
+							<!-- /ko -->
+							<!-- ko if: $key=='Loc' -->
+							<span class="oj-datagrid-header-cell-text" data-bind="text: 'Location'"></span>
+							<!-- /ko -->
+							<!-- ko if: $key=='Property1' -->
+							<span class="oj-datagrid-header-cell-text" data-bind="text: 'Property1'"></span>
+							<!-- /ko -->
+							<!-- ko if: $key=='Property2' -->
+							<span class="oj-datagrid-header-cell-text" data-bind="text: 'Property2'"></span>
+							<!-- /ko -->
+							</script>
+
+							<script type="text/html" id="cell_template">
+								<!-- ko if: $keys.column=='Deptno' -->
+								<span class="oj-datagrid-cell-text" data-bind="text: $data"></span>
+								<!-- /ko -->
+								<!-- ko if: $keys.column=='Dname' -->
+								<span class="oj-datagrid-cell-text" data-bind="text: $data"></span>
+								<!-- /ko -->
+								<!-- ko if: $keys.column=='Loc' -->
+								<span class="oj-datagrid-cell-text" data-bind="text: $data"></span>
+								<!-- /ko -->
+								<!-- ko if: $keys.column=='Property1' -->
+								<span class="oj-datagrid-cell-text" data-bind="text: $data"></span>
+								<!-- /ko -->
+								<!-- ko if: $keys.column=='Property2' -->
+								<span class="oj-datagrid-cell-text" data-bind="text: $data"></span>
+								<!-- /ko -->
+                                                        </script>
+
+    </head>
+    <body>
+        <div id="homeContainer">
+            <div class="oj-row">
+                <div class="oj-xl-3 oj-lg-6 oj-md-12 oj-col">
+                    <div id="arrayDatagridCollectionDS">
+                        <p> DataGrid using Array DataGrid DataSource</p>
+                        <p> sorting wont work correctly until we override the sort function </p>
+                        <div id="datagridArray"  style="width:610px;height:320px"
+                             data-bind="ojComponent:
+                        {component:'ojDataGrid',
+                            data: arrayDataGridDatasource ,
+                            dnd:{reorder:{row:'enable'}},
+                            header:
+                            {
+                                    column:
+                                    {
+                                            template: 'header_template'   ,
+				style: 'width:130px; height:70px',
+				resizable: { width: 'enable', height: 'enable'}
+                                    }
+                            },
+                            cell:
+                            {
+
+                                    template: 'cell_template'
+                            }
+                    }">
+                        </div>
+                    </div>
+
+
+
+
+                        </div>
+
+                    </div>
+<!-- Supported only on main -->
+
+                          <div class="oj-row">
+                                <div class="oj-xl-3 oj-lg-6 oj-md-12 oj-col">
+                                    <div id="arrayDatagridCollectionDS">
+                                        <p> DataGrid using Array Paging DataGrid DataSource</p>
+                                        <div id="datagridArrayPaging"  style="width:610px;height:120px"
+                                             data-bind="ojComponent:
+                                        {component:'ojDataGrid',
+                                   data: arrayPagingDatasource,
+                                   header:
+                            {
+                                    column:
+                                    {
+                                            template: 'header_template'   ,
+				style: 'width:100px; height:50px',
+				resizable: { width: 'enable', height: 'enable'}
+                                    }
+                            },
+                            cell:
+                            {
+
+                                    template: 'cell_template'
+                            }
+                               }">
+                                        </div>
+                                    </div>
+                                </div>
+
+							</div>
+					</div>
+
+                            <div class="oj-row">
+                                <div class="oj-xl-3 oj-lg-6 oj-md-12 oj-col">
+
+                                	<div id="paging" data-bind="ojComponent:
+								                            {  component: 'ojPagingControl',
+								                               data: arrayPagingDatasource,
+								                               pageSize:2
+								                            }" style="height:400px; width:550px">
+								                    </div>
+
+
+                            </div>
+
+
+                </div>
+            </body>
+        </html>

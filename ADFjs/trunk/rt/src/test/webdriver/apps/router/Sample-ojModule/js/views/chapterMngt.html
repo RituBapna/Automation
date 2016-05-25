@@ -1,0 +1,11 @@
+<div class="oj-xl-10 oj-lg-10 oj-md-10 oj-sm-12 oj-flex-item" data-bind="with: chapter">
+   <div role="main" class="oj-panel demo-page-content-area">
+      <h2 id="currentPage" class="oj-header-border" data-bind="text: label"/>
+      <h4 data-bind="text: data"/>
+   </div>
+</div>
+<div data-bind="with: wizard.states[1]">
+   <button id= "editButton" data-bind="click: go,
+           ojComponent: { component: 'ojButton', label: 'Edit' }">
+   </button>
+</div>

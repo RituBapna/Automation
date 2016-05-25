@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Cube Detail Sample</title>
+          <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css"/>
+
+						<!-- following script tag is needed for automated test --> <!-- specify the name of the application specific java file
+								as the value of 'currentTestApp' -->
+						<script> var currentTestApp = '../../datagrid/cubicDataSource/js/ojCubeDetail'; </script>
+		    	<script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>
+
+
+    </head>
+    <body>
+       <div id="wrapper">
+    <div id="datagrid"
+         style="width:100%;height:400px;max-width:851px;"
+         aria-label="Cubic Data Source Grid Demo"
+         data-bind="ojComponent: {component: 'ojDataGrid', data: dataSource, selectionMode: { cell: 'multiple'},
+                                    header:
+                                    {
+                                       column:
+                                       {
+                                           style: 'height:45px; width:125px; text-align:center',
+                                           resizable: {width:'enable',height:'enable'}
+                                       },
+                                       row:
+                                       {
+                                           resizable: {width:'enable',height:'enable'}
+                                       }
+                                    }
+                          }">
+    </div>
+    <div class="oj-row">
+        <button id="rotate"
+                data-bind="click: rotate,
+                ojComponent: { component: 'ojButton', label: 'Rotate' }">
+        </button>
+        <button id="rotate"
+                data-bind="click: showKeys,
+                ojComponent: { component: 'ojButton', label: 'ShowKeys' }">
+        </button>
+    </div>
+</div>
+    </body>
+</html>

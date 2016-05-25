@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=windows-1252"/>
+        <title>DataGrid using Collection</title>
+
+         <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css"/>
+
+		<!-- following script tag is needed for automated test --> <!-- specify the name of the application specific java file
+				as the value of 'currentTestApp' -->
+		<script> var currentTestApp = '../../commonmodelapi/application/js/appVirtualPaging'; </script>
+    	<script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>
+
+
+    </head>
+    <body>
+        <div id="homeContainer">
+
+            <div class="oj-row">
+                <div class="oj-xl-3 oj-lg-6 oj-md-12 oj-col">
+                    <div id="datagridCollectionDS">
+                        <p> DataGrid using Collection DataGrid DataSource</p>
+                 <div id="datagrid"
+                         data-bind="ojComponent:
+                            {
+                                component: 'ojDataGrid',
+                                data: collDataGridDatasource,
+                                header:
+                                {
+                                    column:
+                                    {
+                                        style:'width:100px',
+                                    }
+                                },
+                                selectionMode:{cell:'single'}
+                            }"
+                               style="width:802px; height:332px">
+                   </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </body>
+</html>

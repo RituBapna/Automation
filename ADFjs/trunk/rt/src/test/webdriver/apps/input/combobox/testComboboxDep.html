@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Jet ojCombobox Test</title>
+    
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css" id="ojcss"/>
+        <link rel="stylesheet" href="../../common/css/testStyles.css" type="text/css"/>
+        
+        <script>
+        var currentTestApp = '../../input/combobox/js/appdep';
+        </script>
+        <!-- RequireJS bootstrap file -->
+        <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>        
+</head>
+
+<body id="html_body">
+<div id="menu_container" data-bind="with: svm"></div>
+<h2>Line before all</h2>
+
+<form id="form1">
+          
+<div id="main-container" data-bind="with: model">
+    <label id="mainlabelid" for="combobox">Parent Combobox</label>
+    <input id="combobox" data-bind="ojComponent: {component: 'ojCombobox', value: value,
+                                                    multiple : multiple,
+                                                    options: paroptions,
+                                                    optionChange: valueChangeHandler,
+                                                    beforeExpand : beforeExpandHandler,
+                                                    rootAttributes: {style:'max-width:20em'}}"/>
+    <label for="depcombobox">Child Combobox</label>
+    <input id="depcombobox" data-bind="ojComponent: {component: 'ojCombobox', value: depvalue,
+                                                    multiple : multiple,
+                                                    options: depoptions,
+                                                    optionChange: valueChangeHandler,
+                                                    beforeExpand : beforeExpandHandler,
+                                                    rootAttributes: {style:'max-width:20em'}}"/>
+    <div>
+        <br/>
+        <label for="curr-value" class="oj-label">Curr value is: </label>
+        <span id="curr-value" data-bind="text: $parent.ko.toJSON(value)"></span>
+        <label for="dep-curr-value" class="oj-label">Curr value is: </label>
+        <span id="dep-curr-value" data-bind="text: $parent.ko.toJSON(depvalue)"></span>
+    </div>
+</div>
+
+</form>
+
+<h2>Line after</h2>
+
+<div id="local-container" data-bind="with: model">
+    <button id="buttonId1" data-bind="ojComponent: {
+      component: 'ojButton',label: 'toggleMultiple'}, click: toggleMultiple"></button>
+        
+</div>
+<div id="inputControls-container" data-bind="with: model"></div>
+<div id="controls-container"></div>
+
+</body>
+</html>

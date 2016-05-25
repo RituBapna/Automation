@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>RowExpander with Table</title>
+        <meta charset="UTF-8">
+         <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css"/>
+
+				<!-- following script tag is needed for automated test --> <!-- specify the name of the application specific java file
+						as the value of 'currentTestApp' -->
+				<script> var currentTestApp = '../../rowexpander/rowexpanderTest/js/rowExpanderTable'; </script>
+
+				 <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>
+
+              <style>
+html:not([dir="rtl"]) .demo-text-align
+ {      text-align:left;
+ }
+ html[dir="rtl"] .demo-text-align
+ {
+     text-align:right;
+ }
+         </style>
+      <script type="text/html" id="header_template">
+        <!-- ko if: $key=='name' -->
+        <span data-bind="text: 'Task Name'"></span>
+        <!-- /ko -->
+        <!-- ko if: $key=='resource' -->
+        <span data-bind="text: 'Resource'"></span>
+        <!-- /ko -->
+        <!-- ko if: $key=='start' -->
+        <span data-bind="text: 'Start Date'"></span>
+        <!-- /ko -->
+        <!-- ko if: $key=='end' -->
+        <span data-bind="text: 'End Date'"></span>
+        <!-- /ko -->
+    </script>
+
+    <script type="text/html" id="cell_template">
+        <!-- ko if: $keys.column=='name' -->
+        <div data-bind="ojComponent: {component: 'ojRowExpander', context: $cellContext,rootAttributes:{'id': $cellContext.key}, expand: expandFunc,collapse:collapseFunc}"></div>
+
+        <span data-bind="text: $data"></span>
+        <!-- /ko -->
+        <!-- ko if: $keys.column=='resource' -->
+        <span data-bind="text: $data"></span>
+        <!-- /ko -->
+        <!-- ko if: $keys.column=='start' -->
+        <span data-bind="text: $data"></span>
+        <!-- /ko -->
+        <!-- ko if: $keys.column=='end' -->
+        <span data-bind="text: $data"></span>
+        <!-- /ko -->
+    </script>
+
+
+</head>
+<body>
+    <div id="rowExpanderTableContainer">
+        <div class="oj-row">
+		            <div class="oj-xl-3 oj-lg-6 oj-md-12 oj-col">
+		                <p><b>Row Expander with all nodes expanded</b><br/>
+		                    1. Click to the expander icon to the left of the TaskName to expand or Collapse<br/>
+		                    2. Test the expand / collapse of parent - all children.<br/>
+		                    3. Make sure all tasks are expanded initially.<br/>
+		                    4. Click on the button which should add new data.<br/>
+		                    5. Make sure all tasks are expanded.<br/>
+		                </p>
+
+		                <button id="addData" type="button" data-bind="click: addData, ojComponent:{component:'ojButton',
+		                            label:'Add Data and new data shd be expanded all'}"></button>
+
+
+
+		                <div id="datagridAllExp" style="width:502px;height:850px"
+		                     data-bind="ojComponent:{component:'ojDataGrid', data:allExpandedGridDS, selectionMode:{row:'single'},
+		                           header:
+		                                   {
+		                                   column:
+		                                   {
+		                                       template: 'header_template',
+		                                       style: function(headerContext)
+		                                           {
+		                                               if (headerContext['key'] === 'name')
+		                                               {
+		                                                   return 'width:200px';
+		                                               }
+		                                               else
+		                                               {
+		                                                   return 'width:100px';
+		                                               }
+		                                           },
+		                                       resizable: { width: 'enable' }
+		                                   }
+		                                   },
+		                                   cell:
+		                                   {
+		                                       className: 'demo-text-align',
+		                                   template: 'cell_template'
+		                                   }
+		                      }">
+		                </div>
+
+		            </div>
+
+        </div>
+    </div>
+</body>
+</html>

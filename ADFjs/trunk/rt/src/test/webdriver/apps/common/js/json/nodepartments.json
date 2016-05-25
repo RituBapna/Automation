@@ -1,0 +1,13 @@
+{
+  "Departments" : [ ],
+  "links" : {
+    "self" : {
+      "rel" : "self",
+      "href" : "http://mockrest/stable/rest/Departments"
+    }
+  },
+  "_contextInfo" : {
+    "limit" : 25,
+    "offset" : 0
+  }
+}

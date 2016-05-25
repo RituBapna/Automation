@@ -1,0 +1,36 @@
+[ { "attr" :
+        {
+        "id": "t1",
+        "DepartmentId" : 10,
+        "DepartmentName" : "Administration",
+        "ManagerId" : 200,
+        "LocationId" : 300        
+        }
+    },
+    { "attr" :
+        {
+        "id": "t2",
+        "DepartmentId" : 20,
+        "DepartmentName" : "QA",
+        "ManagerId" : 200,
+        "LocationId" : 300
+        }
+    },
+    { "attr" :
+        {
+        "id": "t3",
+        "DepartmentId" : 30,
+        "DepartmentName" : "Dev",
+        "ManagerId" : 200,
+        "LocationId" : 300
+        }
+    },
+    { "attr" :
+        {
+        "id": "t4",
+        "DepartmentId" : 40,
+        "DepartmentName" : "Marketing",
+        "ManagerId" : 200,
+        "LocationId" : 300
+        }
+    }]

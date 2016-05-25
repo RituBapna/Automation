@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Listview Method Test</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css" id="ojcss"/>
+        <script>
+            var currentTestApp = '../../datacollection/listviewTest/js/listviewApp';
+        
+        </script>                                    
+        <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>
+        <!--<link rel="stylesheet" href="../css/listview.css" type="text/css"/>-->
+        <!--        <script data-main="../js/ojlistviewVM/ojlistviewMain" src="../js/libs/require/require.js"></script>-->
+
+    </head>
+    <body>
+        <div id="contentSelectionwrapperDiv">
+            <div id="contentDiv" style="width:40%;float:left;margin-right:12px;"> 
+                <ul id="listview" aria-label="list with static hierarchical data" 
+                    data-bind="ojComponent: {component: 'ojListView', 
+                                        currentItem : currentItemValue,
+                                        drillMode:drillModeValue,
+                                        selectionMode:selectionModeValue,
+                                        groupHeaderPosition:groupHeaderPositionValue,
+                                        expanded: ['a', 'b'], item: {selectable: itemOnly},
+                                        rootAttributes: {style: 'width:100%;overflow-x:hidden;height:450px'}}">
+
+                    <li id="a">
+                        <span>A</span>
+                        <ul>
+                            <li id="amybartlet">
+                                <span class="avatar" style="background-image: url('../images/nBox/1.png')"></span>
+                                <div class="container">
+                                    <div>
+                                        <span class="name">Amy Bartlet</span>
+                                    </div>
+                                    <div>
+                                        <span class="oj-text-xs oj-text-secondary-color">Vice President</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li id="andyjones">
+                                <span class="avatar" style="background-image: url('../images/nBox/10.png')"></span>
+                                <div class="container">
+                                    <div>
+                                        <span class="name">Andy Jones</span>
+                                    </div>
+                                    <div>
+                                        <span class="oj-text-xs oj-text-secondary-color">Director</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li id="andrewbugsy">
+                                <span class="avatar" style="background-image: url('../images/nBox/11.png')"></span>
+                                <div class="container">
+                                    <div>
+                                        <span class="name">Andrew Bugsy</span>
+                                    </div>
+                                    <div>
+                                        <span class="oj-text-xs oj-text-secondary-color">Individual Contributer</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li id="annettbarnes">
+                                <span class="avatar" style="background-image: url('../images/nBox/2.png')"></span>
+                                <div class="container">
+                                    <div>
+                                        <span class="name">Annett Barnes</span>
+                                    </div>
+                                    <div>
+                                        <span class="oj-text-xs oj-text-secondary-color">Individual Contributer</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li id="b">
+                        <span>B</span>
+                        <ul>
+                            <li id="bobjones">
+                                <span class="avatar" style="background-image: url('../images/nBox/12.png')"></span>
+                                <div class="container">
+                                    <div>
+                                        <span class="name">Bob Jones</span>
+                                    </div>
+                                    <div>
+                                        <span class="oj-text-xs oj-text-secondary-color">Salesman</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li id="bartbuckler">
+                                <span class="avatar" style="background-image: url('../images/nBox/13.png')"></span>
+                                <div class="container">
+                                    <div>
+                                        <span class="name">Bart Buckler</span>
+                                    </div>
+                                    <div>
+                                        <span class="oj-text-xs oj-text-secondary-color">Purchasing</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li id="bobbyfisher">
+                                <span class="avatar" style="background-image: url('../images/nBox/14.png')"></span>
+                                <div class="container">
+                                    <div>
+                                        <span class="name">Bobby Fisher</span>
+                                    </div>
+                                    <div>
+                                        <span class="oj-text-xs oj-text-secondary-color">Individual Contributer</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li id="c">
+                        <span>C</span>
+                        <ul>
+                            <li id="cathyjones">
+                                <span class="avatar" style="background-image: url('../images/nBox/3.png')"></span>
+                                <div class="container">
+                                    <div>
+                                        <span class="name">Cathy Jones</span>
+                                    </div>
+                                    <div>
+                                        <span class="oj-text-xs oj-text-secondary-color">Director</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li id="carollsmith">
+                                <span class="avatar" style="background-image: url('../images/nBox/4.png')"></span>
+                                <div class="container">
+                                    <div>
+                                        <span class="name">Caroll Smith</span>
+                                    </div>
+                                    <div>
+                                        <span class="oj-text-xs oj-text-secondary-color">Purchasing</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div id="outputText" style="clear:both;font-weight: bold;width:15%;color:#045FAB;font-style: italic;
+    font-size: smaller;">
+                <span id="optionOutputText"></span>
+                <span id="beforeCollapseOutputText"></span>
+                <span id="beforeExpandOutputText"></span>
+                <span id="beforeCurrentItemOutputText"></span>
+                <span id="eventOutputText"></span>
+                <span id="getContextByNodeOutputText" style="color:red;"></span>
+            </div>
+            <div id="selectionDiv" style="width:20%;float:left;margin-right:5px;"> 
+                <div  style="display: block-inline;">
+                    <input id="inputButtonA" type="button"data-bind="click: collapseNode('a',true), 
+                      ojComponent: {component: 'ojButton', label: 'collapse A(node-a)'}"/>
+                    <input id="inputButtonB" type="button"data-bind="click: collapseNode('b'), 
+                      ojComponent: {component: 'ojButton', label: 'collapse B(node-b)'}"/>
+                    <input id="inputButtonC" type="button"data-bind="click: collapseNode('c'), 
+                      ojComponent: {component: 'ojButton', label: 'collapse C(node-c)'}"/>
+                    <input id="inputButtonAE" type="button"data-bind="click: expandNode('a'), 
+                      ojComponent: {component: 'ojButton', label: 'expand A(node-a)'}"/>
+                    <input id="inputButtonBE" type="button"data-bind="click: expandNode('b'), 
+                      ojComponent: {component: 'ojButton', label: 'expand B(node-b)'}"/>
+                    <input id="inputButtonCE" type="button"data-bind="click: expandNode('c'), 
+                      ojComponent: {component: 'ojButton', label: 'expand C(node-c)'}"/>
+                    <!--                    <input id="btn2" type="button" data-bind="ojComponent:{component:'ojButton', label:'collapse B(node-B)'},
+                                        click: function(data, event) {
+                                            collapseNode('b', data, event) 
+                                            }" />-->
+                </div>
+
+
+
+
+            </div>
+            
+        </div>
+        <div id="nestedLV"></div>
+        
+    </body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Jet ojFilmstrip Test</title>
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css" id="ojcss"/>
+        <!--<link rel="stylesheet" href="../../common/css/libs/oj/v1.2.0/alta/oj-alta.css" type="text/css" id="ojcss"/>-->
+        <script>
+        var currentTestApp = '../../layoutNavigation/filmstripTest/js/filmstripApp';
+        </script>                                    
+        <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>
+        
+        <style>
+             .demo-filmstrip-item {
+      box-sizing: border-box;
+      width: 170px;
+      height: 170px;
+      margin: 8px;
+      text-align: center;
+      font-weight: bold;
+      color: #333;
+    }
+    
+    .demo-arrow-controls {
+      display: inline-block;
+      vertical-align: top;
+      margin-right: 20px;
+    }
+  
+        </style>
+        
+    </head>
+   <body>
+        
+       <div id="wrapperDiv">
+            <div id="contentDiv">
+                <div id="filmstrip-navarrows-example" style="display:block">
+                    <!--data-bind="attr: { id: 'status_' + $index }" -->
+                    <div id="filmStripWrapperDivDiv" class="oj-panel" style="margin: 20px;position: relative;padding-left: 35px; padding-right: 35px;">
+                        <div id="filmStripDiv" class="oj-panel" style="margin: 20px;">
+                            <div id="tempFS">
+                            </div>
+                            <div id="filmStripArrow" aria-label="Set of chemicals" data-bind="ojComponent: {component: 'ojFilmStrip', 
+                                            arrowPlacement: currentNavArrowPlacement, 
+                                            arrowVisibility: currentNavArrowVisibility,
+                                            pageChange:handleFilmStripPageChange,maxItemsPerPage:maxItemsPerPageValue,
+                                            orientation:orientationValue}">
+                                <!-- ko foreach: chemicals -->
+                                <div class="oj-panel oj-panel-alt2 demo-filmstrip-item">
+                                    <span data-bind="text: name"></span>
+                                </div>
+                                <!-- /ko -->
+                            </div>
+
+                        </div> 
+                        
+                    </div>
+                </div>
+            </div>
+        <div id=optionSelectedValDiv>
+                   <span id="eventVal" style="display: inline-block;margin-left: 10px;font-weight: 200;font-style: italic;font-weight:    bold;border-color: black;border: #335454;">
+                       <span id="destroyTextId"style="color: blue;"></span>
+                       <span id="createTextId"style="color: blue;"></span>
+                       <span id="optionChangeTextId"style="color: blue;"></span>
+                    </span>
+        </div>
+        <div id="selectionDiv" style="width:50%;margin-top:10%;display:inline;"> 
+                <input id="destroyButton" type="button"
+                       data-bind="click: destroyFS ,ojComponent: {component: 'ojButton', label: 'Destroy'}"/> 
+                <input id="createButton" type="button"
+                       data-bind="ojComponent: {component: 'ojButton', label: 'Create'}"/>
+                <input id="optionChangeButton" type="button"
+                       data-bind="ojComponent: {component: 'ojButton', label: 'OptionChange'}"/>
+            </div>
+        </div>
+    </body>
+</html>

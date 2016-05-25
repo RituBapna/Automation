@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Jet ojTable Custom Cell Renderer Test</title>
+    
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css" id="ojcss"/>
+        <link rel="stylesheet" href="../../common/css/iconStyles.css" id="iconcss" >
+        <link rel="stylesheet" href="../../common/css/testStyles.css" type="text/css"/>
+        
+        <script>
+        var currentTestApp = '../../table/table/js/app';
+        </script>
+        <!-- RequireJS bootstrap file -->
+        <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>        
+</head>
+
+<body>
+    <div id="menu_container" data-bind="with: svm"></div>
+    
+<h2>Line before all</h2>
+
+<div id="main-container" data-bind="with: model" style="width: 700px;">
+    <table id="table" data-bind="ojComponent: {component: 'ojTable', data: datasource,
+        accessibility: {rowHeader: accRowHeaderCol()},
+        selectionMode: {row: selectionModeRow(), column: selectionModeColumn()},       
+        verticalGridVisible: verticalGridVisible(),
+        horizontalGridVisible: horizontalGridVisible(),
+        display: display(),
+        dnd: {reorder : {columns: dndColReorder()}},
+        columnsDefault: { sortable: sortable(),
+            headerClassName: headerClassName(),
+            headerStyle: headerStyle(),
+            className: className(),style: style(),
+            footerClassName: footerClassName(),
+            footerStyle: footerStyle()},
+    columns:
+           [{headerText: 'Department Id',field: 'DepartmentId', id: 'column1',
+                footerTemplate: 'rowcount_label', renderer: dept_name_func },
+           {headerText: 'Department Name', field: 'DepartmentName', id: 'column2'},
+           {headerText: 'Location Id', field: 'LocationId', id: 'column3', sortProperty: sortProperty()},
+           {headerText: 'Manager Id', field: 'ManagerId',
+            headerClassName: 'blackStyle',headerStyle : 'color: grey;',
+            className : 'blackStyle',style : 'color: grey;',
+            footerClassname: 'blackStyle', footerStyle: 'color: grey;',
+            id: 'column4',sortable: 'disabled', footerTemplate: 'rowcount'},
+           {headerRenderer: oracle_link_hdr_icon_func, 
+                  renderer: oracle_link_func}], 
+             rootAttributes: {'style':'width: 100%;'}}">
+    </table>
+    <div class="oj-table-panel-bottom">
+        <div id="descr" data-bind="text: datasourceDescr"></div>
+    </div>
+</div>
+
+<h2>Line after</h2>
+
+<div id="local-container" data-bind="with: model">
+        <button id="buttonId1" data-bind="ojComponent: {
+      component: 'ojButton',label: 'toggleDatasource'}, click: toggleDatasource"></button>
+</div>
+<div id="tableControls-container" data-bind="with: model"></div>
+<div id="controls-container"></div>
+
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Basic Masonary Layout</title>
+                 <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css"/>
+
+				<!-- following script tag is needed for automated test --> <!-- specify the name of the application specific java file
+						as the value of 'currentTestApp' -->
+				<script> var currentTestApp = '../../layout/masonaryLayout/js/ojMasonaryLayoutBasic'; </script>
+    	<script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>
+    </head>
+    <body>
+        <div id="masonrylayout-basic-example">
+            <style>
+
+                .demo-tile {
+                    font-weight: bold;
+                }
+
+                .demo-expanded-content {
+                    font-weight: bold;
+                    color: #8BA870;
+                    margin-top: 10px;
+                    height: 70%;
+                }
+
+                .demo-collapsed-content {
+                    font-weight: bold;
+                    color: #8BA870;
+                    margin-top: 10px;
+                    height: 40%;
+                }
+
+                .demo-collapsed-content {
+                    font-weight: bold;
+                    color: #8BA870;
+                    margin-top: 10px;
+                    height: 70%;
+                }
+
+                .demo-insert-list {
+                    padding: 8px;
+                  }
+
+                  .demo-hidden {
+                    display: none;
+                  }
+
+                  .demo-remove-icon {
+                    width: 2.34rem;
+                    height: 2.34rem;
+                    position: absolute;
+                    top: 0px;
+                    box-sizing: border-box;
+                    line-height: 2.34rem;
+                  }
+
+                  .demo-resize-icon {
+                    width: 2.34rem;
+                    height: 2.34rem;
+                    position: absolute;
+                    bottom: 0px;
+                    box-sizing: border-box;
+                    line-height: 2.34rem;
+                    margin-bottom: 0px;
+                }
+
+                html:not([dir="rtl"]) .demo-resize-icon{
+                    right: 0px;
+                }
+
+                html[dir="rtl"] .demo-resize-icon{
+                    left: 0px;
+                }
+
+                html:not([dir="rtl"]) .demo-remove-icon{
+                    right: 0px;
+                }
+
+                html[dir="rtl"] .demo-remove-icon{
+                    left: 0px;
+                }
+
+                .demo-scroll-container {
+                    overflow: auto;
+                }
+                .ScrollDiv {
+                    overflow-y: scroll; overflow-x: scroll;
+                    height: 300px; color: #8BA870;
+                }
+
+
+
+
+            </style>
+            <ul id="demoMenu" data-bind="ojComponent: {component: 'ojMenu'}" style="display:none">
+                <li data-oj-command="oj-masonrylayout-cut" />
+                <li data-oj-command="oj-masonrylayout-paste-before"/>
+                <li data-oj-command="oj-masonrylayout-paste-after"/>
+            </ul>
+
+            <div class="demo-insert-list">
+                <!-- ko foreach: chemicals -->
+                <div>
+                  <!-- ko if: inserted -->
+                  <span data-bind="text: 'Insert ' + name"></span>
+                  <!-- /ko -->
+                  <!-- ko ifnot: inserted -->
+                   <a href="#" data-bind="attr: {id: name},text: 'Insert ' + name, click: function() { demoInsertTile(getTileId($index()), name); }"></a>
+                 <!-- /ko -->
+                </div>
+                <!-- /ko -->
+              </div>
+
+            <div class="demo-scroll-container">
+                <button id="destroy"
+                    data-bind="click: destroy,
+                    ojComponent: { component: 'ojButton', label: 'Destroy' }">
+                </button><br/>
+                <div id="index"
+				 style="float:left;width:20px; height: 20px; border:1px solid black;color:blue;font-size:14px;text-align:center;vertical-align:middle;line-height:40px;"
+				 tabindex="1"></div><br/>
+
+                <div id="masonryLayout" contextmenu="demoMenu" data-bind="ojComponent: {component: 'ojMasonryLayout', reorderHandle: '.oj-panel-drag-handle',
+                    remove: demoHandleRemove, beforeInsert: demoHandleBeforeInsert,insert: demoHandleInsert,
+                    beforeRemove: demoHandleBeforeRemove, beforeReorder: demoHandlerBeforeReorder , reorder: demoHandlerReorder,
+                    beforeResize: demoHandleBeforeResize, resize: demoHandleResize, destroy: destroyHandler}">
+                    <!-- ko foreach: chemicals -->
+                    <div class="oj-panel demo-tile" data-bind="attr: {id: getTileId($index())}, css: collapsedSizeClass">
+                        <div class="oj-panel-drag-handle" data-bind="attr: {id:  getDragHandleId($index()), 'aria-labelledby': getDragHandleLabelledBy($index())}" title="Drag to reorder" aria-label="Drag to reorder, context menu available" tabindex="0" role="separator">
+                            <span class="oj-panel-drag-icon"></span>
+                        </div>
+                        <span data-bind="text: name, attr: {id: getLabelId($index())}"></span>
+                        <button class="oj-button-half-chrome demo-remove-icon" data-bind="attr: {id: 'remove' + ($index()+1), 'aria-labelledby': getButtonLabelledBy($index())},
+                            ojComponent: {component: 'ojButton', icons: {start: 'oj-fwk-icon-cross oj-component-icon'}},
+                            click: demoRemoveTile" title="Remove" aria-label="Remove"></button>
+                        <!-- ko if: expanded -->
+                        <!-- This additional content is only shown when the tile is expanded. -->
+                        <div class="ScrollDiv oj-panel oj-panel-alt3 demo-expanded-content">
+                            <span>Expanded content</span>
+                            <table id="table" summary="Department List"
+                                   data-bind="ojComponent: {component: 'ojTable',
+                                data: $root.datasource,
+                                columnsDefault: {sortable: 'none'},
+                                columns: [{headerText: 'Department Id',
+                                           field: 'DepartmentId'},
+                                          {headerText: 'Department Name',
+                                           field: 'DepartmentName'},
+                                          {headerText: 'Location Id',
+                                           field: 'LocationId'},
+                                          {headerText: 'Manager Id',
+                                           field: 'ManagerId'}]}">
+                            </table>
+                        </div>
+
+
+
+                        <!-- /ko -->
+                         <!-- ko ifnot: expanded -->
+                                <!-- This additional content is only shown when the tile is collapsed. -->
+                                <div class="oj-panel oj-panel-alt3 demo-collapsed-content">
+                                  <span>Collapsed content</span>
+                                </div>
+                         <!-- /ko -->
+                        <button class="oj-button-half-chrome demo-resize-icon" data-bind="attr: {'title': getButtonTitle($data), id: getButtonId($index()), 'aria-labelledby': getButtonLabelledBy($index()), 'aria-label': getButtonLabel($data)}, ojComponent: {component: 'ojButton', icons: {start:  getButtonStartIcon($data)}}, click: demoResizeTile"></button>
+                    </div>
+                    <!-- /ko -->
+                </div>
+            </div>
+
+            <!-- This is a hidden holding area for tiles removed from the masonry layout. -->
+            <div id="removedTilesHolder" class="demo-hidden">
+            </div>
+        </div>
+    </body>
+</html>

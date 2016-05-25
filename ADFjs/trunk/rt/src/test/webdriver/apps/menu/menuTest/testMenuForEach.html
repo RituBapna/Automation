@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Jet ojMenu Test</title>
+    
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css" id="ojcss"/>
+        <link rel="stylesheet" href="../../common/css/iconStyles.css" id="iconcss" >
+        <link rel="stylesheet" href="../../common/css/testStyles.css" type="text/css"/>
+        
+        <script>
+        var currentTestApp = '../../menu/menuTest/js/app';
+        </script>
+        <!-- RequireJS bootstrap file -->
+        <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>        
+</head>
+
+<body>
+    <div id="menu_container" data-bind="with: svm"></div>
+    
+<h2>Line before all</h2>
+
+<div id='menuBar-container' data-bind="with: model">
+ <button id="menuButton"
+          data-bind="ojComponent: {component: 'ojButton', label: 'Items', 
+                                   menu: '#myMenu0'}">
+  </button>
+    <ul id="myMenu0" data-bind="ojComponent: {component: 'ojMenu', select: menuItemSelect}">
+    <!-- ko foreach: menuItems -->
+        <li data-bind="attr: {id: id}, css: {'oj-disabled': disabled}">
+            <a href="#" data-bind="text: label"></a>
+        </li>
+    <!-- /ko -->
+    </ul>
+</div>
+  <br><br>
+  
+  <h3>Results:</h3>
+  <p class="bold">Last selected menu item:
+    <span id="results" data-bind='text: model.selectedMenuItem'></span>
+  </p>
+
+
+<h2>Line after</h2>
+
+<div id="local-container" data-bind="with: model"></div>
+<div id="menu-controls-container" data-bind="with: model"></div>
+<div id="controls-container"></div>
+
+
+</body>
+</html>

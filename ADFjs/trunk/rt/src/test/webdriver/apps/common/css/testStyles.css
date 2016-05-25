@@ -1,0 +1,69 @@
+   .blackStyle {
+        color: black;
+    }
+    .redStyle {
+        color: red;
+    }
+    .greyStyle {
+        color: grey;
+    }
+    .greyBackground {
+        background-color: grey;
+    }
+    .boldTable {
+        border-width: 2px;
+        border-color: #00ff00;
+    }
+    .bolderTable {
+        border-width: 5px;
+        border-color: #ff00ff;
+    }
+    .bold {
+          font-weight: bold;
+    }
+    .underline {
+          text-decoration:underline;
+    }
+    .italic {
+          font-style:italic
+    }
+    .holiday
+    {
+      background-color: green;
+    }
+    .croppedTable {
+          height: 200px;
+          width: 300px;
+    }
+   
+     @font-face
+     {
+         font-family: colaFont;
+         src: url('fonts/lokicola.ttf'),
+              url('fonts/lokicola.eot'); /* IE9 */
+     }
+     
+     .colafont
+     {
+         font-family:colaFont
+     }
+         
+         
+     @keyframes mymove
+     {
+     from {top:0px;}
+     to {top:200px;}
+     }
+     
+     @-webkit-keyframes mymove /* Safari and Chrome */
+     {
+     from {top:0px;}
+     to {top:200px;}
+     }
+         
+     .moveit
+     {
+     position: relative;
+     animation:mymove 5s infinite;
+     -webkit-animation:mymove 5s infinite; /* Safari and Chrome */
+     }

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Jet ojButtonset Checked Test</title>
+    
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css" id="ojcss"/>
+        <link rel="stylesheet" href="../../common/css/iconStyles.css" id="iconcss" >
+        <link rel="stylesheet" href="../../common/css/testStyles.css" type="text/css"/>
+        
+        <script>
+        var currentTestApp = '../../button/buttonTest/js/appButtonset';
+        </script>
+        <!-- RequireJS bootstrap file -->
+        <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>        
+</head>
+
+<body>
+<div id="menu_container" data-bind="with: svm"></div>
+    
+<h2>Line before all</h2>
+<div id='buttons-container' data-bind="with: model"> 
+    <h3>Utilizing Buttonset's "checked" binding</h3><br/>
+ 
+    <div id="bs1"
+         data-bind="ojComponent: {component: 'ojButtonset', checked: isAdvanced, disabled: disabled}">
+        <label for="advanced">Advanced mode</label>
+        <input type="checkbox" id="advanced" value="advanced"/>
+    </div>
+    
+    <br/><br/><hr> 
+    
+     
+    <br/><br/>
+    <p class="bold" id="userText" data-bind="text: userText"/>
+</div>
+<h2>Line after</h2>
+
+<div id="local-container" data-bind="with: model"></div>
+<div id="button-controls-container" data-bind="with: model"></div>
+<div id="controls-container"></div>
+
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>Change Tree Contents using Select</title>
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css"/>
+
+        <!-- following script tag is needed for automated test -->
+		        <!-- specify the name of the application specific java file as the value of 'currentTestApp' -->
+		         <script>
+		          var currentTestApp = '../../tree/treeLoad/js/treeChangeUsingSelectModel';
+        </script>
+
+        <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>
+
+     </head>
+    <body>
+        <div id="treeContainer">
+            <div id="resultsContainer"
+                 style="float:left;width: 400px; height: 200px; border:1px solid black;color:blue;font-size:14px;text-align:center;vertical-align:middle;line-height:40px;"></div>
+            <br/>
+
+            <label for="basicSelect">Change Tree Data </label>
+            <select id="select" data-bind="ojComponent: {component: 'ojSelect',
+                                               value: selectedValue,
+                                               optionChange: optionChangedHandler,
+                                               rootAttributes: {style:'max-width:20em'}}">
+                <option value="ONE">ONE</option>
+                <option value="TWO">TWO</option>
+                <option value="THREE">THREE</option>
+            </select>
+
+            <button id="changeSelectToTWO" type="button"
+                    data-bind="click: changeSelectToTWO,      ojComponent:{component:'ojButton', label:'changeSelectToTWO'}"></button>
+			<button id="changeSelectToTHREE" type="button"
+                    data-bind="click: changeSelectToTHREE,      ojComponent:{component:'ojButton', label:'changeSelectToTHREE'}"></button>
+
+            <div class="oj-row">
+                <div class="oj-xl-3 oj-lg-3 oj-md-12 oj-col">
+                    <p>Tree</p>
+                    <div  id="treeFunctionMain" tabindex="0"
+                          data-bind="ojComponent:{component: 'ojTree',
+                         data:{'data':jsondatafunc, 'ajax':false}}"
+                          style="float:left;width: 170px;height: 650px;"></div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

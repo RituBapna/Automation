@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>Tree Accordion</title>
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css"/>
+
+        <!-- following script tag is needed for automated test -->
+		<!-- specify the name of the application specific java file as the value of 'currentTestApp' -->
+		<script>
+		          var currentTestApp = '../../tree/treeLoad/js/treeAccordion';
+        </script>
+
+         <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>
+
+
+    </head>
+    <body>
+        <div id="treeAccordionContainer">
+            <div id="stdMenuContainer">
+                <ul id="myMenu" data-bind="ojComponent: {component: 'ojMenu'}"
+                    style="display:none">
+                    <li id="m1"><a href="#">Menu 1</a></li>
+                    <li id="m2"><a href="#">Menu 2</a>
+                        <ul>
+                            <li id="m2_1"><a href="#">Menu 2 submenu 1</a></li>
+                            <li id="m2_2"><a href="#">Menu 2 submenu 2</a></li>
+                        </ul>
+                    </li>
+                    <li id="m3"><a href="#">Menu 3</a></li>
+                    <li id="m_edit"><a href="#">Edit</a>
+                        <ul>
+                            <li id="ojtreecut"><a href="#">Cut</a></li>
+                            <li id="ojtreecopy"><a href="#">Copy</a>
+                            <li id="ojtreepaste"><a href="#">Paste</a>
+                            <li id="ojtreeremove"><a href="#">Remove</a>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="oj-row">
+                <div class="oj-xl-6 oj-lg-6 oj-md-12 oj-col">
+                    <div id="accordionPage" style="max-width: 600px;"
+                         data-bind="ojComponent: {component: 'ojAccordion'}">
+                        <div id="collapsibleWithBox" class="oj-box"
+                             data-bind="ojComponent: {component: 'ojCollapsible',collapsed:false}">
+                            <h3>Tree under Accordion / Collapsible Box</h3>
+                            <div id="ojCollapsible" class="oj-box"
+                                 data-bind="ojComponent:         {component: 'ojCollapsible'}">
+                                <h3>Tree</h3>
+                                <div id="treeNestedBoxLoadDatasource"
+                                     data-bind="ojComponent: {component: 'ojTree', data:layoutData}"
+                                     style="float:left;width: 170px;height: 650px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="oj-xl-6 oj-lg-6 oj-md-12 oj-col">
+                    <div id="accordionPageOuter" style="max-width: 600px;"
+                         data-bind="ojComponent: {component: 'ojAccordion'}">
+                        <div id="c4">
+                            <span>Nested Accordion</span>
+                            <div id="nestedAccordion" data-bind="ojComponent: {component: 'ojAccordion'}">
+                                <div id="ic1">
+                                    <span>
+                                        <img src="./img/root.gif"/>Tree1</span>
+                                    <div id="treeAcc1LoadDatasource"
+                                         data-bind="ojComponent: {component: 'ojTree', data:layoutData}"
+                                         ></div>
+                                </div>
+                                <div id="ic2">
+                                    <span>Tree2</span>
+                                    <div id="treeAcc2LoadDatasource"
+                                         data-bind="ojComponent: {component: 'ojTree', data:layoutData}"
+                                         ></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="oj-row">
+
+                <div class="oj-xl-6 oj-lg-6 oj-md-12 oj-col">
+                    <button id="changeTabOrientation" type="button"
+                            data-bind="click: changeTabOrientation, ojComponent:{component:'ojButton', label:'Change TabOrientation'}"></button>
+                    <p>
+                        <b>Steps:</b>
+                        1. Sortable Tab1 tree has a standard context menu that should work fine.<br/>
+                        2. Change tab orientation should work fine<br/>
+                        3. Delete  any node in the tree in tab1 and changing tabs and
+                        coming back should still show the same data.<br/>
+
+                    </p>
+
+                    <div id="sortTabs" style="float:left;width: 450px;height: 1200px;"
+                         data-bind="ojComponent:{component: 'ojTabs', reorder:reorderValue, orientation: 'horizontal'}">
+                        <div id="sort-tabs-1">
+                            <span>Sortable Tab 1</span>
+
+                            <div id="treeTab1" data-bind="ojComponent: {component: 'ojTree',
+                                        data:layoutData, contextMenu: '#myMenu'}">
+                            </div>
+                        </div>
+                        <div id="sort-tabs-2">
+                            <span>Sortable Tab 2</span>
+                            <p>Sortable Tab 2 Content</p>
+                        </div>
+                        <div id="sort-tabs-3">
+                            <span>Sortable Tab 3</span>
+                            <p>Sortable Tab 3 Content</p>
+                        </div>
+                        <div id="sort-tabs-4">
+                            <span>Sortable Tab 4</span>
+                            <div id="treeTab4" data-bind="ojComponent: {component: 'ojTree', data:layoutData}"
+                                 ></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

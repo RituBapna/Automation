@@ -1,0 +1,10 @@
+<div role="main" class="oj-panel demo-page-content-area" data-bind="with: chapter">
+   <h2 id="currentPage" class="oj-header-border" data-bind="text: label"/>
+   <h4 id="showText" data-bind="text: value"/>
+</div>
+<!-- Display the 'edit' button that will trigger the go in edit mode-->
+<div data-bind="with: router.getState('edit')">
+   <button id= "mode" data-bind="click: go, 
+           ojComponent: { component: 'ojButton', label: label }">
+   </button>
+</div>

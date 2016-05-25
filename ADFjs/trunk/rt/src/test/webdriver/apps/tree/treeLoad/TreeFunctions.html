@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>Tree Functions</title>
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css"/>
+
+        <!-- following script tag is needed for automated test -->
+		        <!-- specify the name of the application specific java file as the value of 'currentTestApp' -->
+		         <script>
+		          var currentTestApp = '../../tree/treeLoad/js/treeFunction';
+        </script>
+
+          <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>
+
+    <body>
+        <div id="mainContents">
+            <div id="menuContainer11">
+                <ul id="createNodeMenu" data-bind="ojComponent: {component: 'ojMenu', select: createMenuItemSelect}"
+                    style="display:none">
+                    <li id="before">
+                        <a href="#">Before</a>
+                    </li>
+                    <li id="after">
+                        <a href="#">After</a>
+                    </li>
+                    <li id="inside">
+                        <a href="#">Inside</a>
+                    </li>
+                    <li id="first">
+                        <a href="#">First</a>
+                    </li>
+                    <li id="last">
+                        <a href="#">Last</a>
+                    </li>
+                </ul>
+                <!-- To handle menu item selection, use a select listener as shown, not a click listener. -->
+                <ul id="myMenu" data-bind="ojComponent: {component: 'ojMenu',                  select: menuItemSelect}"
+                    style="display:none">
+                    <li id="m1"><a href="#">Menu 1</a></li>
+                    <li id="m2"><a href="#">Menu 2</a>
+                        <ul>
+                            <li id="m2_1"><a href="#">Menu 2 submenu 1</a></li>
+                            <li id="m2_2"><a href="#">Menu 2 submenu 2</a></li>
+                        </ul>
+                    </li>
+                    <li id="m3"><a href="#">Menu 3</a></li>
+                    <li id="m_edit"><a href="#">Edit</a>
+                        <ul>
+                         <li data-oj-command="oj-tree-cut" />
+                         <li data-oj-command="oj-tree-copy" />
+                         <li data-oj-command="oj-tree-paste" />
+                         <li data-oj-command="oj-tree-remove" />
+                         <li data-oj-command="oj-tree-rename" />
+                        </ul>
+                    </li>
+                </ul>
+                <ul id="moveNodeMenu"
+                    data-bind="ojComponent: {component: 'ojMenu',                  select: moveMenuItemSelect}"
+                    style="display:none">
+                    <li id="before">
+                        <a href="#">Before</a>
+                    </li>
+                    <li id="after">
+                        <a href="#">After</a>
+                    </li>
+                    <li id="inside">
+                        <a href="#">Inside</a>
+                    </li>
+                    <li id="first">
+                        <a href="#">First</a>
+                    </li>
+                    <li id="last">
+                        <a href="#">Last</a>
+                    </li>
+                </ul>
+                <ul id="copyNodeMenu"
+                    data-bind="ojComponent: {component: 'ojMenu',                  select: copyMenuItemSelect}"
+                    style="display:none">
+                    <li id="before">
+                        <a href="#">Before</a>
+                    </li>
+                    <li id="after">
+                        <a href="#">After</a>
+                    </li>
+                    <li id="inside">
+                        <a href="#">Inside</a>
+                    </li>
+                    <li id="first">
+                        <a href="#">First</a>
+                    </li>
+                    <li id="last">
+                        <a href="#">Last</a>
+                    </li>
+                </ul>
+                <ul id="getPathMenu" data-bind="ojComponent: {component: 'ojMenu',
+                                select: getPathMenuItemSelect}"  style="display:none" >
+                    <li id="ids">
+                        <a href="#">Ids</a>
+                    </li>
+                    <li id="nodenames">
+                        <a href="#">Node Names</a>
+                    </li>
+
+                </ul>
+            </div>
+            <p>Right click on Tree to invoke Menu</p>
+            <button id="cn" type="button" contextmenu="createNodeMenu"
+                    data-bind=" ojComponent:{component:'ojButton',          label:'Create node(right mouse click)'}"></button>
+
+            <button id="selectLink" type="button"
+                    data-bind="click: selectLinksNode,              ojComponent:{component:'ojButton', label:'Select Links node'}"></button>
+
+            <button id="selectFewNodesAndExpand" type="button"
+                    data-bind="click: selectFewNodesAndExpand, ojComponent:{component:'ojButton',              label:'Select Few Nodes And Expand'}"></button>
+
+            <button id="deSelectFirstSelectedNode" type="button"
+                    data-bind="click: deselectLastSelectedNode,      ojComponent:{component:'ojButton', label:'Deselect First Selected node'}"></button>
+
+            <button id="deselectAllSelectedNode" type="button"
+                    data-bind="click: deselectAllSelectedNode,      ojComponent:{component:'ojButton', label:'Deselect All Selected nodes'}"></button>
+
+            <button id="expandSelectedNode" type="button"
+                    data-bind="click: expandSelectedNode,      ojComponent:{component:'ojButton', label:'Expand Selected Node'}"></button>
+
+            <button id="expandAllSelectedNode" type="button"
+                    data-bind="click: expandAllSelectedNode,      ojComponent:{component:'ojButton', label:'Expand All Selected Node'}"></button>
+
+            <button id="expandLastTwoNodes" type="button"
+                    data-bind="click: expandLastTwoNodes,      ojComponent:{component:'ojButton', label:'Expand Last Two Nodes'}"></button>
+
+            <button id="collapseSelectedNode" type="button"
+                    data-bind="click: collapseSelectedNode,      ojComponent:{component:'ojButton', label:'Collapse First Selected Node'}"></button>
+
+            <button id="collapseAllSelectedNode" type="button"
+                    data-bind="click: collapseAllSelectedNode,      ojComponent:{component:'ojButton', label:'Collapse All Selected Node'}"></button>
+
+            <button id="createUnderFirstSelectedNodeAndExpand" type="button"
+                    data-bind="click: createUnderFirstSelectedNodeAndExpand,      ojComponent:{component:'ojButton',      label:'Create as first child under selected node and expand'}"></button>
+
+            <button id="hoverAndDehoverSelectedNode" type="button"
+                    data-bind="click: hoverAndDehoverSelectedNode,      ojComponent:{component:'ojButton', label:'Hover Dehover'}"></button>
+
+            <button id="destroyTree" type="button"
+                    data-bind="click: destroyTree,      ojComponent:{component:'ojButton', label:'Destroy Tree'}"></button>
+
+            <button id="removeSelectedNode" type="button"
+                    data-bind="click: removeSelectedNode,      ojComponent:{component:'ojButton', label:'Remove Selected node and PrevNode selected'}"></button>
+
+            <button id="getRoot" type="button"
+                    data-bind="click: getRoot,      ojComponent:{component:'ojButton', label:'getRoot func'}"></button>
+
+            <button id="getText" type="button"
+                    data-bind="click: getText,      ojComponent:{component:'ojButton', label:'getText func'}"></button>
+
+          <!--  <button type="button"
+                    data-bind="click: getNodeBySubId,      ojComponent:{component:'ojButton', label:'getNodeBySubId'}"></button>
+            -->
+
+            <button id="getPathOfSelectedNode" type="button" contextmenu="getPathMenu"
+                    data-bind=" ojComponent:{component:'ojButton',
+                    label:'get Path of selected node: choose parameter(right mouse click)'}"></button>
+
+            <button id="getParent" type="button"
+                    data-bind="click: getParent,      ojComponent:{component:'ojButton', label:'getParent func'}"></button>
+
+            <button id="getChildren" type="button"
+                    data-bind="click: getChildren,      ojComponent:{component:'ojButton', label:'getChildren func'}"></button>
+
+            <button id="getNextSibling" type="button"
+                    data-bind="click: getNextSibling,      ojComponent:{component:'ojButton', label:'getNextSibling func'}"></button>
+
+            <button id="getPrevSibling" type="button"
+                    data-bind="click: getPrevSibling,      ojComponent:{component:'ojButton', label:'getPrevSibling func'}"></button>
+
+            <button id="moveNode" type="button" contextmenu="moveNodeMenu"
+                    data-bind="     ojComponent:{component:'ojButton', label:'Right click to Move Selected node relative to Links'}"></button>
+
+            <button id="copyNode" type="button" contextmenu="copyNodeMenu"
+                    data-bind="ojComponent:{component:'ojButton',     label:'Copy Selected node relative to Links(right mouse click)'}"></button>
+
+            <button id="renameSelectedNode" type="button"
+                    data-bind=" click: renameSelectedNode,     ojComponent:{component:'ojButton', label:'Rename Selected Node'}"></button>
+
+            <button id="refreshTree" type="button"
+                    data-bind=" click: refreshTree,ojComponent:{component:'ojButton',      label:'Refresh Tree Adding New Data'}"></button>
+
+            <button id="toggleExpandSelectedNode" type="button"
+                    data-bind=" click: toggleExpandSelectedNode,     ojComponent:{component:'ojButton', label:'Toggle Expand Selected Node'}"></button>
+
+            <button id="toggleSelectLinksNode" type="button"
+                    data-bind=" click: toggleSelectLinksNode,     ojComponent:{component:'ojButton', label:'Toggle Select Links Node'}"></button>
+
+            <button id="addContextMenuToCollapsibleTree" type="button"  data-bind=" click: addContextMenuToCollapsibleTree,
+            ojComponent:{component:'ojButton', label:'Add Context menu to Collapsible Tree'}"></button>
+
+            <button id="removeContextMenuToCollapsibleTree" type="button"  data-bind=" click: removeContextMenuToCollapsibleTree,
+            ojComponent:{component:'ojButton', label:'Remove Context menu to Collapsible Tree'}"></button>
+
+            <button id="showIcons" type="button" data-bind="click: showIcons,
+            ojComponent:{component:'ojButton', label:'Show or Hide Icons'}">
+            </button>
+
+            <button id="disableTree" type="button" data-bind="click: disableTree,
+            ojComponent:{component:'ojButton', label:'Disable or Enable Tree'}">
+            </button>
+
+            <button id="addNodes" type="button" data-bind="click: addNodes,
+			            ojComponent:{component:'ojButton', label:'Add nodes to SelectMe'}">
+			            </button>
+			<button id="delNodes" type="button" data-bind="click: deleteNodes,
+			            ojComponent:{component:'ojButton', label:'Delete nodes'}">
+            </button>
+
+            <p><b>getNodeBySubId method testing</b><br/>
+                1. Select a node from the tree.<br/>
+                2. Change the combobox value to select the subId.<br/>
+                3. The results of the method is printed in the second textbox.<br/>
+            </p>
+          <!--  <select id="nodeBySubId" class="select" data-bind='options: subIdOptions, value: subIdValue,select:getNodeBySubId'> </select>  <br/>-->
+            <input id="combobox" data-bind="ojComponent: {component: 'ojCombobox',
+                options: subIdOptions, optionChange: valueChangeHandler, rootAttributes: {style:'max-width:20em'}}"/>
+
+
+
+            <div class="oj-row">
+                <div class="oj-xl-3 oj-lg-6 oj-md-12 oj-col">
+                    <div id="resultsFunction"
+                         style="float:left;width:350px; height: 200px; border:1px solid black;color:blue;font-size:14px;text-align:center;vertical-align:middle;line-height:40px;"
+                         tabindex="1"></div>
+                </div>
+                <div class="oj-xl-3 oj-lg-6 oj-md-12 oj-col">
+                    <div id="resultsFunction1"
+                         style="float:right;width:350px; height: 200px; border:1px solid black;color:blue;font-size:14px;text-align:center;vertical-align:middle;line-height:40px;"
+                         tabindex="2"></div>
+                </div>
+            </div>
+            <div class="oj-row">
+                <div class="oj-xl-3 oj-lg-6 oj-md-12 oj-col">
+                    <div id="treeFunctionMain" contextmenu="myMenu"
+                         data-bind="ojComponent:{component: 'ojTree', selectionMode: 'multiple',
+                         data: treeFuncData, expandParents: true, expandAll: true, icons: true,
+                         initExpanded: 'all',
+                         dnd: {reorder : 'enable'}, types: typesoptsFunc,  selectPrevOnDelete: true,
+                         select:treeSelectHandler, expand: expandHandler,
+                         collapse: collapseHandler, hover: hoverHandler, dehover: dehoverHandler,
+                         loaded: loadedHandler,              move: moveHandler,
+                         collapseAll: collapseAllHandler, expandAll: expandAllHandler,
+                         create: createHandler, remove: removeHandler,
+                         rename: renameHandler, refresh: refreshHandler}"
+                         tabindex="0"></div>
+                </div>
+                <div class="oj-xl-3 oj-lg-6 oj-md-12 oj-col">
+                    <p><b>Steps</b><br/>
+                    1. Make sure Suppliers and References nodes are expanded initially.<br/>
+                    2. Click on the button 'Add context menu to collapsible tree' <br/>
+                    3. Tree should launch as a context menu on right-click or Shift-F10<br/>
+                    4. Click Edit -> cut / copy /paste / remove. All these use standard
+                    menu handler and should work.<br/>
+                    5. Click on the button 'Remove context menu to collapsible tree'.
+                    This should remove the context tree.<br/>
+                    </p>
+                    <div id="ojCollapsible" class="oj-box"
+                         data-bind="ojComponent:         {component: 'ojCollapsible'}">
+                        <h3>
+                            <span>Tree with OjCollapsible</span>
+                        </h3>
+                        <div id="treeCollapsible" data-bind="ojComponent:{component: 'ojTree',
+                                data:collapsibleTreeData, types: typesoptsFunc, initExpanded: expnodes,
+                                selectPrevOnDelete: true}"
+                             tabindex="0"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

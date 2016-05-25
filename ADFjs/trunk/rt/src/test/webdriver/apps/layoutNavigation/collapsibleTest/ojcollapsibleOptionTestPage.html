@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Collapsible Test</title>
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css"/>
+        <!--<script> var currentTestApp = '../../layout/masonaryLayout/js/ojMasonaryLayoutBasic'; </script>-->
+        <script> var currentTestApp = '../../layoutNavigation/collapsibleTest/js/collapsibleVM'; </script>
+    	<script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>
+    </head>
+    <body>
+    <div id="wrapperDiv">
+        <div id="contentDiv" style="width:40%;margin-left:10px;float:left;">
+
+            <div id="collapsiblePage" data-bind="ojComponent: {component: 'ojCollapsible',expandOn:expandOnValue, expanded:expandedValue,expandArea:expandAreaValue,disabled:disabledValue}">
+        <h3 id="ph">Parent Collapsible</h3>
+        <div>
+            <div id="innerContent1" data-bind="ojComponent: {component: 'ojCollapsible', expanded:expandedValue,expandArea:expandAreaValue,disabled:disabledValue}">
+                <h4 id="ch1">Nested Collapsible 1</h4>
+                <div id="c1">Nested Content 1</div>
+            </div>
+            <div id="innerContent2" data-bind="ojComponent: {component: 'ojCollapsible', expanded:expandedValue,expandArea:expandAreaValue,disabled:disabledValue}">
+                <h4 id="ch2">Nested Collapsible 2</h4>
+                <div id="c2">Nested Content 2</div>
+            </div>
+            <div id="innerContent3" data-bind="ojComponent: {component: 'ojCollapsible', expanded:expandedValue,expandArea:expandAreaValue,disabled:disabledValue}">
+                <h4 id="ch3">Nested Collapsible 3</h4>
+                <div id="c3">Nested Content 3</div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+                <div>
+                    <div style="padding-left:16px;float:left;color:#737373;">
+                    <div><h3><span id="currentText">Triggered Function ::</span> <span id="functionName1" style="color:royalblue;"></span></h3></div>
+                    <div><h3><span id="currentText2">Triggered Function ::</span> <span id="functionName2" style="color:royalblue;"></span></h3></div>
+                    <div><h3><span id="currentText3">Triggered Function ::</span> <span id="functionName3" style="color:royalblue;"></span></h3></div>
+                            <div id="optionDiv"><h3 id="optionHeader"><span id="optionMethod"></span> <span id="optionMethodheck" style="color:black;">none</span></h3></div>
+                        </div>
+                </div>
+        </div>
+        <div id="selectAllDivs" style="width:30%;float:right;margin-right:5px;">
+        <div style="padding-bottom:1px;">
+            <label for="disabledOption" class="oj-label">Select Disabled Value:</label>
+            <input id="disabledOption" style="width:250px;" data-bind="ojComponent: 
+            {component: 'ojCombobox',optionChange:disabledUpdate,
+            options: disabledOptions ,value:'false'}"/>
+        </div>
+        <div style="padding-bottom:1px;">
+            <label for="expandedValue" class="oj-label">Select Expanded Value:</label>
+            <input id="expandedValue" style="width:250px;" data-bind="ojComponent: 
+            {component: 'ojCombobox',optionChange:expandedUpdate,
+            options: expandedOptions ,value:'true'}"/>
+        </div>
+        <div style="padding-bottom:1px;">
+            <label for="expandArea" class="oj-label">Select Expand Area Value:</label>
+            <input id="expandArea" style="width:250px;" data-bind="ojComponent: 
+            {component: 'ojCombobox',placeholder: 'Please select ...',optionChange:expandAreaUpdate,
+            options:expandAreaValues,value:'header'}"/>
+        </div>
+        <div style="padding-bottom:1px;">
+            <label for="expandOn" class="oj-label">Select Expand On Value:</label>
+            <input id="expandOn" style="width:250px;" data-bind="ojComponent: 
+            {component: 'ojCombobox',placeholder: 'Please select ...',optionChange:expandOnUpdate,
+            options:expandOnValues,value:'click'}"/>
+        </div>
+         <div id="disableOutputText" style="clear:both;;font-weight: bold;width:30%;color:#045FAB;font-style: italic;
+    font-size: small;"></div>
+        <div id="expandedOutputText" style="clear:both;;font-weight: bold;width:30%;color:#045FAB;font-style: italic;
+font-size: small;"></div>
+    <div id="expandedAreaOutputText" style="clear:both;;font-weight: bold;width:30%;color:#045FAB;font-style: italic;
+    font-size: small;"></div>
+    
+    <div id="expandOnOutputText" style="clear:both;;font-weight: bold;color:#045FAB;font-style: italic;font-size: small;"></div>
+            <div>
+            </div>
+            <input id="selectedOptionsButton" type="button"data-bind="ojComponent: {component: 'ojButton', label: 'selectedOptions'}"/>
+            <input id="submit" type="button"            data-bind="click: optionCheck, 
+                      ojComponent: {component: 'ojButton', label: 'A submit button'}"/>
+            <input id="setOptionsButton" type="button" data-bind="click: setOptions, 
+                      ojComponent: {component: 'ojButton', label: 'SetOptions'}"/>
+            
+       
+    </div>
+        
+        
+    </div>
+        
+    </body>
+</html>

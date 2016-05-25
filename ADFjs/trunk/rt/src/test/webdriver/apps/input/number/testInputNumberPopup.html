@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Jet ojInputNumber Test</title>
+    
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css" id="ojcss"/>
+        <link rel="stylesheet" href="../../common/css/testStyles.css" type="text/css"/>
+        
+        <script>
+        var currentTestApp = '../../input/number/js/app';
+        var compExposed = false;        
+        </script>
+        <!-- RequireJS bootstrap file -->
+        <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>        
+</head>
+
+<body id="html_body">
+<h2>Line before</h2>
+<div id="menu_container" data-bind="with: svm"></div>
+<div id="main_content">
+<form id="form1">
+
+<div id="popupWrapper">
+  <div style="display:none" id="popup1" data-bind="ojComponent:{component: 'ojPopup'}">    
+<h2>Basic inputNumber Tests</h2>
+<div id="basic_content">
+<label id="mainlabelid" for="inputnumber-id">ojInputNumber component</label>
+<input id="inputnumber-id"
+       data-bind="ojComponent: {component: 'ojInputNumber',
+       title: 'tooltip text',
+                 max:100, min:-20, step:10, value:model.value}"/>
+<span class="oj-label">Current component value is: </span>
+<span id="curr-value" data-bind="text: model.value"></span>
+<br/>
+</div>
+<div id="local-container" data-bind="with:model">
+  <button id="buttonId1" data-bind="ojComponent: {
+      component: 'ojButton',
+      label: 'setInputNumberValueTo30'},
+      click: setInputNumberValueTo30">
+  </button>
+  <button id="buttonId2" data-bind="ojComponent: {
+      component: 'ojButton',
+      label: 'setMinTo50'},
+      click: setMinTo50">
+  </button>
+  <button id="buttonId3" data-bind="ojComponent: {
+      component: 'ojButton',
+      label: 'setMaxTo80'},
+      click: setMaxTo80">
+  </button>
+   <button id="buttonId4" data-bind="ojComponent: {
+      component: 'ojButton',
+      label: 'setMinAndMaxToNull'},
+      click: setMinAndMaxToNull">
+  </button>
+</div>
+<div id="inputControls-container" data-bind="with: model"></div>
+
+</div>
+  </div>
+    <button id="btn_openpopup" data-bind="ojComponent: {component: 'ojButton', label: 'Open Popup'}, 
+          click: function(){$('#popup1').ojPopup('open');}"></button>
+    <button id="btn_closepopup" data-bind="ojComponent: {component: 'ojButton', label: 'Close Popup'}, 
+          click: function(){$('#popup1').ojPopup('close');}"></button>
+
+
+</form>
+</div>
+
+<br/><br/><br/><br/><br/><br/><br/>
+<h2>Line after</h2>
+
+<div id="controls-container"></div>
+
+</body>
+</html>
+
+

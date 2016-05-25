@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Jet ojInputTime Test</title>
+    
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css" id="ojcss"/>
+        <link rel="stylesheet" href="../../common/css/testStyles.css" type="text/css"/>
+        
+        <script>
+        var currentTestApp = '../../input/time/js/app';
+        var compExposed = false;        
+        </script>
+        <!-- RequireJS bootstrap file -->
+        <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>        
+</head>
+<body id="html_body">
+<div id="menu_container" data-bind="with: svm"></div>
+<h2>Line before all</h2>
+
+<form action="demo_form">
+<div id="collapsiblePage" data-bind="ojComponent: {component: 'ojCollapsible'}">
+<h2>ojInputTime</h2>
+<div id="main-container" data-bind="with: model">
+ 
+  <label id="mainlabelid" for="text-input">ojInputTime component</label>
+  <input id="text-input"         
+         data-bind="ojComponent: {component: 'ojInputTime',
+                                  placeholder: 'Enter a value',
+                                  title: title,
+                                  value: value}"/>
+    
+  <br/>
+  <span class="oj-label">Current component value is: </span>
+  <span id="valueHolder" data-bind="text: value"></span>   
+</div>
+</div>
+          
+<div id="html-container">
+    <h2>Html for comparison</h2>
+    time example
+    <input type="time" value="12:59" />
+</div>
+          
+</form>
+          
+<h2>Line after</h2>
+
+<div id="local-container" data-bind="with: model">
+<button id="buttonId1" data-bind="ojComponent: {
+      component: 'ojButton',label: 'toggleTimeIncrement'}, click: toggleTimeIncrement"></button>
+<button id="buttonId15" data-bind="ojComponent: {
+      component: 'ojButton',label: 'hide'}, click: hide"></button>
+<button id="buttonId16" data-bind="ojComponent: {
+      component: 'ojButton',label: 'show'}, click: show"></button>
+</div>
+<div id="inputControls-container" data-bind="with: model"></div>
+<div id="controls-container"></div>
+
+</body>
+</html>

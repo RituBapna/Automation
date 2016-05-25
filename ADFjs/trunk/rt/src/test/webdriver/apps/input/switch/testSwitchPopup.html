@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Jet ojSwitch Test</title>
+    
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css" id="ojcss"/>
+        <link rel="stylesheet" href="../../common/css/testStyles.css" type="text/css"/>
+        
+        <script>
+        var currentTestApp = '../../input/switch/js/app';
+        var compExposed = false;        
+        </script>
+        <!-- RequireJS bootstrap file -->
+        <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>        
+</head>
+
+<body id="html_body">
+<div id="menu_container" data-bind="with: svm"></div>        
+<h2>Line before all</h2>
+
+<form action="demo_form">
+
+<div id="popupWrapper">
+  <div style="display:none" id="popup1" data-bind="ojComponent:{component: 'ojPopup'}">     
+<h2>ojSwitch</h2>
+<div id="main-container" data-bind="with: model">
+ 
+  <label id="mainlabelid" for="switch">ojSwitch component</label>
+  <input id="switch"
+         data-bind="ojComponent: {component: 'ojSwitch',
+                                  value: value}"/>
+    
+  <br/>
+ 
+  <span class="oj-label">Current component value is: </span>
+  <span id="curr-value" data-bind="text: value() ? 'ON' : 'OFF'"></span>   
+  
+   </div>
+<div id="local-container" data-bind="with: model"></div>
+<div id="inputControls-container" data-bind="with: model"></div>
+
+     </div>  
+
+</div>
+    <button id="btn_openpopup" data-bind="ojComponent: {component: 'ojButton', label: 'Open Popup'}, 
+          click: function(){$('#popup1').ojPopup('open');}"></button>
+    <button id="btn_closepopup" data-bind="ojComponent: {component: 'ojButton', label: 'Close Popup'}, 
+          click: function(){$('#popup1').ojPopup('close');}"></button>
+
+  <br/><br/></br/>
+  <br/><br/></br/>
+  <br/><br/></br/>
+  
+<h2>Non-oj input for comparison</h2>
+<div id="nonoj-container">
+  <input type="text" name="fname" placeholder="First name" title="tooltip text" value=""><br>
+  <input type="submit" value="Submit">
+<br/>
+</div>
+
+</form>
+
+<h2>Line after</h2>
+<div id="controls-container"></div>
+
+</body>
+</html>

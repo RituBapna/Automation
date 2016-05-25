@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Navigation List: TableDataSource</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../../common/css/libs/oj/v@jetversion@/alta/oj-alta-min.css" type="text/css"/>
+        <link rel="stylesheet" media="screen" href="../css/demo-icon-font.css" type="text/css"/>
+        <script data-main="../js/ojnavigationlist/navlistMain" src="../js/libs/require/require.js"></script>
+
+        <script type="text/html" id="server_template">
+        <li data-bind="attr:{ id : $data['id']}, css:{'oj-disabled' : $data['disabled']=='true'}">
+            
+            <a href="#" data-bind="text: $data['name']">
+                <span class="oj-navigationlist-item-icon  demo-icon-font demo-library-icon">
+                </span>
+            </a>
+            <!-- ko if: $data['hasChildren'] -->
+            <ul>
+                <!-- ko template: {name: 'server_template', data: $data['children']} -->
+                <!-- /ko -->
+            </ul>    
+            <!-- /ko -->
+        </li>    
+    </script>
+</head>
+<body>
+    <div>
+        <div id="navlistdemo">
+            <div class="oj-row">
+                <div class="oj-col oj-sm-12 oj-md-4 oj-lg-5 oj-xl-5">
+
+                    <a href="#" >
+                        <span class="oj-navigationlist-item-icon  demo-icon-font demo-library-icon">
+                        </span>
+                        Test
+                    </a>
+                    <div id="navList" data-bind="ojComponent:{
+                        component:'ojNavigationList', 
+                        drillMode:'none', 
+                        data: dataSource, 
+                        edge: edgeValue,
+                        template: 'server_template', 
+                        optionChange : onSelect,
+                        }">
+                    </div>
+                </div>
+                <div class="oj-col oj-sm-12 oj-md-8 oj-lg-7 oj-xl-7">
+                    <div>
+                        <p class="bold">Last selected list item:
+                            <span id="results" data-bind='text: selectedListItem'></span>
+                        </p>
+                        <p class="bold">Current list item:
+                            <span id="results" data-bind="text: currentSelectedItem"></span>
+                        </p>
+                         <br/><br/>
+                        <button id="init" data-bind="ojComponent:{component:'ojButton', label: 'initialize NavList'}, click: initializeNavList" ></button>
+                        <button id="remove" data-bind="ojComponent:{component:'ojButton', label: 'Remove Last NavList Item'}, click: removeLastNavListItem" ></button>
+                        <button id="add" data-bind="ojComponent:{component:'ojButton', label: 'Add  NavList Item'}, click: addNavListItem" ></button>
+                        <button id="getCurr" data-bind="ojComponent:{component:'ojButton', label: 'Get Current Item'}, click: getCurrentNavListItem" ></button>
+                        <button id="setCurr" data-bind="ojComponent:{component:'ojButton', label: 'Set Current Item'}, click: setCurrentNavListItem" ></button>
+                        <button id="refresh1" data-bind="ojComponent:{component:'ojButton', label: 'Refresh'}, click: function(){$('#navList').ojNavigationList('refresh');}" ></button>
+                         <br/><br/>
+                        <label id="lid">NavList edge</label>
+                        <div id="edgeId" aria-labelledby="lid"
+                             data-bind="ojComponent: {component: 'ojRadioset', 
+                                   
+                                  value: edgeValue}" >
+                            <input id="topopt" type="radio" name="edge" value="top">
+                            <label for="topopt">top</label>
+
+                            <input id="startopt" type="radio" name="edge" value="start">
+                            <label for="startopt">start</label>
+
+                        </div>
+                       
+                        <br/><br/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

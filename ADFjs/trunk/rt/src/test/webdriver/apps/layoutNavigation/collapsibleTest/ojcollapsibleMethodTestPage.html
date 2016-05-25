@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Collapsible Method Test</title>
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css"/>
+        <!--<script> var currentTestApp = '../../layout/masonaryLayout/js/ojMasonaryLayoutBasic'; </script>-->
+        <script> var currentTestApp = '../../layoutNavigation/collapsibleTest/js/collapsibleVM'; </script>
+    	<script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>
+    </head>
+    <body>
+    <div id="wrapperDiv">
+            <div id="contentDiv" style="width:40%;margin-left:10px;float:left;">
+                 <div id="collapsiblePage" data-bind="ojComponent: {component: 'ojCollapsible'}">
+                  <h3 id="h">Header 3</h3>
+                  <p id="c">I'm a  Collapsible.</p>
+            </div>
+            <div id="selectionDiv" style="width:20%;float:left;margin-right:5px;"> 
+                <div  style="display: block-inline;">
+                    <input id="collaspeButton" type="button"data-bind="click: collapse(), 
+                      ojComponent: {component: 'ojButton', label: 'Collapse'}"/>
+                    
+                    <input id="expandButton" type="button"data-bind="click: expand(), 
+                      ojComponent: {component: 'ojButton', label: 'expand'}"/>
+                    
+                    <input id="getOptionsButton" type="button"data-bind="click: getOptions(), 
+                      ojComponent: {component: 'ojButton', label: 'Get Options'}"/>
+                    
+                </div>
+            </div>
+        </div>
+        <div id="outputTest" style="clear:both;;font-weight: bold;width:30%;color:#045FAB;font-style: italic;
+    font-size: small;"></div>
+        
+    </div>
+        
+        
+    </body>
+</html>

@@ -1,0 +1,28 @@
+{"depts": [ {
+    "DeptId" : 577,
+    "DeptName" : "Accounts",   
+    "locId" : null
+   
+  }, {
+    "DeptId" : 1,
+    "DeptName" : "Sales",  
+    "locId" : null
+    
+  }, {
+    "DeptId" : 6,
+    "DeptName" : "Marketing",   
+    "locId" : null
+  
+  }, {
+    "DeptId" : 10,
+    "DeptName" : "Administration",   
+    "locId" : null
+   
+  }, {
+    "DeptId" : 7,
+    "DeptName" : "Engineering",   
+    "locId" : null
+   
+  } ]
+}
+

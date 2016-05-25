@@ -1,0 +1,15 @@
+ <ul>
+         <li id="home" type="myroot"><a href="#">Home11</a></li>
+         <li id="news" type="myleaf"><a href="#">News11</a></li>
+         <li id="blogs" type="myfolder"><a href="#">Blogs11</a>
+            <ul>
+                <li id="today" type="myleaf"><a href="#">Today</a></li>
+                <li id="prev" type="myfolder"><a href="#">Previous</a>
+                    <ul>
+                       <li id="yesterday" type="myleaf"><a href="#">Yesterday</a></li>
+                       <li id="daysback2" type="myleaf"><a href="#">2 Days back</a></li>
+                    </ul>
+                </li>
+            </ul>
+         </li>
+     </ul>

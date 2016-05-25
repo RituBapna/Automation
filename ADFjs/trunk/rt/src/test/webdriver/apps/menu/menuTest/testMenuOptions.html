@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Jet ojMenu Test</title>
+    
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css" id="ojcss"/>
+        <link rel="stylesheet" href="../../common/css/iconStyles.css" id="iconcss" >
+        <link rel="stylesheet" href="../../common/css/testStyles.css" type="text/css"/>
+        
+        <script>
+        var currentTestApp = '../../menu/menuTest/js/app';
+        </script>
+        <!-- RequireJS bootstrap file -->
+        <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>        
+</head>
+
+<body>
+    <div id="menu_container" data-bind="with: model"></div>
+    
+<h2>Line before all</h2>
+
+<style>
+    .oj-menu { width: 250px; }
+</style>
+
+<div id="button-container" data-bind="with: model">
+    <h3>A JET component with a context menu:</h3>
+    
+    <!-- Use the HTML5 contextmenu attribute for JET components -->
+    <button id= "myButton" contextmenu="myMenu" 
+            data-bind="ojComponent: { component: 'ojButton', 
+                                      label: 'Right-click me. Shift-F10 me.' }">
+    </button>
+    
+    <br>
+    
+    <h3>An ordinary HTML element with a context menu:</h3>
+    
+    <!-- Use the ojContextMenu binding for elements that aren't JET components -->
+    <a href="#" id="myAnchor" contextmenu="myMenu" 
+       data-bind="ojContextMenu: {}">Right-click me. Shift-F10 me.</a>
+
+    <br>
+    <h3>Launchers for menus remotely opened</h3>    
+    <a id="menulink1" href="#">launcher1  </a>    
+    <a id="menulink2" href="#">launcher2  </a>
+    <br>
+</div>
+
+<h3>A Menu which can launch a context-menu</h3>
+<div id='menuBar-container' data-bind="with: model">
+ <button id="menuButton"
+          data-bind="ojComponent: {component: 'ojButton', label: 'Places', 
+                                   menu: '#myMenu0'}">
+  </button>
+    <ul id="myMenu0" data-bind="ojComponent: {component: 'ojMenu', select: menuItemSelect, beforeOpen: menuOpen}">
+        <li class="oj-state-disabled"><a href="#">Aberdeen</a></li>
+        <li><a href="#">Ada</a></li>
+        <li><a href="#">Adamsville</a></li>
+        <li><a href="#">Delphi</a>
+            <ul>
+                <li class="oj-state-disabled"><a href="#">Ada</a></li>
+                <li><a href="#">Saarland</a></li>
+                <li><a href="#">Salzburg</a></li>
+            </ul>
+        </li>
+        <li class="oj-state-disabled"><a href="#">Amesville</a></li>
+    </ul>
+</div>
+  <br>
+  
+  <h3>Results:</h3>
+  <p>Last menu launcher:
+    <span id="launcher" class="italic" data-bind='text: model.menuLauncher'></span>
+  </p>
+  <p class="bold">Last selected menu item:
+    <span id="results" data-bind='text: model.selectedMenuItem'></span>
+  </p>
+
+
+<h2>Line after</h2>
+
+<div id="local-container" data-bind="with: model">
+  <button data-bind="click: toggleInitialFocus" id="btn_focus">toggleInitialFocus</button>    
+  <button data-bind="click: togglePosition" id="btn_pos">togglePosition</button>
+  <button data-bind="click: toggleSubmenuPosition" id="btn_smpos">toggleSubmenuPosition</button>    
+  <button data-bind="click: openMenu" id="btn_open">openMenu</button>
+  <button data-bind="click: toggleLauncher" id="btn_launcher">toggleLauncher</button>
+</div>
+<div id="menu-controls-container" data-bind="with: model"></div>
+<div id="controls-container"></div>
+
+
+</body>
+</html>

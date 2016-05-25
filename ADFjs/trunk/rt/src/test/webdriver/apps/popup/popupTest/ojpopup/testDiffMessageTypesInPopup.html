@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+
+<!-- ************************ IMPORTANT INFORMATION ************************************
+     This file and Quick Start project are provided as an example of how to configure a JET application.
+     It contains the Oracle JET framework and a default requireJS configuration file to show how JET can be setup
+     in a common application. This project template can be used in conjunction with demo code from the JET website 
+     to test JET component behvior and interactions.
+
+     Any CSS styling with the prefix "demo-" is for demonstration only and is not provided as part of the JET framework.
+
+     The Header and Footer sections are provided for demonstration only. They are not part of the JET framework. 
+     Best practice patterns are provided as part of the JET website under the Samples section.
+
+     Aria Landmark role attributes are added to the different sections of the application for accessibility compliance.
+     If you change the type of content for a specific section from what is defined, you should also change the 
+     role value for that section to represent the appropriate content type.
+     ***************************** IMPORTANT INFORMATION ************************************ -->
+
+<html lang="en-us" class='demo-sticky-footer-layout'>
+    <head>
+        <title>ojPopup - Message Type Test</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- This is the main css file for the default Alta theme -->
+        <link rel="stylesheet" href="../../../../common/css/libs/oj/v@jetversion@/alta/oj-alta-min.css" type="text/css"/>
+
+        <!-- These style classes are for demonstration purposes only. -->
+        <link rel="stylesheet" href="../css/demo-alta-patterns-min.css"/>
+
+        <!-- This is where you would add any app specific styling -->
+        <link rel="stylesheet" href="../css/override.css" type="text/css"/>
+
+        <script>
+          var currentTestApp = '../../popup/popupTest/js/ojpopup/main';
+        </script>
+        <script data-main="../../../../common/js/main" src="../../../../common/js/libs/require/require.js"></script> 
+    </head>
+    <body>
+
+        <div class="demo-sticky-footer-main-outer">
+            <div class="demo-sticky-footer-main-inner">
+
+                <div id="globalBody" style="display: none"> <!-- This div helps make sure the footer stays at the bottom of the page -->
+
+                    <!-- Header section which contains the Global Branding, Global Navigation, and Application Navigation code. Template is located in /templates/header.tmpl.html -->
+                    <header id="headerWrapper" role="banner" data-bind="module: { name: 'header.js', template: 'header'}"></header>
+
+                    <!-- This is where your main page content will be loaded -->
+                    <div id="mainContainer">
+                        <div class="oj-flex">
+
+                            <div class="oj-xl-12 oj-lg-12 oj-md-12 oj-flex-item"> <!-- demo-coldrop-B -->
+                                <div role="main" class="demo-page-content-area">
+                                    <button id="btnGo" 
+                                            data-bind="ojComponent: {component: 'ojButton', label: 'Go'},
+                                               click: function()
+                                               {
+                                                 $('#popup1').ojPopup('open', '#btnGo');
+                                               }">
+                                    </button>
+                                    <div style="display:none" id="popup1"
+                                         data-bind="ojComponent:{component: 'ojPopup'}">
+                                        <div id="form-container" class="oj-flex">
+
+                                            <div id='buttons-container'>
+                                                <div id="severityTypeButtonSet" 
+                                                     data-bind="ojComponent: {
+         component: 'ojButtonset', checked: types}">
+                                                    <!-- ko foreach: severityCheckboxButtonSet -->
+                                                    <label data-bind="attr: {for: id}"></label>                              
+                                                    <input type="checkbox" 
+                                                           data-bind="value: id, attr: {id: id},
+                ojComponent: {
+                component: 'ojButton', label: label}"/>
+                                                    <!-- /ko -->
+                                                </div>
+                                            </div>
+                                            <hr>
+
+                                            <div class="oj-sm-12 oj-lg-6 oj-flex-item">
+                                                <div class="oj-form oj-md-odd-cols-4 oj-md-labels-inline">
+                                                    <div class="oj-flex">
+                                                        <div class="oj-flex-item">
+                                                            <label for="inputcontrol">input</label>
+                                                        </div>
+                                                        <div class="oj-flex-item">
+                                                            <input id="inputcontrol" 
+                                                                   data-bind="ojComponent: {
+              component: 'ojInputText', 
+              value: textValue, 
+              messagesCustom: appMessages, displayOptions: {messages: 'notewindow'}}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="oj-flex">
+                                                        <div class="oj-flex-item">
+                                                            <label for="textareacontrol">textarea</label>
+                                                        </div>
+                                                        <div class="oj-flex-item">
+                                                            <textarea id="textareacontrol" rows="6"
+                                                                      data-bind="ojComponent: {
+            component: 'ojTextArea', 
+            value: textAreaValue, 
+            messagesCustom: appMessages, displayOptions: {messages: 'notewindow'}}"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="oj-flex">
+                                                        <div class="oj-flex-item">
+                                                            <label for="spinnercontrol">input number</label>
+                                                        </div>
+                                                        <div class="oj-flex-item">
+                                                            <input id="spinnercontrol"
+                                                                   data-bind="ojComponent: {
+              component: 'ojInputNumber',
+              max:5, min:0, 
+              step:1, 
+              value: numberValue, 
+              messagesCustom: appMessages, displayOptions: {messages: 'notewindow'}}"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="oj-flex">
+                                                        <div class="oj-flex-item">
+                                                            <label for="datecontrol">input date</label>
+                                                        </div>
+                                                        <div class="oj-flex-item">
+                                                            <input id="datecontrol"
+                                                                   title="enter a date in your preferred format and we will attempt to figure it out"
+                                                                   data-bind="ojComponent: {
+              component: 'ojInputDate',
+              value: dateValue, 
+              validators: [{
+                type: 'datetimeRange', 
+                options: {
+                  min: oj.IntlConverterUtils.dateToLocalIso(new Date(1930, 00, 01)), 
+                  max: oj.IntlConverterUtils.dateToLocalIso(new Date(1995, 11,31)),
+                  hint: {
+                    inRange: 'validator hint: datetimeRange 18 - 85 years'},
+                  messageDetail: {
+                    rangeOverflow: 
+                      'The value \'{value}\' is not in the expected range; it is too high.',
+                    rangeUnderflow:
+                      'The value \'{value}\' is not in the expected range; it is too low.'}}}], 
+              translations: {'required' : {
+                hint: 'custom hint: required',
+                messageSummary: 'custom summary: \'{label}\' Required', 
+                messageDetail: 'custom detail: A value is required for this field'}},                 
+              messagesCustom: appMessages, displayOptions: {messages: 'notewindow'}}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="oj-flex">
+                                                        <div class="oj-flex-item">
+                                                            <label for="timecontrol">input time</label>
+                                                        </div>
+                                                        <div class="oj-flex-item">
+
+                                                            <input id="timecontrol"
+                                                                   data-bind="ojComponent: {
+              component: 'ojInputTime',
+              value: timeValue, 
+              messagesCustom: appMessages, displayOptions: {messages: 'notewindow'}}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="oj-flex">
+                                                        <div class="oj-flex-item">
+                                                            <label for="datetimecontrol">input date and time</label>
+                                                        </div>
+                                                        <div class="oj-flex-item">
+                                                            <input id="datetimecontrol"
+                                                                   data-bind="ojComponent: {
+                component: 'ojInputDateTime',
+                value: datetimeValue, 
+                messagesCustom: appMessages, displayOptions: {messages: 'notewindow'}}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="oj-sm-12 oj-lg-6 oj-flex-item">
+                                                <div class="oj-form oj-md-odd-cols-4 oj-md-labels-inline">
+
+                                                    <div class="oj-flex">
+                                                        <div class="oj-flex-item">
+                                                            <label for="combobox">combobox</label>
+                                                        </div>
+                                                        <div class="oj-flex-item">
+                                                            <input id="combobox" list="severityTypes"
+                                                                   data-bind="ojComponent: {
+              component: 'ojCombobox', 
+              value: comboboxValue, 
+              messagesCustom: appMessages, displayOptions: {messages: 'notewindow'}}"/>
+                                                            <datalist id="severityTypes">
+                                                                <option value="fatal">Fatal</option>
+                                                                <option value="error">Error</option>
+                                                                <option value="warning">Warning</option>
+                                                                <option value="info">Info</option>
+                                                                <option value="confirmation">Confirmation</option>
+                                                            </datalist>
+                                                        </div>
+                                                    </div>
+                                                    <div class="oj-flex">
+                                                        <div class="oj-flex-item">
+                                                            <label for="comboboxMulti">combobox multiple</label>
+                                                        </div>
+                                                        <div class="oj-flex-item">
+
+                                                            <input id="comboboxMulti" list="severityTypes"
+                                                                   data-bind="ojComponent: {
+              component: 'ojCombobox', 
+              multiple: true, 
+              value: comboboxMultiValue, 
+              messagesCustom: appMessages, displayOptions: {messages: 'notewindow'}}"/>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="oj-flex">
+                                                        <div class="oj-flex-item">
+                                                            <label for="select">select</label>
+                                                        </div>
+                                                        <div class="oj-flex-item">
+                                                            <select id="select"
+                                                                    data-bind="ojComponent: {
+              component: 'ojSelect', 
+              value: selectValue, 
+              messagesCustom: appMessages, displayOptions: {messages: 'notewindow'}}">
+                                                                <option value="none">None</option>
+                                                                <option value="fatal">Fatal</option>
+                                                                <option value="error">Error</option>
+                                                                <option value="warning">Warning</option>
+                                                                <option value="info">Info</option>
+                                                                <option value="confirmation">Confirmation</option>
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="oj-flex">
+                                                        <div class="oj-flex-item">
+                                                            <label id="radiosetlabel">radioset</label>
+                                                        </div>
+                                                        <div class="oj-flex-item">
+                                                            <div id="radioSetId"
+                                                                 data-bind="ojComponent: {
+              component: 'ojRadioset', 
+              value: radiosetValue, 
+              messagesCustom: appMessages, displayOptions: {messages: 'notewindow'}}" 
+                                                                 aria-labelledby="radiosetlabel">
+                                                                <span class="oj-choice-row">
+                                                                    <input id="noneopt" type="radio" 
+                                                                           name="rbb" value="none">
+                                                                    <label for="noneopt">None</label>
+                                                                </span>
+                                                                <span class="oj-choice-row">
+                                                                    <input id="fatalopt" type="radio" 
+                                                                           name="rbb" value="fatal">
+                                                                    <label for="fatalopt">Fatal</label>
+                                                                </span>
+                                                                <span class="oj-choice-row">
+                                                                    <input id="erroropt" type="radio" 
+                                                                           name="rbb" value="error">
+                                                                    <label for="erroropt">Error</label>
+                                                                </span>
+                                                                <span class="oj-choice-row">
+                                                                    <input id="warningopt" type="radio" 
+                                                                           name="rbb" value="warning">
+                                                                    <label for="warningopt">Warning</label>
+                                                                </span>
+                                                                <span class="oj-choice-row">
+                                                                    <input id="infoopt" type="radio" 
+                                                                           name="rbb" value="info">
+                                                                    <label for="infoopt">Info</label>
+                                                                </span>
+                                                                <span class="oj-choice-row">
+                                                                    <input id="confopt" type="radio" 
+                                                                           name="rbb" value="confirmation">
+                                                                    <label for="confopt">Confirmation</label>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="oj-flex">
+                                                        <div class="oj-flex-item">
+                                                            <label id="checkboxsetlabel">checkboxset</label>
+                                                        </div>
+                                                        <div class="oj-flex-item">
+                                                            <div id="checkboxSetId"
+                                                                 data-bind="ojComponent: {
+              component: 'ojCheckboxset', 
+              messagesCustom: appMessages, 
+              value: checkboxsetValue, displayOptions: {messages: 'notewindow'}}" 
+                                                                 aria-labelledby="checkboxsetlabel">
+                                                                <span class="oj-choice-row">
+                                                                    <input id="fatalopt2" type="checkbox" 
+                                                                           name="rbb" value="fatal">
+                                                                    <label for="fatalopt2">Fatal</label>
+                                                                </span>
+                                                                <span class="oj-choice-row">
+                                                                    <input id="erroropt2" type="checkbox" 
+                                                                           name="rbb" value="error">
+                                                                    <label for="erroropt2">Error</label>
+                                                                </span>
+                                                                <span class="oj-choice-row">
+                                                                    <input id="warningopt2" type="checkbox" 
+                                                                           name="rbb" value="warning">
+                                                                    <label for="warningopt2">Warning</label>
+                                                                </span>
+                                                                <span class="oj-choice-row">
+                                                                    <input id="infoopt2" type="checkbox" 
+                                                                           name="rbb" value="info">
+                                                                    <label for="infoopt2">Info</label>
+                                                                </span>
+                                                                <span class="oj-choice-row">
+                                                                    <input id="confopt2" type="checkbox" 
+                                                                           name="rbb" value="confirmation">
+                                                                    <label for="confopt2">Confirmation</label>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer section which contains dynamic list of items. Template is located in /templates/footer.tmpl.html-->
+        <footer id="footerWrapper" role="contentinfo" data-bind="module: { name: 'footer.js', template: 'footer'}"></footer>
+
+    </body>
+</html>

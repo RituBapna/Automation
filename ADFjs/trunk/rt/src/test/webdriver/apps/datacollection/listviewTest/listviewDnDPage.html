@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Listview - Drap and Drop with Table</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css" id="ojcss"/>
+        <link rel="stylesheet" href="../../common/css/listview.css" type="text/css" id="ojlistviewcss"/>
+        <!--<link rel="stylesheet" href="../../common/css/libs/oj/v1.3.0/alta/oj-alta.css" type="text/css" id="ojcss"/>-->
+        <script>
+            var currentTestApp = '../../datacollection/listviewTest/js/listviewDnDApp';
+        
+        </script>                                    
+        <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>
+        <!--<link rel="stylesheet" href="../css/listview.css" type="text/css"/>-->
+        <!--        <script data-main="../js/ojlistviewVM/ojlistviewMain" src="../js/libs/require/require.js"></script>-->
+
+    </head>
+    <body>
+        <div style="float:left">
+                    <fieldset style="border:1px #b0b0b0 solid;padding:10px">
+                        <legend style="border:1px #b0b0b0 solid;margin-left: 1em;padding:0.2em 0.8em">Drag source/Drop Target</legend>
+
+                        <table id="table2" summary="Employee List 1" aria-label="Employee Table 1"
+                               data-bind="ojComponent: {component: 'ojTable', 
+                                        data: datasource, 
+                                        columns: [
+                                              {headerText: 'Name', field: 'name'},
+                                              {headerText: 'Role', field: 'job'},
+                                              {headerText: 'Department', field: 'department'},
+                                              {headerText: 'Salary', field: 'salary'}
+                                                 ],
+                                        selectionMode: {row: 'multiple'},
+                                        selection: selection,
+                                        dnd: {
+                                             drag: {rows: {dataTypes: ['application/ojtablerows+json'],
+                                                           dragEnd: handleDragEnd}},
+                                             drop: {rows: {dataTypes: ['application/ojlistviewitems+json'],
+                                                           drop: handleDrop}}
+                                        }
+                                       }">
+                        </table>
+                    </fieldset>
+                </div>
+
+                <div style="float:left;margin-left:20px">
+                    <fieldset style="border:1px #b0b0b0 solid;padding:10px">
+                        <legend style="border:1px #b0b0b0 solid;margin-left: 1em;padding:0.2em 0.8em">Drag source/Drop Target</legend>
+
+                        <ul id="listview2" aria-label="list with static data" 
+                            data-bind="ojComponent: {component: 'ojListView', 
+                                     data: datasource, 
+                                     item: {template: 'emp_template'},
+                                     selectionMode: 'multiple',
+                                     selection: selection,
+                                     rootAttributes: {style: 'display: inline-block;width:350px'},
+                                     dnd: {
+                                         drag: {items: {dataTypes: ['application/ojlistviewitems+json'],
+                                                        dragEnd: handleDragEnd}},
+                                         drop: {items: {dataTypes: ['application/ojtablerows+json'],
+                                                        drop: handleDrop}}
+                                     }
+                                   }">
+                        </ul>
+
+                        <script type="text/html" id="emp_template">
+                            <li data-bind="attr: {id: 'emp'+id}">
+                                <!-- <span class="avatar" style="background-image: url('../images/nBox/1.png')"></span>-->
+                               <!-- <span class="avatar" data-bind="style: {backgroundImage: 'url(../../common/images/nBox/'+id+'.png)'}"></span>-->
+                                <span class="avatar" data-bind="style: {backgroundImage: 'url('+url+')'}"></span>
+                                <div class="container">
+                                    <div>
+                                        <span class="name" data-bind="text: name"></span>
+                                    </div>
+                                    <div>
+                                        <span class="oj-text-xs oj-text-secondary-color" data-bind="text: job"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            </script>
+                        </fieldset>
+                    </div>
+        
+    </body>
+</html>

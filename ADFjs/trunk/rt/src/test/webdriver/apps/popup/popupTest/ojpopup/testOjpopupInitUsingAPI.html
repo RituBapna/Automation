@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>ojPopup create Using API </title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="../../../../common/css/libs/oj/v@jetversion@/alta/oj-alta-min.css" type="text/css"/>
+        <!--
+        <link rel="stylesheet" href="../css/ojpopup/testStyle.css" type="text/css"/>
+        -->
+        <script>
+          var currentTestApp = '../../popup/popupTest/js/ojpopup/ojPopupMain_API';
+        </script>
+        <script data-main="../../../../common/js/main" src="../../../../common/js/libs/require/require.js"></script> 
+    </head>
+    <body>
+        <div id="main-container">
+            <div class="oj-row" >
+                <div class="oj-sm-12 oj-md-6 oj-lg-6 oj-col">
+                    <h3>Set popup option values</h3>
+                    <div class="oj-form oj-md-odd-cols-4 oj-md-labels-inline" id="form-container">  
+                        <div class="oj-row"> 
+                            <div class="oj-col">
+                                <label for="ad">autoDismiss</label>
+                            </div>
+                            <div class="oj-col">
+                                <select id="ad" data-bind="ojComponent: {component: 'ojSelect',
+                                              options: autoDismissValueList, value: autoDismissValue, displayOptions: {messages: 'notewindow'}
+                                              }"></select>
+                            </div>
+                        </div>
+                        <div class="oj-row"> 
+                            <div class="oj-col">
+                                <label for="c">chrome</label>
+                            </div>
+                            <div class="oj-col">
+                                <select id="c" data-bind="ojComponent: {component: 'ojSelect',
+                                              options: chromeValueList, value: chromeValue, displayOptions: {messages: 'notewindow'}
+                                              }"></select>
+                            </div>
+                        </div>
+                        <div class="oj-row"> 
+                            <div class="oj-col">
+                                <label for="if">initialFocus</label>
+                            </div>
+                            <div class="oj-col">
+                                <select id="if" data-bind="ojComponent: {component: 'ojSelect',
+                                              options: initialFocusValueList, value: initialFocusValue, displayOptions: {messages: 'notewindow'}
+                                              }"></select>
+                            </div>
+                        </div>
+                        <div class="oj-row"> 
+                            <div class="oj-col">
+                                <label for="t">tail</label>
+                            </div>
+                            <div class="oj-col">
+                                <select id="t" data-bind="ojComponent: {component: 'ojSelect',
+                                              options: tailValueList, value: tailValue, displayOptions: {messages: 'notewindow'}
+                                              }"></select>
+                            </div>
+                        </div>
+                        <h3 class="oj-header-border">Position Attributes</h3>
+                        <div class="oj-row"> 
+                            <div class="oj-col">
+
+                                <label for="my">my</label>
+                            </div>
+                            <div class="oj-col">
+                                <input id="my" data-bind="ojComponent: {component: 'ojInputText',
+                                               value: myValue, displayOptions: {messages: 'notewindow'}
+                                              }"/>
+                            </div>
+                            <div class="oj-col">
+                                <label for="at">at</label>
+                            </div>
+                            <div class="oj-col">
+                                <input id="at" data-bind="ojComponent: {component: 'ojInputText',
+                                               value: atValue, displayOptions: {messages: 'notewindow'}
+                                              }"/>
+                            </div>
+                            <div class="oj-col">
+                                <label for="c">collision</label>
+                            </div>
+                            <div class="oj-col">
+                                <input id="c" data-bind="ojComponent: {component: 'ojInputText',
+                                               value: collisionValue, displayOptions: {messages: 'notewindow'}
+                                              }"/>
+                            </div>
+                        </div>
+
+                        <hr/>
+                        <div class="oj-row"> 
+                            <div class="oj-col">
+                                <input id="btn3" type="button" data-bind="ojComponent:{component:'ojButton', label:'Test Get Options  (put breakpoint)'}, click: function(data, event) { testGetOptions('popupdiv', 'popupspan', data, event) }" />
+                            </div>
+                        </div>
+                        <div class="oj-row"> 
+                            <div class="oj-col">   
+                                <input id="btn4" type="button" data-bind="ojComponent:{component:'ojButton', label:'Test Set Options  (put breakpoint)'}, click: function(data, event) { testSetOptions('popupdiv', 'popupspan', data, event) }" />
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+                <div class="oj-sm-12 oj-md-6 oj-lg-6 oj-col">
+                    <input id="btn1" type="button" data-bind="ojComponent:{component:'ojButton', label:'Toggle Popup (div)'}, click: function(data, event) { toggleDivAsPopup('popupdiv', data, event) }" />
+                    <input id="btn2" type="button" data-bind="ojComponent:{component:'ojButton', label:'Toggle Popup (span)'}, click: function(data, event) { toggleSpanAsPopup('popupspan', data, event) }" />
+                    <input id="btn3" type="button" data-bind="ojComponent:{component:'ojButton', label:'Toggle Popup with dataGrid'}, click: function(data, event) { toggleDataGridPopup('simplepopup4', data, event) }" />
+                    <input id="btn4" type="button" data-bind="ojComponent:{component:'ojButton', label:'Toggle Popup with Tree'}, click: function(data, event) { toggleTreePopup('simplepopup5', data, event) }" />
+
+
+
+                </div>
+            </div>
+            <div id="menu-container" >
+                <ul id="popupmenu" data-bind="ojComponent: {component: 'ojMenu', select: menuItemSelect}"  style="display:none" >
+                    <li id="popupmenuitem1"><a href="#">Menu Item1</a></li>
+                    <li id="popupmenuitem2"><a href="#">Menu Item2</a></li>
+
+                </ul>
+
+
+                <ul id="myMenu" style="display:none"
+                    data-bind="ojComponent: {component: 'ojMenu', select: menuItemSelect, beforeOpen: menuOpen}" >
+                    <li id="save">
+                        <a href="#"><span class="oj-menu-item-icon oj-fwk-icon oj-fwk-icon-help"></span>Save</a>
+                    </li>
+                    <li id="zoom">
+                        <a href="#">Zoom</a>
+                        <ul>
+                            <li id="zoomin">
+                                <a href="#"><span class="oj-menu-item-icon oj-fwk-icon oj-fwk-icon-arrow-n"></span>Zoom In</a>
+                            </li>
+                            <li id="zoomout">
+                                <a href="#"><span class="oj-menu-item-icon oj-fwk-icon oj-fwk-icon-magnifier"></span>Zoom Out</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li id="print" class="oj-disabled">
+                        <a href="#"><span class="oj-menu-item-icon oj-fwk-icon oj-fwk-icon-clock "></span>Print...</a>
+                    </li>
+                </ul>
+
+                <br><br>
+
+
+            </div>
+            <div id="popup-container">
+                <div style="display:none" contextmenu="popupmenu" id='popupdiv' >
+                    <div id="collapsiblePage1" data-bind="ojComponent: {component: 'ojCollapsible'}">
+                        <h3>
+                            <!-- <img src="../img/default.gif"/> -->
+                            Dialog Component
+                        </h3>
+                        <div>
+                            <p>I'm a standalone Collapsible with showDetail Style
+                            </p>
+                            <button id="invokeDialogWithMenuBtn" data-bind="ojComponent: {component: 'ojButton', label: 'Open Dialog (with user-defined header)'},
+          click: function(){$('#dialogWithUserDefinedHeader').ojDialog('open');}"></button>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div style="overflow:auto;width:600px;height:600px">
+                        <p>
+                        <div id="form-container">
+                            <div class="oj-form oj-md-labels-inline 
+                                 oj-md-odd-cols-4 oj-lg-odd-cols-2 oj-lg-even-cols-4">
+
+                                <h3 class="oj-header-border">Converter Hint as Placeholder, Title in Notewindow</h3>
+                                <div class="oj-row">
+
+                                    <div class="oj-col">
+                                        <label for="date10">inputDate with help in dialog 
+                                            <a data-bind="click: function(){if (!$('#simpleDialog3').ojDialog('isOpen')) $('#simpleDialog3').ojDialog('open');}">
+                                                <span role="img" title="click for popup dialog" class="oj-clickable-icon oj-fwk-icon oj-fwk-icon-help"></span>
+                                            </a>
+                                        </label>
+                                    </div>
+                                    <div class="oj-col">
+                                        <input id="date10" type="text"
+                                               title="enter a date in your preferred format and we will attempt to figure it out"
+                                               name="date10" data-bind="ojComponent:{component: 'ojInputDate', value: date, datePicker:{numberOfMonths:2}, displayOptions: {messages: 'notewindow'}}"/>
+                                        <button data-bind="ojComponent:{component: 'ojButton', label: 'update NumberOfMonths'}, click: updateNumberOfMonths"></button>
+                                    </div>
+                                    <div class="oj-col">
+                                        <label for="date11">inputDateTime</label>
+                                    </div>
+                                    <div class="oj-col">
+                                        <input id="date11" type="text"
+                                               title="enter a datetime in your preferred format and we will attempt to figure it out"
+                                               name="date11" data-bind="ojComponent:{component:'ojInputDateTime', value: date, displayOptions: {messages: 'notewindow'}}"/>
+                                    </div>
+                                </div>
+                                <div class="oj-row">
+
+                                    <div class="oj-col">
+                                        <label for="inline">Inline inputDateTime 
+
+                                        </label>
+                                    </div>
+                                    <div class="oj-col">
+                                        <div id="inline" 
+                                             data-bind="ojComponent: {component: 'ojInputDateTime', value: date, displayOptions: {messages: 'notewindow'}}"></div>
+                                    </div>
+                                    <div class="oj-col">
+                                        <label for="time">inputTime</label>
+                                    </div>
+                                    <div class="oj-col">
+                                        <input id="time"
+                                               data-bind="ojComponent: {component: 'ojInputTime', value: date, displayOptions: {messages: 'notewindow'}}"/>
+                                    </div>
+                                </div>
+                                <div class="oj-row">
+                                    <div class="oj-col">
+                                        <label for="date12">inputText with datetime converter</label>
+                                    </div>
+                                    <div class="oj-col">
+                                        <input id="date12" name="date12"
+                                               title="enter the time in hours, minutes"
+                                               data-bind="ojComponent: {component: 'ojInputText', value: date,
+                 converter: {type:'datetime', options: {
+                   hour: 'numeric', minute: 'numeric'}}, displayOptions: {messages: 'notewindow'}}"/>
+                                    </div>
+                                    <div class="oj-col">
+                                        <label for="currency13">inputNumber with currency converter</label>
+                                    </div>
+                                    <div class="oj-col">
+
+                                        <input id="currency13" name="currency13" title="enter an amount with or without grouping separator"
+                                               data-bind="ojComponent: {component: 'ojInputNumber', value: decimal,
+                   help: {definition: 'custom help text'},
+                   converter: {type: 'number', options: {
+                     style: 'currency', currency: 'USD',
+                     currencyDisplay: 'symbol', pattern: '¤ ##,##0.00'}}, displayOptions: {messages: 'notewindow'}}"/>
+                                    </div>
+
+                                </div>
+
+
+                                <h3 class="oj-header-border">Converter Hint, Titie in Notewindow with Custom Placeholder</h3>
+                                <div class="oj-row">
+                                    <div class="oj-col">
+                                        <label for="date21">inputDate</label>
+                                    </div>
+                                    <div class="oj-col">
+                                        <input id="date21" type="text"
+                                               title="enter a date in your preferred format and we will attempt to figure it out"
+                                               placeholder="custom placeholder text"
+                                               name="date21" data-bind="ojComponent:{component:'ojInputDate', value: date, displayOptions: {messages: 'notewindow'}}"/>
+                                    </div>
+                                    <div class="oj-col">
+                                        <label for="date22">inputText with datetime converter</label>
+                                    </div>
+                                    <div class="oj-col">
+                                        <input id="date22" name="date22"
+                                               title="enter the time in hours, minutes"
+                                               placeholder="custom placeholder text"
+                                               data-bind="ojComponent: {component: 'ojInputText', value: date,
+                 converter: {type:'datetime', options: {
+                   hour: 'numeric', minute: 'numeric'}}, displayOptions: {messages: 'notewindow'}}"/>
+                                    </div>
+                                </div> 
+
+
+                                <h3 class="oj-header-border">Validator Hints, Title in Notewindow</h3>
+                                <div class="oj-row">
+                                    <div class="oj-col">
+                                        <label for="date31">inputDate</label>
+                                    </div>
+                                    <div class="oj-col">
+                                        <input id="date31" type="text" size="30" required
+                                               title="enter a date in your preferred format and we will attempt to figure it out"
+                                               placeholder=""
+                                               name="date31" data-bind="ojComponent:{component:'ojInputDate',
+                value: birthdate, converter: longDateConverter,
+                validators: [{type: 'datetimeRange', options: {
+                    min: oj.IntlConverterUtils.dateToLocalIso(new Date(1930, 00, 01)),
+                    max: oj.IntlConverterUtils.dateToLocalIso(new Date(1995, 11,31)),
+                    hint: {hintInRange: 'validator hint: datetimeRange 18 - 85 years'},
+                    message: {messageNotInRange: 'The value \'{value}\' is not in the expected range.'}}},
+                  {type: 'required', options : {
+                    hint: 'validator hint: required',
+                    messageSummary: '\'{label}\' Required',
+                    messageDetail: 'A value is required for this field'}}], displayOptions: {messages: 'notewindow'}}"/>
+                                    </div>
+                                </div>
+
+                                <h3 class="oj-header-border">All Hints and Title in Notewindow with Custom Placeholder</h3>
+                                <div class="oj-row">
+                                    <div class="oj-col">
+                                        <label for="date41">inputDate</label>
+                                    </div>
+                                    <div class="oj-col">
+                                        <input id="date41" type="text" size="30" required
+                                               title="enter a date in your preferred format and we will attempt to figure it out"
+                                               placeholder="custom placeholder text"
+                                               name="date41" data-bind="ojComponent:{component:'ojInputDate',
+                    value: birthdate, converter: longDateConverter,
+                    validators: [{type: 'datetimeRange', options: {
+                        min: oj.IntlConverterUtils.dateToLocalIso(new Date(1930, 00, 01)),
+                        max: oj.IntlConverterUtils.dateToLocalIso(new Date(1995, 11,31)),
+                        hint: {hintInRange: 'validator hint: datetimeRange 18 - 85 years'},
+                        message: {messageNotInRange: 'The value \'{value}\' is not in the expected range.'}}},
+                      {type: 'required', options : {
+                        hint: 'validator hint: required',
+                        messageSummary: '\'{label}\' Required',
+                        messageDetail: 'A value is required for this field'}}], displayOptions: {messages: 'notewindow'}}"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="accordionPage" style="max-width: 100%;" data-bind="ojComponent: {component: 'ojAccordion'}">
+                            <div id="c1" data-bind="ojComponent: {component: 'ojCollapsible', expanded: false}">
+                                <span>
+                                    <!-- <img src="../img/default.gif"/> -->
+                                    <span>Tabs with ojTable</span>
+                                </span>
+                                <div>
+                                    <div id="tabs" data-bind="ojComponent:{component: 'ojTabs', disabled: ['default-tabs-3']}" >
+                                        <div id="default-tabs-1">
+                                            <span>Basic Tab 1</span>
+                                            <div>
+                                                <table id="table" data-bind="ojComponent: {component: 'ojTable', data: pagingDatasource,  columns:
+          [{headerText: 'Very Long Department Id', field: 'DepartmentId'},
+          {headerText: 'Very Long Department Name', field: 'DepartmentName'},
+          {headerText: 'Very long Location Id', field: 'LocationId'},
+          {headerText: 'Very long Manager Id', field: 'ManagerId'}],
+		  rootAttributes: {style: 'height: auto;width: auto' }
+
+}">
+                                                </table>
+                                                <div class="oj-table-panel-bottom">
+                                                    <div id="paging" data-bind="ojComponent: {component: 'ojPagingControl', data: pagingDatasource, pageSize: 15}">
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                        <div id="default-tabs-2">
+                                            <span>Basic Tab 2</span>
+                                            <p>Basic Tab 2 Content</p>
+                                        </div>
+                                        <div id="default-tabs-3">
+                                            <span>Basic Tab 3</span>
+                                            <p>Basic Tab 3 Content</p>
+                                        </div>
+                                        <div id="default-tabs-4">
+                                            <span>Disabled Tab</span>
+                                            <p>Disabled Tab Content</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="c2" >
+                                <span>Table</span>
+                                <div>
+                                    <table id="table" contextmenu="myMenu" data-bind="ojComponent: {component: 'ojTable', data: pagingDatasource,  columns:
+          [{headerText: 'Very Long Department Id', field: 'DepartmentId'},
+          {headerText: 'Very Long Department Name', field: 'DepartmentName'},
+          {headerText: 'Very long Location Id', field: 'LocationId'},
+          {headerText: 'Very long Manager Id', field: 'ManagerId'}],
+		  rootAttributes: {style: 'height: auto;width: auto' }
+
+}">
+                                    </table>
+                                    <div class="oj-table-panel-bottom">
+                                        <div id="paging" data-bind="ojComponent: {component: 'ojPagingControl', data: pagingDatasource, pageSize: 15}">
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div>
+                            <div id="c3" >
+                                <span>Input Components</span>
+                                <div>
+                                    <div id="radioSetId"  
+                                         data-bind="ojComponent: {component: 'ojRadioset',value: currentRadioSelection, required: true}" >
+                                        <span class="oj-choice-row">
+                                            <input id="opt1" type="radio" name="crust_1" value="crust11"/>
+                                            <label for="opt1">Deep Dish</label>
+                                        </span>
+                                        <span class="oj-choice-row">
+                                            <input id="opt2" type="radio" name="crust_1" value="crust21" checked="checked"/>
+                                            <label for="opt2">Thick</label>
+                                        </span>
+                                        <span class="oj-choice-row">
+                                            <input id="opt3" type="radio" name="crust_1" value="crust31"/>
+                                            <label for="opt3">Thin</label>
+                                        </span>
+
+                                    </div>
+                                    <br/>
+                                    <span>Current radio button value is: </span>
+                                    <span id="curr-value" data-bind="text: currentRadioSelection"></span>
+                                    <br/>
+                                    <hr>
+                                    <label for="groupSelect">Using optgroup  </label>
+                                    <select id="groupSelect" data-bind="ojComponent: {component: 'ojSelect',
+                                                  rootAttributes: {style:'max-width:20em'}, options: triLevelGroupData, value: selectval, required: true, displayOptions: {messages: 'notewindow'}}">
+
+                                    </select>
+                                    <hr>
+                                    <label for="combobox">Single-select Combobox</label>
+                                    <input id="combobox"  data-bind="ojComponent: {component: 'ojCombobox', options: groupData, value: val,
+                                                    rootAttributes: {style:'max-width:20em'}, required: true, displayOptions: {messages: 'notewindow'}}"/>
+
+                                    <div>
+                                        <br/>
+                                        <label for="curr-value1" class="oj-label">Curr value is: </label>
+                                        <span id="curr-value1" data-bind="text: ko.toJSON(val)"></span>
+                                    </div>
+                                    <hr>
+                                    <label for="dateTime">Default</label>
+                                    <input id="dateTime" data-bind="ojComponent: {component: 'ojInputDateTime', value: dateval, datePicker: {
+                                  footerLayout: 'today',
+                                  numberOfMonths: 3
+                                }, required: true, displayOptions: {messages: 'notewindow'}}">
+
+                                    <div>
+                                        <br/>
+                                        <label for="curr-datevalue" class="oj-label">Curr date value is: </label>
+                                        <span id="curr-datevalue" data-bind="text: dateval"></span>
+                                    </div>
+                                    <hr>
+                                    <label for="date22">inputText with datetime converter</label>
+                                    <input id="date22" name="date22"
+                                           title="enter the time in hours, minutes"
+                                           placeholder="custom placeholder text"
+                                           data-bind="ojComponent: {component: 'ojInputText', value: dateval, 
+                                            converter: {type:'datetime', options: {
+                                            hour: 'numeric', minute: 'numeric'}}, displayOptions: {messages: 'notewindow'}}"/>
+                                    <br/>
+                                    <hr>
+                                    <label for="currency13">inputNumber with currency converter</label>
+                                    <input id="currency13" name="currency13" title="enter an amount with or without grouping separator"
+                                           data-bind="ojComponent: {component: 'ojInputNumber', value: decimal,
+                                            help: {definition: 'custom help text'},
+                                            converter: {type: 'number', options: {
+                                            style: 'currency', currency: 'USD',
+                                            currencyDisplay: 'symbol', pattern: '¤ ##,##0.00'}}, displayOptions: {messages: 'notewindow'}}"/>
+                                    <hr>
+                                    <label for="text-area">ojTextArea component</label>
+                                    <textarea id="text-area"
+                                              data-bind="ojComponent: {component: 'ojTextArea', value: textareaval, required: true, displayOptions: {messages: 'notewindow'}}"></textarea>
+                                    <br/>
+
+                                    <label class="oj-label" for="curr-tavalue">Curr component value is: </label>
+                                    <span id="curr-tavalue" data-bind="text: textareaval"></span>
+                                    <hr>
+                                    <label for="password">ojInputPassword component</label>
+                                    <input type="password" id="password"
+                                           data-bind="ojComponent: {component: 'ojInputPassword', change: sayHeyo, value: pwdval, displayOptions: {messages: 'notewindow'}}">
+
+                                    <br/>
+
+                                    <label for="curr-pwdvalue">Curr password value is [uh never do this, but an example]: </label>
+                                    <span id="curr-pwdvalue" data-bind="text: pwdval"></span>
+                                    <hr>
+                                </div>
+                            </div>
+                            <div id="c4">
+                                <span>Menus</span>
+                                <div>
+                                    <h3>A JET component with a context menu:</h3>
+
+                                    <!-- Use the HTML5 contextmenu attribute for JET components -->
+                                    <button id= "myButton" contextmenu="myMenu" 
+                                            data-bind="ojComponent: { component: 'ojButton', 
+                                      label: 'Right-click me. Shift-F10 me.' }">
+                                    </button>
+
+                                    <br><br>
+
+                                    <h3>An ordinary HTML element with a context menu:</h3>
+
+                                    <!-- Use the ojContextMenu binding for elements that aren't JET components -->
+                                    <a href="#" id="myAnchor" contextmenu="myMenu" 
+                                       data-bind="ojContextMenu: {}">Right-click me. Shift-F10 me.</a>
+                                    <br><br>
+                                    <h3>Button Menu</h3>
+                                    <button id="menuButton"
+                                            data-bind="ojComponent: {component: 'ojButton', label: 'menu button', 
+                                   menu: '#myMenu'}">
+                                    </button>
+                                    <h3>Results:</h3>
+
+                                    <p>Last selected menu item:
+                                        <span id="results" class="italic" data-bind='text: selectedMenuItem'></span>
+                                    </p>
+                                    <p>Last menu launcher:
+                                        <span id="launcher" class="italic" data-bind='text: menuLauncher'></span>
+                                    </p>
+
+                                </div>
+
+                            </div>
+                            <div id="c5">
+                                <span>Train</span>
+                                <div>
+                                    <div id="train" 
+                                         data-bind="ojComponent:{
+		component: 'ojTrain', 
+		selected: currentStepValue, 
+		steps: stepArray}"></div>
+                                    <br/>
+
+                                </div>
+                            </div>
+                        </div>
+                        <hr/>
+                        <button data-bind="ojComponent: {component: 'ojButton', label: 'Open Dialog with table'},
+                                click: function(){ if (!$('#simpleDialog2').ojDialog('isOpen')) $('#simpleDialog2').ojDialog('open');}"></button>
+                        <button data-bind="ojComponent: {component: 'ojButton', label: 'Open Dialog 3'},
+                                click: function(){ if (!$('#simpleDialog3').ojDialog('isOpen')) $('#simpleDialog3').ojDialog('open');}"></button>
+                    </div>
+                </div>
+
+                <!--
+                -->
+                <div id="simpleDialog2" 
+                     data-bind="ojComponent:{component: 'ojDialog', title:'Simple Dialog 2 (Not This One)',  initialVisibility: 'show' , 
+              modality: 'modeless', resizeBehavior: 'resizable',  rootAttributes: {style: 'width: auto; height: auto' }, beforeOpen:beforeManagePopupOpen}">
+                    <div class="oj-dialog-header oj-helper-clearfix" aria-labelledby="dialogTitleId">
+                        <span id="dialogTitleId" class="oj-dialog-title"> Dialog With Table </span>
+                    </div>
+                    <div class="oj-dialog-body">
+
+                        <!-- ko if: dialogVisible -->
+                        <table id="table" data-bind="ojComponent: {component: 'ojTable', data: pagingDatasource,  columns:
+          [{headerText: 'Very Long Department Id', field: 'DepartmentId'},
+          {headerText: 'Very Long Department Name', field: 'DepartmentName'},
+          {headerText: 'Very long Location Id', field: 'LocationId'},
+          {headerText: 'Very long Manager Id', field: 'ManagerId'}],
+		  rootAttributes: {style: 'height: auto;width: auto' }
+
+}">
+                        </table>
+                        <div class="oj-table-panel-bottom">
+                            <div id="paging" data-bind="ojComponent: {component: 'ojPagingControl', data: pagingDatasource, pageSize: 15}">
+                            </div>
+                        </div>
+                        <!-- /ko -->
+
+                    </div>
+
+                    <div class="oj-dialog-footer oj-dialog-footer-separator" >
+
+                        <button data-bind="ojComponent: {component: 'ojButton', label: 'Cancel'}, 
+                                            click: function(){$('#simpleDialog2').ojDialog('close');}"> </button>
+                    </div>
+                </div>
+
+                <span   id='popupspan' data-bind="ojComponent:{component:'ojPopup',initialFocus: initialFocus,  autoDismiss: autoDismiss, chrome:chrome, tail: tail, position: positionValue, create: popupCreateHandler}">
+
+                    <div id="collapsiblePage2" data-bind="ojComponent: {component: 'ojCollapsible'}">
+                        <h3>
+                            <!-- <img src="../img/default.gif"/> -->
+                            Header 1 (with dialog)
+                        </h3>
+                        <div>
+                            <p>I'm a standalone Collapsible with showDetail Style</p>
+                            <button data-bind="ojComponent: {component: 'ojButton', label: 'Open Dialog (with user-defined header)'},
+          click: function(){$('#dialogWithUserDefinedHeader').ojDialog('open');}"></button>
+                        </div>
+                    </div>
+                    <div id="accordionPage1" style="max-width: 600px;" data-bind="ojComponent: {component: 'ojAccordion'}">
+                        <div id="c11">
+                            <span>
+                                <!-- <img src="../img/default.gif"/> -->
+                                <span>Header 1 (with Tabs)</span>
+                            </span>
+                            <div>
+                                <div id="tabs1" data-bind="ojComponent:{component: 'ojTabs', disabled: [3]}" style="max-width:600px;">
+                                    <div id="default-tabs-11">
+                                        <span>Basic Tab 1</span>
+                                        <p>Basic Tab 1 Content</p>
+                                    </div>
+                                    <div id="default-tabs-21">
+                                        <span>Basic Tab 2</span>
+                                        <p>Basic Tab 2 Content</p>
+                                    </div>
+                                    <div id="default-tabs-31">
+                                        <span>Basic Tab 3</span>
+                                        <p>Basic Tab 3 Content</p>
+                                    </div>
+                                    <div id="default-tabs-41">
+                                        <span>Disabled Tab</span>
+                                        <p>Disabled Tab Content</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="c21" class="oj-disabled">
+                            <span>Disabled Header</span>
+                            <p>I'm disabled.</p>
+                        </div>
+                        <div id="c31" data-bind="ojComponent: {component: 'ojCollapsible', collapsed:false}">
+                            <span>Header 3</span>
+                            <div>
+                                <div id="radioSetId1"
+                                     data-bind="ojComponent: {component: 'ojRadioset',value: currentRadioSelection1, displayOptions: {messages: 'notewindow'}}" >
+                                    <span class="oj-choice-row">
+                                        <input id="opt11" type="radio" name="crust" value="crust1"/>
+                                        <label for="opt11">Deep Dish</label>
+                                    </span>
+                                    <span class="oj-choice-row">
+                                        <input id="opt21" type="radio" name="crust" value="crust2" checked="checked"/>
+                                        <label for="opt21">Thick</label>
+                                    </span>
+                                    <span class="oj-choice-row">
+                                        <input id="opt31" type="radio" name="crust" value="crust3"/>
+                                        <label for="opt31">Thin</label>
+                                    </span>
+
+                                </div>
+                                <br/>
+                                <span>Current radio button value is: </span>
+                                <span id="curr-value1" data-bind="text: currentRadioSelection1"></span>
+                                <br/>
+                                <hr>
+                                <label for="groupSelect1">Using optgroup  </label>
+                                <select id="groupSelect1" data-bind="ojComponent: {component: 'ojSelect',
+                                                  rootAttributes: {style:'max-width:20em'}, displayOptions: {messages: 'notewindow'}}">
+                                    <optgroup label="Alaskan/Hawaiian Time Zone">
+                                        <option value="AK">Alaska</option>
+                                        <option value="HI" selected="selected">Hawaii</option>
+                                    </optgroup>
+                                    <optgroup label="Pacific Time Zone">
+                                        <option value="CA">California</option>
+                                        <option value="NV" disabled>Nevada</option>
+                                        <option value="OR">Oregon</option>
+                                        <option value="WA">Washington</option>
+                                    </optgroup>
+                                    <optgroup label="Mountain Time Zone">
+                                        <option value="AZ">Arizona</option>
+                                        <option value="CO">Colorado</option>
+                                        <option value="ID">Idaho</option>
+                                        <option value="MT">Montana</option>
+                                        <option value="NE">Nebraska</option>
+                                        <option value="NM">New Mexico</option>
+                                        <option value="ND">North Dakota</option>
+                                        <option value="UT">Utah</option>
+                                        <option value="WY">Wyoming</option>
+                                    </optgroup>
+                                </select>
+                                <label for="combobox1">Single-select Combobox</label>
+                                <input id="combobox1" list="browsers" data-bind="ojComponent: {component: 'ojCombobox', value: val,
+                                                    rootAttributes: {style:'max-width:20em'}, displayOptions: {messages: 'notewindow'}}"/>
+                                <datalist id="browsers">
+                                    <option value="Internet Explorer">Internet Explorer</option>
+                                    <option value="Firefox">Firefox</option>
+                                    <option value="Chrome">Chrome</option>
+                                    <option value="Opera">Opera</option>
+                                    <option value="Safari">Safari</option>
+                                </datalist>
+                                <div>
+                                    <br/>
+                                    <label for="curr-value1" class="oj-label">Curr value is: </label>
+                                    <span id="curr-value1" data-bind="text: ko.toJSON(val)"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="c41">
+                            <span>Header 4 (with popup)</span>
+                            <div id="nestedAccordion" data-bind="ojComponent: {component: 'ojAccordion'}" >
+                                <div id="ic11">
+                                    <span>
+                                        <!-- <img src="../img/leaf.png" /> -->
+                                        Inner Header 1
+                                    </span>
+                                    <div>
+                                        <p class="oj-p">I'm collapsible inside an inner accordion.</p>
+                                        <input id="btn2111" type="button" data-bind="ojComponent:{component:'ojButton', label:'Toggle Popup (span)'}, click: function(data, event) { toggleSpanAsPopup('popupspan', data, event) }" />
+                                    </div>
+                                </div>
+                                <div id="ic21" data-bind="ojComponent: {component: 'ojCollapsible'}">
+                                    <span>Inner Header 2</span>
+                                    <p class="oj-p">Another collapsible inside an inner accordion.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="popupbtn1"  data-bind="ojComponent:{component:'ojButton', label:'Menu Buttone', menu: '#myMenu'}" ></button>
+
+
+                    <hr/>
+
+
+                </span>
+            </div>
+            <div id="dialog-container">
+
+                <div style="display:none" id="dialogWithUserDefinedHeader" title="" data-bind="ojComponent:{component: 'ojDialog', initialVisibility: 'hide', modality: 'modeless'}">
+
+                    <div class="oj-dialog-header oj-helper-clearfix" aria-labelledby="dialogTitleId">
+                        <span id="dialogTitleId" class="oj-dialog-title"> User-defined Dialog Header </span>
+                    </div>
+
+                    <div class="oj-dialog-body">
+
+                        <p> This dialog contains a user-defined header.</p>
+                        <button id="dialogbtn1"  data-bind="ojComponent:{component:'ojButton', label:'Menu Buttone', menu:  '#myMenu'}" ></button>
+                        <br/>
+                        <h3>Results:</h3>
+
+                        <p>Last selected menu item:
+                            <span id="results_d" class="italic" data-bind='text: selectedMenuItem'></span>
+                        </p>
+                        <p>Last menu launcher:
+                            <span id="launcher_d" class="italic" data-bind='text: menuLauncher'></span>
+                        </p>
+                        <hr/> 
+                        <button id="openDlgWithTable1" data-bind="ojComponent: {component: 'ojButton', label: 'Open Dialog with table'},
+                                click: function(){ if (!$('#simpleDialog2').ojDialog('isOpen')) $('#simpleDialog2').ojDialog('open');}"></button>
+                        <hr/>   
+                        <label for="text-area1">ojTextArea component</label>
+                        <textarea id="text-area1"
+                                  data-bind="ojComponent: {component: 'ojTextArea', value: textareaval, required: true, displayOptions: {messages: 'notewindow'}}"></textarea>
+                        <br/>
+                    </div>
+                </div>
+            </div>
+            <div  id="simpleDialog3" style="display:none" data-bind="ojComponent:{component: 'ojDialog', initialVisibility: 'hide', title: 'Dialog with button to invoke a popup'}">
+
+                <div >
+                    <input id="openpopup" type="button" data-bind="ojComponent:{component:'ojButton', label:'Toggle Popup (span)'}, click: function(data, event) { toggleDivAsPopup('popupspan', data, event) }" />
+
+
+                </div>
+
+            </div>
+            <div id="simplepopup4" 
+                 data-bind="ojComponent:{component: 'ojPopup', rootAttributes: {style: 'width:550px;height:550px'}}">
+
+                <div>
+
+                    <div id="datagrid" 
+                         style="width:500px;height:500px" 
+                         aria-label="Data Grid with Pie Chart Demo"
+                         data-bind="ojComponent:
+    {
+        component:'ojDataGrid', 
+        data: datagriddataSource, 
+        selectionMode:{cell:'single'}, 
+        header:
+        {
+            row: 
+            {
+                style: 'height:200px'
+            },
+            column:
+            {
+                style: 'width:200px'
+            }   
+        },
+        cell:
+        {
+            template:'pie_template'
+        }
+   }">
+                    </div>
+
+                    <script type="text/html" id="pie_template">
+                        <div data-bind="
+        ojComponent: {
+            component: 'ojChart', 
+            type: 'pie',  
+            series: [{name: 'Male', items: [male]}, 
+                    {name: 'Female', items: [female]}],
+            styleDefaults: {
+                sliceLabelPosition: 'inside'
+            },
+            legend: {
+                position: 'bottom'
+            }
+        }" 
+                             style="width:100%;height:100%">
+                        </div>
+                        </script>
+
+                    </div>
+
+
+                </div>
+
+                <div id="simplepopup5" 
+                     data-bind="ojComponent:{component: 'ojPopup'}">
+
+                    <div>
+
+                        <div id="tree" style="width: auto;height: auto;"
+                             data-bind="ojComponent:
+                 {
+                   component: 'ojTree', contextMenu: '#myMenu',
+                   data:      new oj.JsonTreeDataSource(jd)
+                 }" >
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </body>
+    </html>
+

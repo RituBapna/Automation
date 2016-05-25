@@ -1,0 +1,14 @@
+[
+   { "title": "Today",
+     "attr": {"title": "Today","id": "today"}
+   },
+   { "title": "Yesterday",
+     "attr": {"title": "Yesterday","id": "yesterday"}
+   },
+   { "title": "2 Days Back",
+     "attr": {"title": "2 Days Back","id": "2daysback"}
+   },
+   { "title": "Archive",
+     "attr": {"title": "Archive","id": "archive"}
+   }
+]

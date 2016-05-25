@@ -1,0 +1,24 @@
+.container {
+    display: inline-block;
+    margin: 0 10px;
+    vertical-align: top;
+}
+.avatar {
+    border-radius: 50%;
+    background-size: 35px 35px;
+    width: 35px;
+    height: 35px;
+    display: inline-block;
+}
+.name {
+    font-weight: bold;
+}
+.demo-contacts-container-portrait
+{
+  height: 510px;
+}
+
+.demo-contacts-container-landscape
+{
+  height: 260px;
+}

@@ -1,0 +1,12 @@
+[
+  { "title": "Oracle",
+    "attr": {"title": "Oracle","id": "oracle"}
+  },
+  { "title": "IBM",
+    "attr": {"title": "IBM","id": "ibm"}
+  },
+  { "title": "Microsoft",
+    "attr": {"title": "Microsoft","id": "ms"},
+    "children" : []
+  }
+]

@@ -1,0 +1,27 @@
+<div id="form-container" class="oj-form oj-md-odd-cols-4 oj-md-labels-inline">  
+   <div style="display:none" id="exitDialog" title="Content has been modified" 
+        data-bind="ojComponent:{component: 'ojDialog', initialVisibility: 'hide'}">
+      <div class="oj-dialog-body">
+         Are you sure you want to exit without saving?
+      </div>
+      <div class="oj-dialog-footer">
+         <button id="dlgOkBtn" data-bind="ojComponent: {component: 'ojButton', label: 'OK'}"> </button>
+      </div>
+   </div>
+   <h2 id="currentPage" class="oj-header-border" data-bind="text: label"/>
+   <label for="text">Content</label>
+   <!-- Couldn't use ojTextArea because the auto update of "textInput" option doesn't work for it -->
+   <!-- ojComponent: {component: 'ojTextArea', rootAttributes: {style:'max-width:50%'}, value: data} -->
+   <textarea id="text" rows="4" cols="60" data-bind="textInput: data"> </textarea>
+</div>
+<!-- Display the 'Ok' button that will trigger the go in show mode-->
+<div>
+   <button id= "ok" data-bind="click: ok, 
+           ojComponent: { component: 'ojButton', label: 'Ok' }">
+   </button>
+   <button id= "cancel" data-bind="click: cancel, 
+           ojComponent: { component: 'ojButton', label: 'Cancel' }">
+   </button>
+</div>   
+
+

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>Tree Layout</title>
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css"/>
+
+	   		<!-- following script tag is needed for automated test -->
+	   		<!-- specify the name of the application specific java file as the value of 'currentTestApp' -->
+	   		<script>
+	   			var currentTestApp = '../../tree/treeLoad/js/treeLayout';
+	   		</script>
+	   		 <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>
+
+
+    </head>
+    <body>
+        <div id="treeLayoutContainer">
+            <div id="menuCollapsible">
+                <ul id="myMenu22" data-bind="ojComponent: {component: 'ojMenu', select: menu22ItemSelect}"
+                    style="display:none">
+                    <li id="before">
+                        <a href="#">Before</a>
+                    </li>
+                    <li id="after">
+                        <a href="#">After</a>
+                    </li>
+                    <li id="inside">
+                        <a href="#">Inside</a>
+                    </li>
+                    <li id="first">
+                        <a href="#">First</a>
+                    </li>
+                    <li id="last">
+                        <a href="#">Last</a>
+                    </li>
+                </ul>
+                <!-- To handle menu item selection, use a select listener as shown, not a click listener. -->
+                <ul id="myMenu11" data-bind="ojComponent: {component: 'ojMenu',  select: menu11ItemSelect}"
+                    style="display:none">
+                    <li id="addafter">
+                        <a href="#">Add After</a>
+                    </li>
+                    <li id="delete">
+                        <a href="#">delete</a>
+                    </li>
+                    <li id="copy">
+                        <a href="#">copy</a>
+                    </li>
+                    <li id="paste">
+                        <a href="#">Paste before</a>
+                    </li>
+                    <li id="movetolast">
+                        <a href="#">move to last</a>
+                    </li>
+                    <li id="m2">
+                        <a href="#">Menu2 - SubMenu</a>
+                        <ul>
+                            <li id="m2_1">
+                                <a href="#">Menu 2 submenu 1</a>
+                            </li>
+                            <li id="m2_2">
+                                <a href="#">Menu 2 submenu 2</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+
+             <button id="collapseOrExpandCollapsible" type="button"
+                    data-bind="click: collapseOrExpandCollapsible,  ojComponent:{component:'ojButton', label:'CollapseOrExpand Collapsible'}"></button>
+
+            <button id="addContextmenu" type="button"
+                    data-bind="click: addContextmenu, ojComponent:{component:'ojButton',label:'Add ContextMenu'}"></button>
+
+            <button id="removeContextmenu" type="button"
+                    data-bind="click: removeContextmenu, ojComponent:{component:'ojButton',label:'Remove ContextMenu'}"></button>
+
+
+
+
+            <div class="oj-row">
+                <div class="oj-xl-6 oj-lg-6 oj-md-12 oj-col">
+                    <div id="resultsLayoutContainer"
+                         style="float:left;width: 500px; height: 200px;
+                         border:1px solid black;color:blue;font-size:14px;
+                         text-align:center;vertical-align:middle;line-height:40px;"></div>
+                    <br/>
+                </div>
+                <div class="oj-xl-6 oj-lg-6 oj-md-12 oj-col">
+                    <table id="optionsCollapsible">
+                        <thead style="font-size:1.5em">
+                            <tr><td>OjCollapsible Options</td>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="with: vmLayoutTree">
+                            <tr><td>clickable row</td>
+                                <td>
+                                <select id="clickableOptionId" class="select" data-bind='options: expandAreaOptions, value: expandAreaValue'> </select>
+                                </td>
+                            </tr>
+                            <tr><td>collapsed</td><td>
+                                <select id="collapsedOptionId" class="select" data-bind="options: expandedOptions, value: expandedValue"></select></td><td></td></tr>
+                            <tr><td>Disabled</td><td>
+                                <select data-bind="options: disabledOptions, value: disabledValue"></select></td><td></td></tr>
+                            <tr><td>Event Value</td><td>
+                                <select data-bind="options: expandOnOptions, value: expandOnValue"></select></td><td></td></tr>
+                        </tbody>
+                    </table>
+                    </div>
+            </div>
+            <div class="oj-row">
+             <div class="oj-xl-6 oj-lg-6 oj-md-12 oj-col">
+                       <div id="ojCollapsibleWithBox" class="oj-box"
+                         data-bind="ojComponent:{component: 'ojCollapsible',
+                         expandArea: expandAreaValue, expanded: expandedValue,
+                         disabled: disabledValue, expandOn: expandOnValue}">
+                        <h3>
+                            <span>Tree with Expand OjCollapsible with class OjBox</span>
+                        </h3>
+                        <div id="treeBoxLoadDatasource" data-bind="ojComponent: {
+                             component: 'ojTree', data:layoutData }"
+                             style="float:left;width: 170px;height: 650px;"></div>
+                        </div>
+
+
+                </div>
+                <div class="oj-xl-6 oj-lg-6 oj-md-12 oj-col">
+                    <div id="outerNestedCollapsibleWithBox" class="oj-box"
+                    data-bind="ojComponent: {component: 'ojCollapsible',
+                    collapsed:false}">
+                        <h3>Tree under Nested Collapsible Box</h3>
+                        <div id="ojCollapsibleNestedBox" class="oj-box"
+                             data-bind="ojComponent: {component: 'ojCollapsible'}">
+                            <h3>
+                                <span>Tree with Nested OjCollapsible with class OjBox</span>
+                                Right click on Tree to invoke context Menu
+                            </h3>
+
+                             <div id="treeNestedBoxLoadDatasource" contextmenu="myMenu11" data-bind="ojComponent: {component: 'ojTree',
+                             data:layoutData}"
+                             style="float:left;width: 170px;height: 650px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="oj-row">
+                <div class="oj-xl-6 oj-lg-6 oj-md-12 oj-col">
+                    <div id="ojCollapsibleOuter" data-bind="ojComponent:{component: 'ojCollapsible'}">
+                        <h3>
+                            <span>OjCollapsible</span>
+                        </h3>
+                        <div id="treeLoadDatasource" data-bind="ojComponent: {component: 'ojTree', data:layoutData}"
+                             style="float:left;width: 170px;height: 650px;"></div>
+                    </div>
+                </div>
+                <div class="oj-xl-6 oj-lg-6 oj-md-12 oj-col">
+                    <div id="outerCollapsible" data-bind="ojComponent: {component: 'ojCollapsible', collapsed:false}">
+                        <h3>Nested Collapsible</h3>
+                        <div id="ojCollapsibleNested" data-bind="ojComponent:{component: 'ojCollapsible'}">
+                            <h3>
+                                <span>Tree with Nested OjCollapsible</span>
+                            </h3>
+                            <div id="treeNestedLoadDatasourceAcc"  data-bind="ojComponent: {component: 'ojTree',
+                            data:layoutData}"
+                             style="float:left;width: 170px;height: 650px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </body>
+</html>

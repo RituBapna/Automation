@@ -1,0 +1,53 @@
+<div class="demo-appheader">
+    <div class="oj-row demo-appheader-lite">
+        <div class="oj-col">
+
+            <!-- logo -->  
+            <div class="demo-appheader-logo">
+                <div class="demo-appheader-logo-block">
+                    <span role="img" class="oj-icon demo-appheader-lite-logo-oracle" title="Oracle Logo" alt="Oracle Logo"></span>  
+                </div>
+
+                <div class="demo-appheader-appname-block">
+                    <span style="" class="demo-appheader-appname" data-bind="text: appName"></span>
+                </div>
+            </div>
+
+            <!-- Toolbar -->  
+            <div id='demoAppheaderMenuAndToolbarContainer'>
+
+                <div id='demoAppheaderMenuContainer'>
+                    <ul id="demoAppheaderGlobalNavMenuId" data-bind="ojComponent: {component: 'ojMenu', select: menuItemSelect}" style="display:none">
+                        <!-- ko foreach: globalNavItems -->
+                        <li id=""> <a data-bind="text: label, href: url"> <span class=""></span>  </a></li>
+                        <!-- /ko -->
+                    </ul>
+                </div>
+
+                <div class="demo-appheader-toolbar-container">
+                    <div class="demo-appheader-toolbar oj-toolbar-no-chrome" aria-controls="player" data-bind="ojComponent: {component:'ojToolbar'}">
+
+                        <!-- ko foreach: toolbarButtons -->
+                        <button class='oj-button-half-chrome demo-appheader-toolbar-button'
+                                data-bind="ojComponent: {component:'ojButton', 
+                                                                    label: label, 
+                                                                    display: 'icons', 
+                                                                    icons: {start: iconClass + ' demo-icon-font'}} ">
+                        </button>
+                        <!-- /ko -->
+
+                        <!-- This is how to add a separator to the toolbar.  
+                             Be sure to include the role and aria-orientation as shown to make it accessible.  -->
+                        <span role="separator" aria-orientation="vertical" class="oj-toolbar-separator"></span>
+
+                        <button id="menuButton"
+                                class='oj-button-half-chrome demo-appheader-toolbar-button'
+                                data-bind="ojComponent: { component: 'ojButton', label: userName, menu: '#demoAppheaderGlobalNavMenuId'}">
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>  

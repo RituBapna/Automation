@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Jet ojTable ojPagingControl ojDialog Test</title>
+    
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css" id="ojcss"/>
+        <link rel="stylesheet" href="../../common/css/iconStyles.css" id="iconcss" >
+        <link rel="stylesheet" href="../../common/css/testStyles.css" type="text/css"/>
+        
+        <script>
+        var currentTestApp = '../../table/paging/js/app';
+        var compExposed = false;        
+        </script>
+        <!-- RequireJS bootstrap file -->
+        <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>        
+</head>
+
+<body id="html_body">
+<h2>Line before</h2>
+
+<div id="dialogWrapper">
+  <div style="display:none; width: 800px" id="modalDialog1" title="Modal Dialog"
+       data-bind="ojComponent:{component: 'ojDialog', initialVisibility: 'hide', 
+        rootAttributes: { style: 'width: 600px; height: 500px;'} }">
+     <div id="menu_container" data-bind="with: svm"></div>
+     <div class="oj-dialog-body">
+        <h2>Table</h2>
+        <div id="main-container" data-bind="with: model" style="width: 700px;">
+            <table id="table" data-bind="ojComponent: {component: 'ojTable', data: datasource,
+                accessibility: {rowHeader: accRowHeaderCol()},
+                selectionMode: {row: selectionModeRow(), column: selectionModeColumn()},       
+                verticalGridVisible: verticalGridVisible(),
+                horizontalGridVisible: horizontalGridVisible(),
+                display: display(),
+                dnd: {reorder : {columns: dndColReorder()}},
+                columnsDefault: { sortable: sortable(),
+                    headerClassName: headerClassName(),
+                    headerStyle: headerStyle(),
+                    className: className(),style: style(),
+                    footerClassName: footerClassName(),
+                    footerStyle: footerStyle()},
+            columns:
+                   [{headerText: 'Department Id',field: 'DepartmentId', id: 'column1',footerTemplate: 'rowcount_label'},
+                   {headerText: 'Department Name', field: 'DepartmentName', id: 'column2'},
+                   {headerText: 'Location Id', field: 'LocationId', id: 'column3', sortProperty: sortProperty()},
+                   {headerText: 'Manager Id', field: 'ManagerId',
+                    headerClassName: 'blackStyle',headerStyle : 'color: grey;',
+                    className : 'blackStyle',style : 'color: grey;',
+                    footerClassname: 'blackStyle', footerStyle: 'color: grey;',
+                    id: 'column4',sortable: 'disabled', footerTemplate: 'rowcount'}], 
+                     rootAttributes: {'style':'width: 100%;'}}">
+            </table>
+            <div class="oj-table-panel-bottom">
+                <div id="paging" data-bind="ojComponent: {component: 'ojPagingControl', data: datasource, pageSize: 10}" />
+            </div>
+                <div id="descr" data-bind="text: datasourceDescr"></div>
+                <div id="pagingControls-container"></div>
+                <div id="local-container">
+                    <button id="buttonId1" data-bind="ojComponent: {
+                  component: 'ojButton',label: 'togglePagingDatasource'}, click: togglePagingDatasource"></button>
+                </div>
+                <div id="tableControls-container"></div>
+        </div>
+        <br/>
+     </div>     
+     <div id="okButton", class="oj-dialog-footer">        
+        <button id="btn_ok" data-bind="ojComponent: {component: 'ojButton', label: 'OK'},
+          click: function() {$('#modalDialog1').ojDialog('close');}"> </button>
+      </div>     
+  </div>
+</div>
+
+<button id="btn_opendialog" data-bind="ojComponent: {component: 'ojButton', label: 'Open Modal Dialog'}, 
+          click: function(){$('#modalDialog1').ojDialog('open');}"></button>
+          
+<h2>Line after</h2>
+
+<div id="controls-container"></div>
+
+</body>
+</html>
+

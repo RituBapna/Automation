@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Jet ojButtonset Test</title>
+    
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css" id="ojcss"/>
+        <link rel="stylesheet" href="../../common/css/iconStyles.css" id="iconcss" >
+        <link rel="stylesheet" href="../../common/css/testStyles.css" type="text/css"/>
+        
+        <script>
+        var currentTestApp = '../../button/buttonTest/js/appButton';
+        </script>
+        <!-- RequireJS bootstrap file -->
+        <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>        
+</head>
+
+<body>
+<div id="menu_container" data-bind="with: svm"></div>
+    
+<h2>Line before all</h2>
+
+<div id='icon-buttons-container' data-bind="with: model">
+        <label for="buttonIcon1"></label>
+        <input type="checkbox" id="buttonIcon1"
+               data-bind="ojComponent: {
+                    component:'ojButton', 
+                    display: 'icons', disabled: disabled,
+                    icons: {start:'icon-spades'}, 
+                    label: 'Toggle button with icon only'
+               }"/>
+        <button id="buttonIcon2"
+                data-bind="ojComponent: {
+                    component:'ojButton', disabled: disabled,
+                    icons: {start:'oj-fwk-icon-caret-start oj-fwk-icon'}, 
+                    label: 'Previous'
+                }"></button>
+        <button id="buttonIcon3"
+                data-bind="ojComponent: {
+                    component:'ojButton',disabled: disabled,
+                    icons: {end:'oj-fwk-icon-caret-end oj-fwk-icon'}, 
+                    label: 'Next'
+                }"></button>
+        <label for="buttonIcon4"></label>
+        <input type="checkbox" id="buttonIcon4"
+               data-bind="ojComponent: {
+                    component:'ojButton', disabled: disabled,
+                    icons: {start:'icon-clubs', 
+                            end: 'icon-diamonds'}, 
+                    label: 'Toggle button with two icons'
+               }"/>
+        <button id="buttonIcon5"
+                data-bind="ojComponent: {
+                    component:'ojButton', 
+                    display: 'icons', disabled: disabled,
+                    icons: {start:'icon-thumbs-up', 
+                            end: 'icon-thumbs-up2'}, 
+                    label: 'Button with two icons and no text'
+                }"></button>
+</div>
+
+
+<h2>Line after</h2>
+
+<div id="local-container" data-bind="with: model"></div>
+<div id="button-controls-container" data-bind="with: model"></div>
+<div id="controls-container"></div>
+
+</body>
+</html>

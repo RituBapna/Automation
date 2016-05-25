@@ -1,0 +1,13 @@
+[
+   { "title": "USA",
+     "attr": {"title": "USA","id": "msusa"},
+     "children": []
+   },
+   { "title": "Europe",
+     "attr": {"title": "Europe","id": "msuerope"}
+   },
+   { "title": "Asia",
+     "attr": {"title": "Asia","id": "msasia"},
+     "children": []
+   }
+]

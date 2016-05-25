@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>Tree Using remote Json data via direct URL</title>
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css"/>
+
+        <!-- following script tag is needed for automated test -->
+	<!-- specify the name of the application specific java file as the value of 'currentTestApp' -->
+	 <script>
+	  var currentTestApp = '../../tree/treeLoad/js/treeLoad';
+        </script>
+
+     <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>
+
+
+
+    </head>
+    <body>
+        <div id="treeContainer">
+            <div id="resultsContainer"
+                 style="float:left;width: 400px; height: 200px; border:1px solid black;color:blue;font-size:14px;text-align:center;vertical-align:middle;line-height:40px;"></div>
+            <br/>
+            <div class="oj-row">
+                <div class="oj-xl-3 oj-lg-3 oj-md-12 oj-col">
+                    <h2 id="currentPage" >Tree Using remote Json data via direct URL</h2>
+                    <div id="tree" tabindex="0"
+		                             data-bind="ojComponent:{component: 'ojTree', dnd: dndopts,
+		                             data:{'ajax':{'type': 'GET', 'url': './js/treedata/treedatainjsonfile.json',
+		                             'success': dataSuccess, 'error': dataFailure}}}"
+                         style="float:left;width: 170px;height: 650px;"></div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

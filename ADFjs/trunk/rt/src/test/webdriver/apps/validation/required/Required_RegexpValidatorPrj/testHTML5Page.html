@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html >
+    <head>
+        <title>HTML5 element required validator test</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+       
+        <!-- This is the main css file for the default Alta theme -->
+        <link rel="stylesheet" href="../../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css"/>
+        <!-- This is the current styling for the Global Branding area, Global Navigation, 
+        and Application Navigation sections -->
+        <link rel="stylesheet" href="css/brand_bar.css"/>
+        <!-- This is where you would add any app specific styling -->
+        <link rel="stylesheet" href="css/override.css" type="text/css"/>
+         <!-- following script tag is needed for automated test -->
+        <!-- specify the name of the application specific java file as the value of 'currentTestApp' -->
+         <script>
+          var currentTestApp = '../../validation/required/Required_RegexpValidatorPrj/js/app';
+        </script>
+        <!-- RequireJS bootstrap file -->
+        <script data-main="../../../common/js/main" src="../../../common/js/libs/require/require.js"></script>
+    </head>
+    <body>
+        <div id="globalBody">
+          
+           <!-- This is where your main page content will be loaded -->
+            <div class="row">
+                <div id="mainContent" class="twelve columns page-padding">
+                    <div class="oj-page-content-area page-padding">
+                        <h1>Employee Form:  </h1>
+                      
+                        <form name="employeeForm">
+                                 <fieldset>
+            <legend>Enter Employee Details</legend>
+            
+            <!-- ALL BROWSERS -->
+            <label for="empid">Employee Id:</label>
+            <input type="text" id="empid" name="empid" placeholder="123" value="123" required="required"/>
+            <br/>
+            <label for="firstname">First Name:</label>
+            <input type="text" id="firstname" name="firstname"  
+                   data-bind="ojValue:{instance:firstName, validators: [required]}"/>
+            <br/>
+            <label>Last Name:</label>
+            <input type="text" id="lastname" name="lastname" placeholder="Doe"/>
+            <br/>
+              <label>Password:</label>
+              <input id="password" type="password" name="password" 
+                                             
+                                               data-bind="ojValue: {instance: password, validators: [required]}"/>
+<br/>                                               
+            <label>Title:</label>
+            <input type="text" id="title" name="title" title="use autosuggest to set the value" list="titleData"
+                   data-bind="ojValue:{instance: titleSelected, validators: [required]}"/>
+            <datalist id="titleData" data-bind="foreach: titles">
+                <option data-bind="attr:{value:$data}"></option>
+            </datalist>
+            <br/>
+              <p>
+            <label>Employee Type:</label>
+               <!-- ko  foreach:employeeTypes -->
+                <input type="radio" name="empType" data-bind= "attr: {id: id, value:value}, checked:$parent.employeeTypeSelected, ojValue:{instance:$parent.employeeTypeSelected, validators: [$parent.required]}"/>
+                 
+                <label data-bind="attr:{for:id}, text:label" ></label>
+                <!-- /ko --> 
+             
+            </p>
+           <label>Primary Skill:</label>
+            <select id="pskill" name="primarySkill" data-bind="options:employeeSkillSet, optionsText: 'label', optionsValue: 'value', optionsCaption: 'Select primary skill...', ojValue:{instance:primarySkillSelected, validators: [required]}">
+               
+            </select><br/>
+            <label>Secondary Skill Set:</label>
+            <select name="secondaySkill"  multiple="multiple" data-bind="options:employeeSkillSet, optionsText: 'label', optionsValue: 'value',  selectedOptions:secondarySkillSet, ojValue:{instance:secondarySkillSet, validators: [required]}">
+               
+            </select><br/>
+            <label>Secondary Skill Set (checkbox):</label>
+               <!-- ko  foreach:employeeSkillSet -->
+                <input type="checkbox" name="empTypeCheckbox" data-bind= "attr: {id: value, value:value}, checked:$parent.secondarySkillSet, ojValue:{instance:$parent.secondarySkillSet, validators: [$parent.required]}"/>
+                 
+                <label data-bind="attr:{for:value}, text:label" ></label>
+                <!-- /ko --> 
+             
+             <br/>
+              <label>Employee Picture :</label>
+            <input type="file" id="image_file" name= "files" data-bind="ojValue:{instance:empImage}" /> <br/>
+             <!-- ALL BROWSER END -->
+             
+              <!-- CHROME, OPERA and SAFARI -->
+              <label>Hiredate :</label>
+              <input type="date" id="hiredate" name="hiredate" data-bind="ojValue:{instance:hiredate, validators: [required]}"/><br/>
+              <input type="datetime" id="hiredatetime" name="hiredatetime" data-bind="ojValue:{instance:hiredatetime, validators: [required]}"/><br/>
+              <input type="datetime-local" id="hiredatetimelocal" name="hiredatetimelocal" data-bind="ojValue:{instance:hiredatetimelocal, validators: [required]}"/><br/>
+              <input type="month" id="hiredatemonth" name="hiredatemonth" data-bind="ojValue:{instance:hiredatemonth, validators: [required]}"/><br/>
+              <input type="time" id="hiredatetime" name="hiredatetime" data-bind="ojValue:{instance:hiredatetime, validators: [required]}"/><br/>
+              <input type="week" id="hiredateweek" name="hiredateweek" data-bind="ojValue:{instance:hiredateweek, validators: [required]}"/><br/>
+             <!-- CHROME, OPERA and SAFARI END-->
+             
+            
+             <!-- IE, CHROME, OPERA and SAFARI -->
+            <label>Email address:</label>
+            <input type="email" id="email" name="email"
+                   data-bind="ojValue:{instance:email,  validators: [required]}"/>
+            <br/>
+             
+             <!-- IE, CHROME, OPERA and SAFARI END-->
+            
+           
+            <label>Phone Number:</label>
+            <input type="text" id="phone" name="phone"/>
+            <br/>
+            <label>Job Id:</label>
+            <input type="text" id="job" name="job"/>
+            <br/>
+           
+           
+            <label>Salary :</label>
+            <input type="text" id="salary" name="salary" data-bind="ojValue:{instance:salary}"/>
+            <br/>
+            <label>Commission:</label>
+            <input type="number" id="comm" name="comm" data-bind="ojValue:{instance:comm,validators: [required]}"/>
+            <br/>
+             <label>Current Rating (between 1 and 5):</label>
+             <input type="number" name="rating" min="1" max="5" data-bind="ojValue:{instance:rating,validators: [required]}"/>
+            <br/>
+             <label>Current Ranking (between 1 and 10):</label>
+             <input id="range" type="range" name="ranking" min="1" max="10" data-bind="ojValue:{instance:ranking,validators: [required]}"/>
+            <br/>
+             <label>Personal website:</label>
+             <input id="url" type="url" name="url" data-bind="ojValue:{instance:URL,validators: [required]}"/>
+            <br/>
+            <span id="rankingvmValue" data-bind="text: ranking"></span>
+            <label>General Information:</label>
+            <textarea name="generalInfo" cols="40" rows="7" wrap="soft"
+                      data-bind="ojValue:{instance:generalInfo, validators:[required]}, attr:{placeholder: 'General inforamation'}"
+                      id="generalInfo"></textarea>
+            <output data-bind="ojValue:{instance:generalInfo}"></output>
+            <br/>
+            <label>Manager Id:</label>
+            <input type="text" id="mgrid" name="mgrid" pattern="[0-9]{3}"/>
+            <br/>
+            <label>Department Id</label>
+            <input type="text" id="deptid" name="deptid" pattern="[0-9]{3}"/>
+            <br/>
+            <input type="submit" name="saveEmpData" value="Save"/>
+        </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+          
+        </div>
+    </body>
+</html>

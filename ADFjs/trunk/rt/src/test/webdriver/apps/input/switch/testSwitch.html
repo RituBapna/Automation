@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Jet ojSwitch Test</title>
+
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css" id="ojcss"/>
+        <link rel="stylesheet" href="../../common/css/testStyles.css" type="text/css"/>
+
+        <script>
+        var currentTestApp = '../../input/switch/js/app';
+        </script>
+        <!-- RequireJS bootstrap file -->
+        <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>
+</head>
+
+<body id="html_body">
+<h2>Line before all</h2>
+<div id="menu_container" data-bind="with: svm"></div>
+
+<form action="demo_form">
+<h2>ojSwitch</h2>
+<div id="main-container" data-bind="with: model">
+
+  <label id="mainlabelid" for="switch">ojSwitch component</label>
+  <input id="switch"
+         data-bind="ojComponent: {component: 'ojSwitch',
+                                  value: value}"/>
+    
+  <br/>
+
+  <span class="oj-label">Current component value is: </span>
+  <span id="curr-value" data-bind="text: value() ? 'ON' : 'OFF'"></span>
+
+</div>
+  <br/><br/>
+
+</form>
+
+
+<h2>Line after</h2>
+<div id="local-container" data-bind="with: model"></div>
+<div id="inputControls-container" data-bind="with: model"></div>
+<div id="controls-container"></div>
+
+
+</body>
+</html>

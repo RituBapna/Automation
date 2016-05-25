@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Jet ojSelect Test</title>
+
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css" id="ojcss"/>
+        <link rel="stylesheet" href="../../common/css/testStyles.css" type="text/css"/>
+
+        <script>
+        var currentTestApp = '../../input/select/js/app';
+        var compExposed = false;
+        </script>
+        <!-- RequireJS bootstrap file -->
+        <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>
+</head>
+
+<body id="html_body">
+<div id="menu_container" data-bind="with: svm"></div>
+<h2>Line before all</h2>
+<form id="form1">
+
+<div id="popupWrapper">
+  <div style="display:none" id="popup1" data-bind="ojComponent:{component: 'ojPopup'}">
+<h2>Select</h2>
+<div id="main-container" data-bind="with: model">
+    <label id="mainlabelid" for="select">Select</label>
+    <select id="select" data-bind="ojComponent: {component: 'ojSelect', value: value,
+                                                    multiple : multiple,
+                                                    optionChange: valueChangeHandler,
+                                                    beforeExpand : beforeExpandHandler,
+                                                    rootAttributes: {style:'max-width:20em'}}">
+        <option value="30">30</option>
+        <option value="">0</option>
+        <option value="60" data-bind="attr: { disabled : disabledItem}">60</option>
+        <option value="62">62</option>
+        <option value="90">$90.00</option>
+        <option value="120">$120.00</option>
+    </select>
+    <div>
+        <br/>
+        <label for="curr-value" class="oj-label">Curr value is: </label>
+        <span id="curr-value" data-bind="text: $parent.ko.toJSON(value)"></span>
+    </div>
+</div>
+<div id="local-container" data-bind="with: model">
+    <button id="buttonId1" data-bind="ojComponent: {
+      component: 'ojButton',label: 'toggleMultiple'}, click: toggleMultiple"></button>
+    <button id="buttonId2" data-bind="ojComponent: {
+      component: 'ojButton',label: 'toggleDisabledItem'}, click: toggleDisabledItem"></button>
+    <button id="buttonId3" data-bind="ojComponent: {
+      component: 'ojButton',label: 'toggleMinResultsForSearch'}, click: toggleMinResultsForSearch"></button>
+
+</div>
+<div id="inputControls-container" data-bind="with: model"></div>
+
+</div>
+  </div>
+    <button id="btn_openpopup" data-bind="ojComponent: {component: 'ojButton', label: 'Open Popup'},
+          click: function(){$('#popup1').ojPopup('open');}"></button>
+    <button id="btn_closepopup" data-bind="ojComponent: {component: 'ojButton', label: 'Close Popup'},
+          click: function(){$('#popup1').ojPopup('close');}"></button>
+<br/></br/><br/></br/><br/></br/>
+</form>
+
+<h2>Line after</h2>
+
+<div id="controls-container"></div>
+
+</body>
+</html>

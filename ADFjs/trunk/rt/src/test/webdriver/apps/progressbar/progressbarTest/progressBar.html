@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>ProgressBar</title>
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css"/>
+
+		        <!-- following script tag is needed for automated test -->
+				        <!-- specify the name of the application specific java file as the value of 'currentTestApp' -->
+				         <script>
+				          var currentTestApp = '../../progressbar/progressbarTest/js/progressBar';
+		        </script>
+		        <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>
+
+    </head>
+    <body>
+        <div id="progress-container">
+
+            <ul id="myMenu" data-bind="ojComponent: {component: 'ojMenu'}" style="display:none">
+                <li id="m1"><a href="#">Menu 1</a></li>
+                <li id="m2"><a href="#">Menu 2</a>
+                    <ul>
+                        <li id="m2_1"><a href="#">Menu 2 submenu 1</a></li>
+                        <li id="m2_2"><a href="#">Menu 2 submenu 2</a></li>
+                    </ul>
+                </li>
+                <li id="m3"><a href="#">Menu 3</a></li>
+                <li id="m_edit"><a href="#">Edit</a>
+                </li>
+            </ul>
+           <button id="addContextMenu" type="button"
+                    data-bind="click: addContextMenu,      ojComponent:{component:'ojButton',
+                                label:'Add ContextMenu'}"></button>
+
+            <button id="removeContextMenu" type="button"
+                    data-bind="click: removeContextMenu,      ojComponent:{component:'ojButton',
+                                label:'Remove ContextMenu'}"></button>
+             <button id="disableProgressbar" type="button"
+                    data-bind="click: disableProgressbar,
+                ojComponent:{component:'ojButton', label:'DisableProgressBar'}"></button>
+
+            <button id="enableProgressbar" type="button"
+                    data-bind="click: enableProgressbar,      ojComponent:{component:'ojButton',                           label:'EnableProgressBar'}"></button>
+            <button id="destroyProgressBar" type="button"
+                    data-bind="click: destroyProgressBar,      ojComponent:{component:'ojButton',
+                                label:'destroyProgressBar'}"></button>
+
+			 <div class="oj-xl-3 oj-lg-6 oj-md-12 oj-col">
+			                    <div id="resultsFunction"
+			                         style="float:left;width:300px; height: 200px; border:1px solid black;color:blue;font-size:14px;text-align:center;vertical-align:middle;line-height:40px;"
+			                         tabindex="1"></div>
+                </div>
+
+            <p>Progress Bar Max Value: 100</p>
+            <p>Resizable progress bar</p>
+            <div id="progressbarWrapper">
+                <div id="progressbar" style="width:50%" data-bind="ojComponent:{component: 'ojProgressbar', value: progressValue}"></div>
+                <br/>
+                <input id="spinner-input"
+                       data-bind="ojComponent: {component: 'ojInputNumber', max:100, min:0, step:10, value: progressValue}"/>
+
+                <input id="indeterminateButton" type="button"
+                       data-bind="click: indeterminate,
+	     ojComponent: {component: 'ojButton', label: 'Indeterminate Value'}"/>
+
+            </div>
+
+        </div>
+    </body>
+</html>

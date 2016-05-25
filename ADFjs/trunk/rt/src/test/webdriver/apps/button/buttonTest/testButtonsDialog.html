@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Jet ojButtonset Test</title>
+    
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css" id="ojcss"/>
+        <link rel="stylesheet" href="../../common/css/iconStyles.css" id="iconcss" >
+        <link rel="stylesheet" href="../../common/css/testStyles.css" type="text/css"/>
+        
+        <script>
+        var currentTestApp = '../../button/buttonTest/js/appButtonset';
+        </script>
+        <!-- RequireJS bootstrap file -->
+        <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>        
+</head>
+
+<body>
+<div id="menu_container" data-bind="with: svm"></div>
+    
+<h2>Line before all</h2>
+
+<div id="dialogWrapper">
+  <div style="display:none" id="modalDialog1" title="Modal Dialog"
+       data-bind="ojComponent:{component: 'ojDialog', initialVisibility: 'hide', height: 180}">
+     <div class="oj-dialog-body">
+
+<div id='buttons-container' data-bind="ojComponent: {component: 'ojCollapsible'}">
+    <h3>Checked ojButtonset</h3>
+    <div id="checked-stuff" data-bind="with: model">
+
+    <div id="bs1"
+         data-bind="ojComponent: {component: 'ojButtonset', checked: isAdvanced, disabled: disabled}">
+        <label for="advanced">ojButtonset</label>
+        <input type="checkbox" id="advanced" value="advanced"/>
+    </div>     
+</div>
+</div>
+
+
+<div id="collapse-rg" data-bind="ojComponent: {component: 'ojCollapsible'}">
+    <h3>Radio Group Buttons</h3>
+<div id="rgset-container" data-bind="with: model">
+<div id="bs2"
+         data-bind="ojComponent: {component: 'ojButtonset', checked: drink, disabled: disabled,
+                                  optionChange: optionChangeHandler}"
+         aria-label="Choose only one beverage.  Use left and right arrow keys to navigate.">
+        <!-- ko foreach: drinkRadios -->
+            <label data-bind="attr: {for: id}"></label>                               
+            <input type="radio" name="beverage"
+                   data-bind="value: id, attr: {id: id}, 
+                              ojComponent: { component: 'ojButton', label: label }"/>
+        <!-- /ko -->
+    </div>      
+    <button data-bind="click: toggleCoffee">Toggle Coffee</button>
+</div>
+</div>
+
+<div id='buttons-container' data-bind="ojComponent: {component: 'ojCollapsible'}">
+    <h3>ojButtonset with checked ojButtons</h3>
+    <div id="buttons-checkboxes-example" data-bind="with: model">
+        <p id="formattedText" data-bind="text: formattedText"></p>
+
+        <div id="bs3" data-bind="ojComponent: {role: 'ojButtonset'}">        
+            <label for="check1">Bold</label>
+            <input type="checkbox" id="check1" checked="checked" data-bind="ojComponent: {
+                component: 'ojButton'}, 
+                checked:setBold, 
+                click:toggleBold" />
+            
+            <label for="check2">Italic</label>
+            <input type="checkbox" id="check2" data-bind="ojComponent: {
+                component: 'ojButton'}, 
+                checked:setItalic, 
+                click:toggleItalic" />
+            
+            <label for="check3">Underline</label>
+            <input type="checkbox" id="check3" data-bind="ojComponent: {
+                component: 'ojButton'}, 
+                checked:setUnderline, 
+                click:toggleUnderline" />
+        </div>
+    </div>
+</div>
+
+
+
+<div id="button-controls-container" data-bind="with: model"></div>
+
+</div>
+
+
+<div id="okButton", class="oj-dialog-footer">    
+        <button data-bind="ojComponent: {component: 'ojButton', label: 'OK'},
+          click: function() {$('#modalDialog1').ojDialog('close');}"> </button>
+      </div>     
+  </div>
+</div>
+  <button data-bind="ojComponent: {component: 'ojButton', label: 'Open Modal Dialog'}, 
+          click: function(){$('#modalDialog1').ojDialog('open');}"></button>
+
+<h2>Line after</h2>
+
+<div id="local-container" data-bind="with: model"></div>
+<div id="controls-container"></div>
+
+</body>
+</html>

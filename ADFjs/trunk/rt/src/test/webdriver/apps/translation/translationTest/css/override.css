@@ -1,0 +1,84 @@
+/* 
+    Document   : override
+    Created on : <date>
+    Author     : <author>
+    Description:
+        This is where any of your application specific styles should be included
+*/
+
+/* Styling for footer */
+
+html, body {
+  height : 100%;
+}
+
+#globalBody {
+  position : relative;  
+  min-height : 100%;
+}
+
+#mainContent /* id of the content section */ {
+  padding-bottom: 50px;   /* equal to the height of the footer */
+}
+
+#pageFooter {
+}
+
+footer {
+  
+  position:absolute; /* relative to the #globalBody div */ 
+  bottom:0;
+  left: 0;
+  height : 50px;
+  border-top : 1px solid #d9dfe3;
+  width: 100%;
+  background-color: #f5f5f5; 
+  max-height: 50px;
+}
+
+.footerText {
+  font-size:11px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #454545;
+}
+
+#footerContent {
+  float: left;
+}
+
+#footerContent ul {
+  padding-left : 0px;
+}
+
+#footerContent li {
+  list-style: none;
+  float : left;
+  display : inline-block;
+  margin-right: 5px;
+  margin-left : 0px;
+  padding-right : 5px;
+  border-right : 1px solid #d9dfe3;
+}
+
+#footerContent li:last-child {
+  border-right : none;
+}
+
+/* global page box specs */
+
+.page-padding {
+  padding-right : 20px;
+  padding-left : 20px;  
+}
+
+.page-margin {
+  margin-right : 20px;
+  margin-left : 20px;  
+}
+
+.page-content-box {
+  padding : 10px 30px 10px 30px; 
+  margin-top : 10px;
+  margin-bottom : 10px;
+}
+

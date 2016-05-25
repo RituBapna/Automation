@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Listview Options Test</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css" id="ojcss"/>
+        <script>
+            var currentTestApp = '../../datacollection/listviewTest/js/listviewApp';
+        
+        </script>                                    
+        <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>
+        <!--<link rel="stylesheet" href="../css/listview.css" type="text/css"/>-->
+        <!--        <script data-main="../js/ojlistviewVM/ojlistviewMain" src="../js/libs/require/require.js"></script>-->
+
+    </head>
+    <body>
+        <div id="contentSelectionwrapperDiv">
+            <div id="contentDiv" style="width:40%;float:left;margin-right:12px;"> 
+                <ul id="listview" aria-label="list with static hierarchical data" 
+                    data-bind="ojComponent: {component: 'ojListView', 
+                                        currentItem : currentItemValue,
+                                        drillMode:drillModeValue,
+                                        selectionMode:selectionModeValue,
+                                        groupHeaderPosition:groupHeaderPositionValue,
+                                        expanded: ['a', 'b'], item: {selectable: itemOnly},
+                                        rootAttributes: {style: 'width:100%;overflow-x:hidden;height:450px'}}">
+
+                    <li id="a">
+                        <span>A</span>
+                        <ul>
+                            <li id="amybartlet">
+                                <span class="avatar" style="background-image: url('../images/nBox/1.png')"></span>
+                                <div class="container">
+                                    <div>
+                                        <span class="name">Amy Bartlet</span>
+                                    </div>
+                                    <div>
+                                        <span class="oj-text-xs oj-text-secondary-color">Vice President</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li id="andyjones">
+                                <span class="avatar" style="background-image: url('../images/nBox/10.png')"></span>
+                                <div class="container">
+                                    <div>
+                                        <span class="name">Andy Jones</span>
+                                    </div>
+                                    <div>
+                                        <span class="oj-text-xs oj-text-secondary-color">Director</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li id="andrewbugsy">
+                                <span class="avatar" style="background-image: url('../images/nBox/11.png')"></span>
+                                <div class="container">
+                                    <div>
+                                        <span class="name">Andrew Bugsy</span>
+                                    </div>
+                                    <div>
+                                        <span class="oj-text-xs oj-text-secondary-color">Individual Contributer</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li id="annettbarnes">
+                                <span class="avatar" style="background-image: url('../images/nBox/2.png')"></span>
+                                <div class="container">
+                                    <div>
+                                        <span class="name">Annett Barnes</span>
+                                    </div>
+                                    <div>
+                                        <span class="oj-text-xs oj-text-secondary-color">Individual Contributer</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li id="b">
+                        <span>B</span>
+                        <ul>
+                            <li id="bobjones">
+                                <span class="avatar" style="background-image: url('../images/nBox/12.png')"></span>
+                                <div class="container">
+                                    <div>
+                                        <span class="name">Bob Jones</span>
+                                    </div>
+                                    <div>
+                                        <span class="oj-text-xs oj-text-secondary-color">Salesman</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li id="bartbuckler">
+                                <span class="avatar" style="background-image: url('../images/nBox/13.png')"></span>
+                                <div class="container">
+                                    <div>
+                                        <span class="name">Bart Buckler</span>
+                                    </div>
+                                    <div>
+                                        <span class="oj-text-xs oj-text-secondary-color">Purchasing</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li id="bobbyfisher">
+                                <span class="avatar" style="background-image: url('../images/nBox/14.png')"></span>
+                                <div class="container">
+                                    <div>
+                                        <span class="name">Bobby Fisher</span>
+                                    </div>
+                                    <div>
+                                        <span class="oj-text-xs oj-text-secondary-color">Individual Contributer</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li id="c">
+                        <span>C</span>
+                        <ul>
+                            <li id="cathyjones">
+                                <span class="avatar" style="background-image: url('../images/nBox/3.png')"></span>
+                                <div class="container">
+                                    <div>
+                                        <span class="name">Cathy Jones</span>
+                                    </div>
+                                    <div>
+                                        <span class="oj-text-xs oj-text-secondary-color">Director</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li id="carollsmith">
+                                <span class="avatar" style="background-image: url('../images/nBox/4.png')"></span>
+                                <div class="container">
+                                    <div>
+                                        <span class="name">Caroll Smith</span>
+                                    </div>
+                                    <div>
+                                        <span class="oj-text-xs oj-text-secondary-color">Purchasing</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div id="selectionDiv" style="width:20%;float:left;margin-right:5px;"> 
+
+                <label for="currentItemCombo" class="oj-label">Select CurrentItem</label>
+                <input id="currentItemCombo" style="width:250px;" data-bind="ojComponent: {component: 'ojCombobox',optionChange:currentItemUpdate,
+                                                            options: currentItemOptions ,value:'amybartlet'}"/>
+
+                <label for="drillModeCombo" class="oj-label">Select DrillMode</label>
+                <input id="drillModeCombo" style="width:250px;" data-bind="ojComponent: {component: 'ojCombobox',optionChange:drillModeUpdate,
+                                                            options: drillModeOptions ,value:'collapsible'}"/>
+                <label for="selectionModeId" class="oj-label">SelectionModeChange</label>
+                <input id="selectionModeId" style="width:250px;" data-bind="ojComponent: {component: 'ojCombobox',optionChange:selectionModeUpdate,
+                                        options: selectionModeOptions ,value:'single'}"/>
+                <label for="groupHeaderPositionId" class="oj-label">GroupHeaderPositionChange</label>
+                <input id="groupHeaderPositionId" style="width:250px;" data-bind="ojComponent: {component: 'ojCombobox',optionChange:groupHeaderPositionUpdate,
+                                        options: groupHeaderPositionOptions ,value:'static'}"/>
+
+
+                <div  style="display: block-inline;">
+                    <input id="inputButtonA" type="button"data-bind="click: collapseNode('a'), 
+                      ojComponent: {component: 'ojButton', label: 'collapse A(node-a)'}"/>
+                    <input id="inputButtonB" type="button"data-bind="click: collapseNode('b'), 
+                      ojComponent: {component: 'ojButton', label: 'collapse B(node-b)'}"/>
+                    <input id="inputButtonC" type="button"data-bind="click: collapseNode('c'), 
+                      ojComponent: {component: 'ojButton', label: 'collapse C(node-c)'}"/>
+                    <input id="inputButtonAE" type="button"data-bind="click: expandNode('a'), 
+                      ojComponent: {component: 'ojButton', label: 'expand A(node-a)'}"/>
+                    <input id="inputButtonBE" type="button"data-bind="click: expandNode('b'), 
+                      ojComponent: {component: 'ojButton', label: 'expand B(node-b)'}"/>
+                    <input id="inputButtonCE" type="button"data-bind="click: expandNode('c'), 
+                      ojComponent: {component: 'ojButton', label: 'expand C(node-c)'}"/>
+                    <!--                    <input id="btn2" type="button" data-bind="ojComponent:{component:'ojButton', label:'collapse B(node-B)'},
+                                        click: function(data, event) {
+                                            collapseNode('b', data, event) 
+                                            }" />-->
+                </div>
+
+
+
+
+            </div>
+            <div id="outputText" style="float:left;font-weight: bold;width:15%;color:#045FAB;font-style: italic;
+    font-size: smaller;">
+                <span id="optionOutputText"></span>
+                <span id="currentitemOutputText"></span>
+                <span id="drillmodeOutputText"></span>
+                <span id="selectionmodeOutputText"></span>
+                <span id="groupheaderpositionOutputText"></span>
+                <span id="beforeCollapseOutputText"></span>
+                <span id="beforeExpandOutputText"></span>
+                <span id="beforeCurrentItemOutputText"></span>
+                <span id="eventOutputText"></span>
+            </div>
+        </div>
+        <div id="nestedLV">
+            <div id="layoutAndNavigationComponents">
+                <ul id="nestedListview" data-bind="ojComponent: {component: 'ojListView'}">
+                    <li><a id="group5" href="#">Input Component Node</a>
+                        <ul>
+                            <li>
+                                <div id="ritu">
+                                    <div id="radioSetId"  
+                                         data-bind="ojComponent: {component: 'ojRadioset',value: currentRadioSelection, required: true}" >
+                                        <span class="oj-choice-row">
+                                            <input id="opt1" type="radio" name="crust_1" value="crust11"/>
+                                            <label for="opt1">Deep Dish</label>
+                                        </span>
+                                        <span class="oj-choice-row">
+                                            <input id="opt2" type="radio" name="crust_1" value="crust21" checked="checked"/>
+                                            <label for="opt2">Thick</label>
+                                        </span>
+                                        <span class="oj-choice-row">
+                                            <input id="opt3" type="radio" name="crust_1" value="crust31"/>
+                                            <label for="opt3">Thin</label>
+                                        </span>
+
+                                    </div>
+                                    <br/>
+                                    <span>Current radio button value is: </span>
+                                    <span id="curr-value" data-bind="text: currentRadioSelection"></span>
+                                    <br/>
+                                    <hr>
+                                    <label for="groupSelect">Using optgroup  </label>
+                                    <select id="groupSelect" data-bind="ojComponent: {component: 'ojSelect',
+                                      rootAttributes: {style:'max-width:20em'}, options: triLevelGroupData, value: selectval, required: true}">
+
+                                    </select>
+                                    <hr>
+                                    <label for="combobox">Single-select Combobox</label>
+                                    <input id="combobox"  data-bind="ojComponent: {component: 'ojCombobox', options: groupData, value: val,
+                                        rootAttributes: {style:'max-width:20em'}, required: true}"/>
+
+                                    <div>
+                                        <br/>
+                                        <label for="curr-value1" class="oj-label">Curr value is: </label>
+                                        <span id="curr-value1" data-bind="text: ko.toJSON(val)"></span>
+                                    </div>
+                                    <hr>
+                                    <label for="dateTime">Default</label>
+                                    <input id="dateTime" data-bind="ojComponent: {component: 'ojInputDateTime', value: dateval, datePicker: {
+                      footerLayout: 'today',
+                      numberOfMonths: 3
+                    }, required: true}">
+
+                                    <div>
+                                        <br/>
+                                        <label for="curr-datevalue" class="oj-label">Curr date value is: </label>
+                                        <span id="curr-datevalue" data-bind="text: dateval"></span>
+                                    </div>
+                                    <hr>
+                                    <label for="date22">inputText with datetime converter</label>
+                                    <input id="date22" name="date22"
+                                           title="enter the time in hours, minutes"
+                                           placeholder="custom placeholder text"
+                                           data-bind="ojComponent: {component: 'ojInputText', value: dateval, 
+                                converter: {type:'datetime', options: {
+                                hour: 'numeric', minute: 'numeric'}}}"/>
+                                    <br/>
+                                    <hr>
+                                    <label for="currency13">inputNumber with currency converter</label>
+                                    <input id="currency13" name="currency13" title="enter an amount with or without grouping separator"
+                                           data-bind="ojComponent: {component: 'ojInputNumber', value: decimal,
+                                help: {definition: 'custom help text'},
+                                converter: {type: 'number', options: {
+                                style: 'currency', currency: 'USD',
+                                currencyDisplay: 'symbol', pattern: '¤ ##,##0.00'}}}"/>
+                                    <hr>
+                                    <label for="text-area">ojTextArea component</label>
+                                    <textarea id="text-area"
+                                              data-bind="ojComponent: {component: 'ojTextArea', value: textareaval, required: true}"></textarea>
+                                    <br/>
+
+                                    <label class="oj-label" for="curr-tavalue">Curr component value is: </label>
+                                    <span id="curr-tavalue" data-bind="text: textareaval"></span>
+                                    <hr>
+                                    <label for="password">ojInputPassword component</label>
+                                    <input type="password" id="password"
+                                           data-bind="ojComponent: {component: 'ojInputPassword', change: sayHeyo, value: pwdval}">
+
+                                    <br/>
+
+                                    <label for="curr-pwdvalue">Curr password value is [uh never do this, but an example]: </label>
+                                    <span id="curr-pwdvalue" data-bind="text: pwdval"></span>
+                                    <hr>
+                                </div>  
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a id="group1" href="#">Accordion Node</a>
+                        <ul>
+                            <li>
+                                <div id="accordionPage" data-bind="ojComponent: {component: 'ojAccordion'}">
+                                    <div id="c1">
+                                        <span><span><span class="demo-icon-font demo-education-icon-24"></span> Header 1</span></span>
+                                        <p class="oj-p">Content 1.</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li><a id="item1-2" href="#">Item 1-2</a></li>
+                        </ul>
+                    </li>
+                    <li><a id="group2" href="#">Collapsible Node</a>
+                        <ul>
+                            <li>
+                                <div id="collapsiblePage" data-bind="ojComponent: {component: 'ojCollapsible'}">
+                                    <h3 id="h">Header 3</h3>
+                                    <p id="c">I'm a  Collapsible.</p>
+                                </div>
+                            </li>
+                            <li><a id="item2-2" href="#">Item 2-2</a></li>
+                        </ul>
+                    </li>
+                    <li><a id="group3" href="#">Conveyor Belt Node</a>
+                        <ul>
+                            <li>
+                                <div id="conveyorbelt-horizontal-example">
+                                    <div class="oj-flex">
+                                        <div class="oj-lg-6 oj-md-9 oj-sm-12"
+                                             data-bind="ojComponent: {component: 'ojConveyorBelt'}">
+                                            <button data-bind="ojComponent: {
+                                      component: 'ojButton'}">Hydrogen</button>
+                                            <button data-bind="ojComponent: {
+                                      component: 'ojButton'}">Helium</button>
+                                            <button data-bind="ojComponent: {
+                                      component: 'ojButton'}">Lithium</button>
+                                            <button data-bind="ojComponent: {
+                                      component: 'ojButton'}">Beryllium</button>
+                                            <button data-bind="ojComponent: {
+                                      component: 'ojButton'}">Boron</button>
+                                            <button data-bind="ojComponent: {
+                                      component: 'ojButton'}">Magnesium</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a id="group4" href="#">Progressbar Node</a>
+                        <ul>
+                            <li>
+                                <div id="progressbarWrapper">													
+                                    <div id="progressbar" style="width:50%" 
+                                         data-bind="ojComponent:{
+                                component: 'ojProgressbar', 
+                                value: 20}">
+                                    </div>
+                                    <br/>
+                                    <input id="spinner-input"
+                                           data-bind="ojComponent: {
+                                component: 'ojInputNumber',
+                                step:10, 
+                                value: 20}"/>
+
+                                    <input id="indeterminateButton" type="button"
+                                           data-bind=" 
+                          ojComponent: {
+                                component: 'ojButton', 
+                                label: 'Indeterminate Value'}"/>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                </ul>
+            </div>
+
+        </div>
+    </body>
+</html>

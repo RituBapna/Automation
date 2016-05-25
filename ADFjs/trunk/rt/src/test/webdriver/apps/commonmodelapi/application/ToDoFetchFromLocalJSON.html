@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=windows-1252"/>
+        <title>ToDo List</title>
+         <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css"/>
+
+				<!-- following script tag is needed for automated test --> <!-- specify the name of the application specific java file
+						as the value of 'currentTestApp' -->
+				<script> var currentTestApp = '../../commonmodelapi/application/js/todo'; </script>
+
+				 <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>
+
+			    </script>
+
+
+    </head>
+    <body>
+	        <div id="content" >
+	            <div data-bind="if:showTable1">
+	                <div class="oj-row">
+	                    <div class="oj-xl-3 oj-lg-6 oj-md-12 oj-col">
+	                        <span id="s" data-bind="text:ToDos().length"></span>
+	                        <table>
+	                            <thead>
+	                                <tr>
+	                                    <th>Id</th>
+	                                    <th>Title</th>
+	                                    <th>CreatedBy</th>
+	                                </tr>
+	                            </thead>
+
+	                            <tbody id="ToDoDetails1" data-bind="foreach: ToDos">
+	                                <tr>
+
+	                                    <td><span id='Id1' class="drillDown" data-bind=" text: Id"></span></td>
+	                                    <td>
+	                                        <span id="Title1"
+	                                              data-bind=" text: Title"></span>
+	                                    </td>
+	                                    <td>
+	                                        <span id="CreatedBy"
+	                                              data-bind=" text: CreatedBy"></span>
+	                                    </td>
+	                                </tr>
+	                            </tbody>
+	                        </table>
+	                        <br/><br/>
+	                    </div>
+
+	                    <div id="resultsFunction"
+	                         style="float:left;width:550px; height: 300px; border:1px solid black;
+	                         color:blue;font-size:14px;text-align:center;vertical-align:middle;line-height:40px;"
+	                         tabindex="1"></div>
+
+	                    <div class="oj-xl-3 oj-lg-6 oj-md-12 oj-col">
+
+	                        <button type="button" id="addBtn"
+	                                data-bind="ojComponent:{component:'ojButton', label:'Add New Todo'},
+	                    click: function(){$('#addPopup').ojPopup('open');}"></button>
+
+	                        <button type="button" id="refetch"
+	                                data-bind="ojComponent:{component:'ojButton', label:'Refetch'},
+	                    click: refetchCollection"></button>
+
+
+
+
+	                        <table id="table" style="height: 400px; min-height: 200px; width: 500px;"
+	                               data-bind="ojComponent: {component: 'ojTable', data: datasource,
+	                                columnsDefault: {headerStyle: 'text-align: left; white-space:nowrap;'},
+	                                columns:
+	                                [{displayIndex: 0,headerText: 'Delete', field: 'delete',id: 'column0'},
+	                                {displayIndex: 1,headerText: 'Edit', field: 'delete',id: 'column1'},
+	                                {displayIndex: 2,headerText: 'Id', field: 'Id',id: 'column2'},
+	                                {displayIndex: 3,headerText: 'Title', field: 'Title',id: 'column3'},
+	                                {displayIndex: 4,headerText: 'Created By', field: 'CreatedBy',id: 'column4'}],
+	                                rowTemplate: 'row_tmpl'}">
+	                        </table>
+
+	                        <script type="text/html" id="row_tmpl">
+	                            <tr>
+	                                <td>
+	                                    <a data-bind="attr: {id: 'Del'+Id},click: $root.deleteToDo">
+	                                        <img src="images/delete_ena.png" height="16" width="16"/></a>
+	                                </td>
+	                                <td>
+	                                    <a data-bind="attr: {id: 'Edit'+Id},click: $root.openEditPopup">
+	                                        <img src="images/editrec.gif" height="16" width="16"/></a>
+	                                </td>
+	                                <td data-bind="text: Id">
+	                                </td>
+	                                <td data-bind="text: Title">
+	                                </td>
+	                                <td data-bind="text: CreatedBy">
+	                                </td>
+	                            </tr>
+	                            </script>
+	                        </div>
+
+	                        <div style="display:none" id="addPopup" data-bind="ojComponent:{component: 'ojPopup'}">
+	                            <label for="Id" >Id</label>
+	                            <input id="id" data-bind="ojComponent: {component: 'ojInputText',value: newId}"/><br/>
+	                            <label for="Title">Title</label>
+	                            <input id="title"
+	                                   data-bind="ojComponent: {component: 'ojInputText'},value: newTitle"/><br/>
+	                            <label for="Title">Created By</label>
+	                            <input id="createdBy"
+	                                   data-bind="ojComponent: {component: 'ojInputText'},value: newCreatedBy"/><br/>
+	                            <button id="addNewRow" data-bind="ojComponent: {component: 'ojButton', label: 'Add'}, click: addNewToDo">
+	                            </button>
+	                            <button id="closeNewRow" data-bind="ojComponent: {component: 'ojButton', label: 'Close'}, click: function(){$('#addPopup').ojPopup('close');}">
+	                            </button>
+	                        </div>
+
+	                        <div  id="editPopup" data-bind="ojComponent:{component: 'ojPopup'}">
+	                            <label for="Id">Id</label>
+	                            <input id="text-input-disabled"
+	                                   data-bind="ojComponent: {component: 'ojInputText',
+	                                  value:editRowId,
+	                                  disabled: true}"/><br/>
+
+	                            <label for="Title">Title</label>
+	                            <input id="title11"
+	                                   data-bind="ojComponent: {component: 'ojInputText',value: editRowTitle}"/><br/>
+	                            <label for="Title">Created By</label>
+	                            <input id="createdBy11"
+	                                   data-bind="ojComponent: {component: 'ojInputText',value: editRowCreatedBy}"/><br/>
+	                            <button id="edit1" data-bind="ojComponent: {component: 'ojButton', label: 'Edit'}, click: $root.editToDo">
+	                            </button>
+	                            <button id="closeEdit" data-bind="ojComponent: {component: 'ojButton', label: 'Close'}, click: function(){$('#editPopup').ojPopup('close');}">
+	                            </button>
+	                        </div>
+
+	                    </div>
+	                </div>
+	            </div>
+
+	            <br/>
+
+
+        </body>
+    </html>

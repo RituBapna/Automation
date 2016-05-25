@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head> 
+        <title>Slider Thumb Misplaced</title>
+       <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css" id="ojcss"/>
+        <!--<link rel="stylesheet" href="../../common/css/libs/oj/v1.3.0/alta/oj-alta.css" type="text/css" id="ojcss"/>-->
+        <script>
+            var currentTestApp = '../../input/slider/js/sliderBindingApp';
+            //var currentTestApp = '../../datacollection/listviewTest/js/listviewWhenReadyApp';
+        </script>                                    
+        <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>
+    </head>
+    <body>
+       <!-- sliderModelVM is defined in the app/input/slider/js/sliderBindingApp --> 
+       <div id="wrapperDiv" data-bind="with: sliderModelVM">
+           <!--<div id="wrapperDiv">-->
+            <div id="contentDiv">
+                <div id="slider">
+                    <label for="inputslider-id"> ojSlider component </label>
+                    <input id="inputslider-id"
+                                data-bind="ojComponent: {component: 'ojSlider', disabled :disabledValue ,orientation:orientationValue,range: true,
+                                max:max,min:min,step:step,value:currentValue,help: {'definition': ['Help???']},
+                                rootAttributes: { style: 'width: 200px;'}}"/>
+                    <span> Current Value: </span>
+                    <span id="curr-value" data-bind="text: currentValue"></span>
+                </div>
+
+            </div>
+            <div id="selectionDiv" style="width:50%;margin-top:40%;display:inline;"> 
+                <input id="displayOptionButton" type="button"
+                       data-bind="click: setDisplayOptions, ojComponent: {component: 'ojButton', label: 'SetDisplayOptions'}"/>
+                <input id="showHelp" type="button"
+                       data-bind="click: showHelp,ojComponent: {component: 'ojButton', label: 'showHelp'}"/> 
+                <input id="changeOrientationValButton" type="button"
+                       data-bind="click: buttonClick.bind($data,'0'),ojComponent: {component: 'ojButton', label: 'click:OrientationVAl'}"/> 
+                <!--<button id= "button" data-bind="click: buttonClick, 
+                       ojComponent: { component: 'ojButton', label: 'change Slider Value' }">
+                </button>-->
+                <div id="dropDownGroupDiv" >
+                    <label for="disabledComboId" class="oj-label">Select Disable:</label>
+                    <input id="disabledComboId" style="width:250px;" data-bind="ojComponent: {component: 'ojCombobox',
+                                        options: disabledOptions ,optionChange:disabledUpdate,value:'false'}"/>
+                    <label for="orientationComboId" class="oj-label">Orientation:</label>
+                    <input id="orientationComboId" style="width:250px;" data-bind="ojComponent: {component: 'ojCombobox',
+                                        options: orientationOptions ,optionChange:orientationUpdate,value:'horizontal'}"/>
+                </div>
+
+            </div>
+        </div>
+        
+        <h2>Line Before</h2>
+            <div id="loadOutputPage"></div>
+        <h2>Line after</h2>
+    </body>
+</html>

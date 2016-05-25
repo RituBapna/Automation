@@ -1,0 +1,59 @@
+@font-face {
+  font-family: 'JetSite';
+  src: url("./fonts/demo.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
+.demo-icon-font {
+  font-family: JetSite;
+  font-size: 1.34rem;
+  display: inline-block;
+  width: 1.34rem;
+  height: 1.34rem;
+  line-height: 1.34rem;
+  font-weight: normal;
+  text-align: center;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.demo-icon-font:before {
+  display: inline-block; }
+
+.demo-home-icon:before {
+  content: "\e600"; }
+
+.demo-gettingstarted-icon:before {
+  content: "\e601"; }
+
+.demo-cookbook-icon:before {
+  content: "\e602"; }
+
+.demo-palette-icon:before {
+  content: "\e603"; }
+
+.demo-library-icon:before {
+  content: "\e604"; }
+
+.demo-support-icon:before {
+  content: "\e605"; }
+
+.demo-bookmark-icon:before {
+  content: "\e606"; }
+
+.demo-gridview-icon:before {
+  content: "\e607"; }
+
+.demo-listview-icon:before {
+  content: "\e608"; }
+
+.demo-help-icon:before {
+  content: "\e609"; }
+
+.verticalDivider {
+  border-right: 1px solid #9E9E9E;
+  height: 36px;
+  margin-top: 12px;
+  padding-left: 8px;
+  padding-right: 8px; }

@@ -1,0 +1,107 @@
+
+    <button data-bind="click: toggleSortable" id="btn_sortable">sortable</button>    
+    <button data-bind="click: toggleSortProperty" id="btn_sortproperty">sortProperty</button>    
+    <button data-bind="click: toggleAccRowHeaderCol" id="btn_accRowHeaderCol">accRowHeaderCol</button>    
+    <button data-bind="click: toggleSelectionModeRow" id="btn_selectionModeRow">selectionModeRow</button>    
+    <button data-bind="click: toggleSelectionModeColumn" id="btn_selectionModeColumn">selectionModeColumn</button>    
+    <button data-bind="click: toggleVerticalGridVisible" id="btn_verticalGridVisible">verticalGridVisible</button>    
+    <button data-bind="click: toggleHorizontalGridVisible" id="btn_horizontalGridVisible">horizontalGridVisible</button>    
+  <br/>
+    <button data-bind="click: toggleHeaderClassName" id="btn_headerClassName">headerClassName</button>    
+    <button data-bind="click: toggleHeaderStyle" id="btn_headerStyle">headerStyle</button>    
+    <button data-bind="click: toggleFooterClassName" id="btn_footerClassName">footerClassName</button>    
+    <button data-bind="click: toggleFooterStyle" id="btn_footerStyle">footerStyle</button>    
+    <button data-bind="click: toggleClassName" id="btn_className">className</button>
+    <button data-bind="click: toggleStyle" id="btn_style">style</button>
+    <button data-bind="click: toggleDisplay" id="btn_display">display</button>
+    <button data-bind="click: toggleDndColReorder" id="btn_dndColReorder">DndColReorder</button>
+<br/>
+  <button data-bind="click: getNodeBySubId" id="btn_getNode">getNodeBySubId</button>    
+  <button data-bind="click: getSubIdByNode" id="btn_getSubId">getSubIdByNode</button>    
+  <button data-bind="click: currentSelection" id="btn_currentSelection">currentSelection</button>    
+  <button data-bind="click: toggleMenu" id="btn_menu">contextMenu</button>    
+  <button data-bind="click: toggleEmptyText" id="btn_emptyText">emptyText</button>    
+  <button data-bind="click: refresh" id="btn_refresh">refresh</button>    
+  <button data-bind="click: refreshRow" id="btn_refreshRow">refreshRow</button>    
+  <button data-bind="click: destroyComponent" id="btn_destroy">destroyComponent</button>
+  
+    
+<script type="text/html" id="rowcount_label">
+     <td style="font-weight:bold;">Rows</td>
+</script>
+<script type="text/html" id="rowcount">
+     <td data-bind="text: rowcount_func($footerContext)">
+     </td>
+</script>
+
+<script type="text/html" id="oracle_link_hdr">
+    <th style="padding-left: 5px; padding-right: 5px;">Oracle Link</th>
+</script>
+<script type="text/html" id="oracle_link">
+    <td>
+        <a href="http://www.oracle.com">Oracle</a>
+    </td>
+</script>
+<script type="text/html" id="oracle_link_input">
+<td> 
+<input id="patternAliasI" data-bind="ojComponent: {component: 'ojInputText', 
+value: ManagerId, 
+rootAttributes: {style:'max-width:100%'}}"/> 
+</td> 
+</script>
+<script type="text/html" id="dept_name">
+     <td data-bind="text: DepartmentName">
+     </td>
+</script>
+<script type="text/html" id="row_tmpl">
+    <tr>
+        <td data-bind="text: DepartmentId">
+        </td>
+        <td data-bind="text: DepartmentName">
+        </td>
+        <td data-bind="text: LocationId">
+        </td>
+        <td data-bind="text: ManagerId">
+        </td>
+    </tr>
+</script>
+<script type="text/html" id="row_comp_tmpl">
+    <tr>
+       <td>      <label id="checkboxsetlabel></label>
+                 <span 
+                    data-bind="ojComponent: {component: 'ojCheckboxset', rootAttributes:{'id': $rowContext.key}}"
+                      aria-labelledby="checkboxsetlabel">
+                  <span class="oj-choice-row">
+                     <label for="cbopt"></label>                                              
+                     <input id="cbopt" type="checkbox" name="cbb" value="selected">                     
+                  </span>
+                 </span>                                
+        </td>
+        <td data-bind="text: DepartmentId">
+        </td>
+        <td data-bind="text: DepartmentName">
+        </td>
+        <td data-bind="text: LocationId">
+        </td>
+        <td data-bind="text: ManagerId">
+        </td>
+    </tr>
+</script>
+<script type="text/html" id="row_menu_tmpl">
+    <tr>
+       <td>                      
+         <button data-bind="ojComponent: {component:'ojButton', label: 'menu button', menu: '#myMenu', rootAttributes:{'id': 'mb', 'style': 'color:blue;'}}">
+            </button>
+        </td>
+        <td data-bind="text: DepartmentId">
+        </td>
+        <td data-bind="text: DepartmentName">
+        </td>
+        <td data-bind="text: LocationId">
+        </td>
+        <td data-bind="text: ManagerId">
+        </td>
+    </tr>
+</script>
+
+

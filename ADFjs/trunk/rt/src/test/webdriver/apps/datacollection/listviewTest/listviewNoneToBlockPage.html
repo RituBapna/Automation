@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Listview - Display None To Block</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="../../common/css/libs/oj/v@jetversion@/alta/oj-alta.css" type="text/css" id="ojcss"/>
+        <link rel="stylesheet" href="../../common/css/listview.css" type="text/css" id="ojlistviewcss"/>
+        <script>
+            var currentTestApp = '../../datacollection/listviewTest/js/listviewNoneToBlockApp';
+        </script>                                    
+        <script data-main="../../common/js/main" src="../../common/js/libs/require/require.js"></script>
+    </head>
+    <body>
+        <div id="wrapperDiv">
+            <div id="contentDiv" style="float:left; width:60%;">
+            <ul id="listview" aria-label="list with static hierarchical data" 
+                   data-bind="ojComponent: {component: 'ojListView', selectionMode: 'multiple', expanded: ['a', 'b', 'c'], 
+                              rootAttributes: {style: 'display:none;'}, item:true}">
+                <li id="a">
+                    <span>A</span>
+                    <ul>
+                        <li id="amybartlet">
+                            <span class="avatar" style="background-image: url('images/nBox/1.png')"></span>
+                            <div class="container">
+                                <div>
+                                    <span class="name">Amy Bartlet</span>
+                                </div>
+                                <div>
+                                    <span class="oj-text-xs oj-text-secondary-color">Vice President</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li id="andyjones">
+                            <span class="avatar" style="background-image: url('images/nBox/10.png')"></span>
+                            <div class="container">
+                                <div>
+                                    <span class="name">Andy Jones</span>
+                                </div>
+                                <div>
+                                    <span class="oj-text-xs oj-text-secondary-color">Director</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li id="andrewbugsy">
+                            <span class="avatar" style="background-image: url('images/nBox/11.png')"></span>
+                            <div class="container">
+                                <div>
+                                    <span class="name">Andrew Bugsy</span>
+                                </div>
+                                <div>
+                                    <span class="oj-text-xs oj-text-secondary-color">Individual Contributer</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li id="annettbarnes">
+                            <span class="avatar" style="background-image: url('images/nBox/2.png')"></span>
+                            <div class="container">
+                                <div>
+                                    <span class="name">Annett Barnes</span>
+                                </div>
+                                <div>
+                                    <span class="oj-text-xs oj-text-secondary-color">Individual Contributer</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li id="b">
+                    <span>B</span>
+                    <ul>
+                        <li id="bobjones">
+                            <span class="avatar" style="background-image: url('images/nBox/12.png')"></span>
+                            <div class="container">
+                                <div>
+                                    <span class="name">Bob Jones</span>
+                                </div>
+                                <div>
+                                    <span class="oj-text-xs oj-text-secondary-color">Salesman</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li id="bartbuckler">
+                            <span class="avatar" style="background-image: url('images/nBox/13.png')"></span>
+                            <div class="container">
+                                <div>
+                                    <span class="name">Bart Buckler</span>
+                                </div>
+                                <div>
+                                    <span class="oj-text-xs oj-text-secondary-color">Purchasing</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li id="bobbyfisher">
+                            <span class="avatar" style="background-image: url('images/nBox/14.png')"></span>
+                            <div class="container">
+                                <div>
+                                    <span class="name">Bobby Fisher</span>
+                                </div>
+                                <div>
+                                    <span class="oj-text-xs oj-text-secondary-color">Individual Contributer</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li id="c">
+                    <span>C</span>
+                    <ul>
+                        <li id="cathyjones">
+                            <span class="avatar" style="background-image: url('images/nBox/3.png')"></span>
+                            <div class="container">
+                            <div>
+                                <span class="name">Cathy Jones</span>
+                            </div>
+                            <div>
+                                <span class="oj-text-xs oj-text-secondary-color">Director</span>
+                            </div>
+                            </div>
+                        </li>
+                        <li id="carollsmith">
+                            <span class="avatar" style="background-image: url('images/nBox/4.png')"></span>
+                            <div class="container">
+                            <div>
+                                <span class="name">Caroll Smith</span>
+                            </div>
+                            <div>
+                                <span class="oj-text-xs oj-text-secondary-color">Purchasing</span>
+                            </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            </div>
+            <div id="selctionDiv" style="float:right; width:20%;">
+                <input id="toggleShowHide" type="button" data-bind="click: showHierarchicalStaticContentLV, 
+                          ojComponent: {component: 'ojButton', label:'ShowHierarchicalStaticContentLV'}"/> 
+                <input id="getDisplayVal" type="button" data-bind="ojComponent: {component: 'ojButton', label:'getDisplayVal'}"/>
+                <div id="loadOutputPage"></div>
+            </div>
+        </div> 
+       
+    </body>
+</html>
